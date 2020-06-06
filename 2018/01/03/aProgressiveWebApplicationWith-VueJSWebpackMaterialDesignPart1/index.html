@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="原文地址：https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402
+PWA相关的中文文章比较少，这篇手把手教程非常适合当做pwa入门教程，">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 1]">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 1] - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用Vue JS，Webpack&Material Design开发渐进式web应用(PWA)[Part 1]</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-01-03
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/PWA/">#PWA</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <pre><code>原文地址：https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402
+PWA相关的中文文章比较少，这篇手把手教程非常适合当做pwa入门教程，因此翻译一哈。作者写了一系列手把手教程，这是part 1.
+</code></pre><p>　　渐进式web应用(PWA)是web未来的趋势，越来越多的大公司们开始使用这项技术(如推特…)。</p>
+<p>　　想象一下：当你在乘坐地铁时浏览一款web应用，这款web应用通过推送通知、实时更新数据和提供原生app一般的导航等功能让你沉醉其中。而这些功能就是PWA所包含的一些特性。</p>
+<p>　　PWA就是一款能为用户提供类似于原生app般体验的web应用。得益于现代web技术的不断创新(如Service Worker，Native APIS，JS frameworks等)，PWA可以提升web应用的质量标准。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*YUbP2K2aVqSkwBmmdAwi3Q.png" alt="Google PWA"></p>
+<p>　　如果想了解更多关于PWA的消息，你可以访问<a href="https://developers.google.com/web/progressive-web-apps/" target="_blank" rel="noopener">Google developer page</a></p>
+<p>　　看一哈下面的PWA，它看起来很像一款原生的app吧！</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1%2a4BBw1zM-mkkRqGXHir25YA.png" alt="Twitter progressive web application"></p>
+<p>　　从开发者的角度来看，PWA相比于原生的应用有巨大的优点。它本质上是一个网页，所以：</p>
+<ul>
+<li>你可以使用任何你喜欢的框架进行开发</li>
+<li>编写一次代码就可以让它跨平台、跨设备运行：因为它是由用户的浏览器来运行的</li>
+<li>易于传播：它不需要通过应用商店来下载</li>
+</ul>
+<p>　　然而在2017年早些时候，PWA仍然面临着一些限制：</p>
+<ul>
+<li>Safari并不支持PWA的一些基本特性，如<a href="https://developer.mozilla.org/fr/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">Service Workers</a>，但看起来Apple已经开始着手去实现它了。</li>
+<li>一些原生的方法仍然不被支持，你可以在<a href="https://whatwebcando.today/" target="_blank" rel="noopener">What web can do</a>看到更多信息。</li>
+</ul>
+<h2 id="教程目标"><a href="#教程目标" class="headerlink" title="教程目标"></a>教程目标</h2><p>　　本教程旨在使用VueJS和Webpack从头编写一款基本但功能完善的PWA。这款应用将会实现所有在介绍中提到的特性：渐进式的，响应式的，独立连接的等等。我想让你对PWA能实现的功能有了大体的了解：流畅的类原生应用体验，离线行为，设备原生功能的接口，通知推送等。</p>
+<p>　　为了让这件事充满挑战性，我们将会完成一款猫咪图片交流的app：CropChat！CropChat的用户可以浏览各用户上传的猫咪图片，点击图片阅读更多细节，并且可以发表新的猫咪图片(图片来源可以是互联网，也可以从相册中选取或拍照)。</p>
+<p>　　本教程将分为如下几部分，各部分会陆续发布：</p>
+<ul>
+<li>[Part 1] 使用VueJS、Webpack和Material DesignLite创建一个单页应用</li>
+<li>[Part 2]使用Vue-Resource和VueFire连接App和远程API</li>
+<li>[Part 3] 使用Service Workers实现离线模式</li>
+<li>[Part 4] 访问设备相机进行拍照</li>
+<li>[Part 5] 访问设备存储实现图片上传</li>
+<li>[Part 6] 实现消息推送</li>
+<li>[Part 7] 获取设备位置</li>
+</ul>
+<h2 id="这款PWA的用到的基本组件-工具"><a href="#这款PWA的用到的基本组件-工具" class="headerlink" title="这款PWA的用到的基本组件(工具)"></a>这款PWA的用到的基本组件(工具)</h2><p>　　我们的PWA基于现代的开发工具，你将会爱上他们！</p>
+<ul>
+<li>VueJS 2 视图层：使用Material Design作为UI框架</li>
+<li>Vue-Router：单页应用的前端路由工具</li>
+<li>Vue-Resource&amp;Vuefire：处理和数据库<a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>之间的通信</li>
+<li>Service Workers：实现离线模式和数据更新</li>
+<li>Webpack&amp;Vue-loader：构建这款应用的工具，提供诸如热重载、ES2016和预处理器等支持。</li>
+</ul>
+<p>　　接下来就让我们开始part 1吧！</p>
+<h3 id="PART-1-使用VueJS、Webpack和Material-DesignLite创建一个单页应用"><a href="#PART-1-使用VueJS、Webpack和Material-DesignLite创建一个单页应用" class="headerlink" title="[PART 1] 使用VueJS、Webpack和Material DesignLite创建一个单页应用"></a>[PART 1] 使用VueJS、Webpack和Material DesignLite创建一个单页应用</h3><p>　　如果你对VueJS 2还不是很熟悉的话，我(作者)强烈建议你看一哈<a href="https://vuejs.org/v2/guide/" target="_blank" rel="noopener">官方教程</a>。</p>
+<h4 id="构建一个最基本的VueJS-APP"><a href="#构建一个最基本的VueJS-APP" class="headerlink" title="构建一个最基本的VueJS APP"></a>构建一个最基本的VueJS APP</h4><p>　　我们将会使用<a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">Vue-cli</a>作为脚手架工具构建这个应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure></p>
+<p>　　Vue-cli自带了几个模板，我们将会选择<a href="https://github.com/vuejs-templates/pwa" target="_blank" rel="noopener">pwa template</a>。Vue-cli会使用Webpack，vue-loader(热重载)，一个manifest文件和基于service workers实现基本的离线功能创建一个虚拟的VueJS应用。</p>
+<p>　　然后介绍了<a href="https://webpack.github.io/" target="_blank" rel="noopener">Webpack</a>，就是网上很多文章都说的那种，大家可以点击了解一哈。敲下面的命令初始化Cropchat这个应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init pwa cropchat</span><br></pre></td></tr></table></figure></p>
+<p>　　初始化的过程中终端会问你几个问题，我(作者)通常使用如下的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">? Project name cropchat</span><br><span class="line">? Project short name: fewer than 12 characters to not be truncated on homescreens (default: same as name) cropchat</span><br><span class="line">? Project description A cat pictures messaging application</span><br><span class="line">? Author Charles BOCHET &lt;charlesb@theodo.fr&gt;</span><br><span class="line">? Vue build standalone</span><br><span class="line">? Install vue-router? Yes</span><br><span class="line">? Use ESLint to lint your code? Yes</span><br><span class="line">? Pick an ESLint preset Standard</span><br><span class="line">? Setup unit tests with Karma + Mocha? Yes</span><br><span class="line">? Setup e2e tests with Nightwatch? No</span><br><span class="line">vue-cli · Generated &quot;cropchat&quot;.</span><br></pre></td></tr></table></figure></p>
+<p>　　这波骚操作就把项目的文件夹创建好了，各级目录结构如下说明：</p>
+<ul>
+<li>build：包含webpack和vue-loader的配置文件</li>
+<li>config：包含该app的配置(environments,parameters…)</li>
+<li>src：应用的源码所在</li>
+<li>static：像图片啊css文件还有别的静态文件都丢这里面</li>
+<li>test：通过Karma &amp; Mocha创建的单元测试文件</li>
+</ul>
+<p>　　说了这么多再就跑一跑下面的命令先把初始化完的项目跑起来再说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd cropchat</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure></p>
+<p>　　然后访问地址localhost:8080就能看到了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*WQFOAsM5rqgzfEsYVb3WeA.png"></p>
+<h4 id="Manifest-json-让你的应用可安装"><a href="#Manifest-json-让你的应用可安装" class="headerlink" title="Manifest.json: 让你的应用可安装"></a>Manifest.json: 让你的应用可安装</h4><p>　　PWA最大的优点之一便是应用可以很方便地安装和分享。所有提供了合法的<code>manifest.json</code>文件并在<code>index.html</code>中引入的web应用都可以安装。</p>
+<p>　　Vue pwa模板提供了一个默认的<code>manifest.json</code>文件。</p>
+<p>　　编辑默认的<code>static/manifest.json</code>文件使之能应用于本次的项目：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;cropchat&quot;,</span><br><span class="line">  &quot;short_name&quot;: &quot;cropchat&quot;,</span><br><span class="line">  &quot;icons&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;src&quot;: &quot;/static/img/icons/cropchat-icon-64x64.png&quot;,</span><br><span class="line">      &quot;sizes&quot;: &quot;192x192&quot;,</span><br><span class="line">      &quot;type&quot;: &quot;image/png&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;src&quot;: &quot;/static/img/icons/cropchat-icon-128x128.png&quot;,</span><br><span class="line">      &quot;sizes&quot;: &quot;128x128&quot;,</span><br><span class="line">      &quot;type&quot;: &quot;image/png&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;src&quot;: &quot;/static/img/icons/cropchat-icon-256x256.png&quot;,</span><br><span class="line">      &quot;sizes&quot;: &quot;256x256&quot;,</span><br><span class="line">      &quot;type&quot;: &quot;image/png&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;src&quot;: &quot;/static/img/icons/cropchat-icon-512x512.png&quot;,</span><br><span class="line">      &quot;sizes&quot;: &quot;512x512&quot;,</span><br><span class="line">      &quot;type&quot;: &quot;image/png&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;start_url&quot;: &quot;/&quot;,</span><br><span class="line">  &quot;display&quot;: &quot;fullscreen&quot;,</span><br><span class="line">  &quot;orientation&quot;: &quot;portrait&quot;,</span><br><span class="line">  &quot;background_color&quot;: &quot;#2196f3&quot;,</span><br><span class="line">  &quot;theme_color&quot;: &quot;#2196f3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　在manifest.json文件中你可以修改定制一些属性：</p>
+<ul>
+<li>app <strong>names</strong>；</li>
+<li>app <strong>icons</strong>，设置该图标使之作为桌面和启动页图标(你可以找到Cropchat官方图标在<a href="https://github.com/charlesBochet/cropchat" target="_blank" rel="noopener">这个仓库</a>);</li>
+<li><strong>start url</strong></li>
+<li><strong>display</strong>和<strong>orientation</strong>，display主要控制页面的显示方式，是否要隐藏浏览器UI或全屏或像正常网页一般；orientation主要控制页面的初始方向；</li>
+<li><strong>background</strong>和<strong>theme colors</strong><br>　　在<a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" target="_blank" rel="noopener">Mozilla Developer website</a>中有对清单中各个属性的详细说明。</li>
+</ul>
+<p>　　然后看一哈<code>index.html</code>，发现manifest.json文件已经被引入了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;manifest&quot; href=&quot;&lt;%= htmlWebpackPlugin.files.publicPath %&gt;static/manifest.json&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　同时确认一哈在<code>index.html</code>中有对viewport的声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　这样搞完我们就要试试把Cropchat安装到手机上了。由许多方法可以访问到本地的localhost:8080，作者最喜欢的是<a href="https://ngrok.com/" target="_blank" rel="noopener">ngrok</a>，这里就不翻译了大家各显神通，跟着原文敲一哈命令也可以。</p>
+<p>　　然后当我们用手机访问这个页面的时候，奇迹出现了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*zewv3cjykAy1uiju5f8KLA.png" style="width:49%;display:inline-block;"><br><img src="https://cdn-images-1.medium.com/max/600/1*gbx8FCzdqgCaYODHYdqjuQ.png" style="width:49%;display:inline-block;"></p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*pBOdJaUNVhoE2QHaGYA1zw.png" style="width:49%;display:inline-block;"><br><img src="https://cdn-images-1.medium.com/max/600/1*VzSxTCWMuphYRGD2mFVWng.png" style="width:49%;display:inline-block;"></p>
+<p>　　Cropchat的源码在<a href="https://github.com/charlesBochet/cropchat" target="_blank" rel="noopener">GitHub</a>可以看到。</p>
+<p>　　要想了解更多关于ngrok的信息，你可以看看Matthieu Auger的文章：<a href="http://www.theodo.fr/blog/2016/06/expose-your-local-environment-to-the-world-with-ngrok/" target="_blank" rel="noopener"> Expose your local environment to the world with ngrok</a>。</p>
+<h4 id="处理视图页面和路由"><a href="#处理视图页面和路由" class="headerlink" title="处理视图页面和路由"></a>处理视图页面和路由</h4><p>　　既然我们已经成功地将项目搭建并运行起来，那接下来就是去完成Cropchat的更多功能了。Cropchat有三个视图页面：</p>
+<ul>
+<li>Home View：以列表的形式显示猫咪图片</li>
+<li>Detail View：显示特定猫咪图片的具体信息(通过首页点击图片进入)</li>
+<li>Post View：用户可以在该页面发表新的图片</li>
+</ul>
+<p>　　那我们首先就先搞一把HomeView页面。创建<code>src/components/HomeView.vue</code>文件，整体结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul class=&quot;list&quot;&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .list &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    padding: 0;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　同理可得<code>src/components/DetailView.vue</code>页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;card-image&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　同理可得<code>src/components/PostView.vue</code>页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;waiting&quot;&gt;</span><br><span class="line">    Not yet available</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .waiting &#123;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    color: #555;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　最后更新路由文件<code>src/router/index.js</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line">import HomeView from &apos;@/components/HomeView&apos;</span><br><span class="line">import DetailView from &apos;@/components/DetailView&apos;</span><br><span class="line">import PostView from &apos;@/components/PostView&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;,</span><br><span class="line">      name: &apos;home&apos;,</span><br><span class="line">      component: HomeView</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/detail/:id&apos;,</span><br><span class="line">      name: &apos;detail&apos;,</span><br><span class="line">      component: DetailView</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/post&apos;,</span><br><span class="line">      name: &apos;post&apos;,</span><br><span class="line">      component: PostView</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>　　移除没使用的<code>Hello.vue</code>文件。你现在已经可以看到页面发生改变了(热重载很棒吧<del>日常商业吹捧</del>)</p>
+<h4 id="安装Material-Design-Lite"><a href="#安装Material-Design-Lite" class="headerlink" title="安装Material Design Lite"></a>安装Material Design Lite</h4><p>　　废话不多说，文档看这里：<a href="https://getmdl.io/" target="_blank" rel="noopener">Get MDL.io</a>，总之它很棒是了<del>，当然Material Design思想也是超棒的，配合MDL像我们这些屌丝开发者也能快速搭建大体符合materail design规范的网站</del></p>
+<p>　　更新Cropchat依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install material-design-lite --save</span><br></pre></td></tr></table></figure></p>
+<p>　　更新<code>src/App.vue</code>组件，导入MDL样式并加载MDL模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  require(&apos;material-design-lite&apos;)</span><br><span class="line">  ...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  @import url(&apos;https://fonts.googleapis.com/icon?family=Material+Icons&apos;);</span><br><span class="line">  @import url(&apos;https://code.getmdl.io/1.2.1/material.blue-red.min.css&apos;);</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="为单页应用增加一个导航"><a href="#为单页应用增加一个导航" class="headerlink" title="为单页应用增加一个导航"></a>为单页应用增加一个导航</h4><p>　　更新<code>src/App.vue</code>文件模板部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;mdl-layout mdl-js-layout mdl-layout--fixed-header&quot;&gt;</span><br><span class="line">    &lt;header class=&quot;mdl-layout__header&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;mdl-layout__header-row&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;mdl-layout-title&quot;&gt;CropChat&lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-layout__drawer&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;mdl-layout-title&quot;&gt;CropChat&lt;/span&gt;</span><br><span class="line">      &lt;nav class=&quot;mdl-navigation&quot;&gt;</span><br><span class="line">        &lt;router-link class=&quot;mdl-navigation__link&quot; to=&quot;/&quot; @click.native=&quot;hideMenu&quot;&gt;Home&lt;/router-link&gt;</span><br><span class="line">        &lt;router-link class=&quot;mdl-navigation__link&quot; to=&quot;/post&quot; @click.native=&quot;hideMenu&quot;&gt;Post a picture&lt;/router-link&gt;</span><br><span class="line">      &lt;/nav&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;main class=&quot;mdl-layout__content&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;page-content&quot;&gt;</span><br><span class="line">        &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　由于MDL不是特别为单页应用设计的，所以当用户点击菜单按钮时需要隐藏burger menu：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">...</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;app&apos;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hideMenu: function () &#123;</span><br><span class="line">      document.getElementsByClassName(&apos;mdl-layout__drawer&apos;)[0].classList.remove(&apos;is-visible&apos;)</span><br><span class="line">      document.getElementsByClassName(&apos;mdl-layout__obfuscator&apos;)[0].classList.remove(&apos;is-visible&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　效果如图所示</p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*PGzdQxrrgTQ3JmztskFxzg.png" style="width:49%;display:inline-block;"><br><img src="https://cdn-images-1.medium.com/max/600/1*_5LbpFsli28dZMtFlwHIZg.png" style="width:49%;display:inline-block;"></p>
+<h4 id="丰富视图并让应用跑起来"><a href="#丰富视图并让应用跑起来" class="headerlink" title="丰富视图并让应用跑起来"></a>丰富视图并让应用跑起来</h4><p>　　到现在为止我们并没有使用后台服务器，而是创建一个data.js文件做一些模拟的数据。</p>
+<p>　　创建<code>src/data.js</code>文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  pictures: [</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;id&apos;: 0,</span><br><span class="line">      &apos;url&apos;: &apos;https://25.media.tumblr.com/tumblr_m40h4ksiUa1qbyxr0o1_400.gif&apos;,</span><br><span class="line">      &apos;comment&apos;: &apos;A cat game&apos;,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Kevin on Friday&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;id&apos;: 1,</span><br><span class="line">      &apos;url&apos;: &apos;https://25.media.tumblr.com/tumblr_lhd7n9Qec01qgnva2o1_500.jpg&apos;,</span><br><span class="line">      &apos;comment&apos;: &apos;Tatoo &amp; cat&apos;,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Charles on Tuesday&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;id&apos;: 2,</span><br><span class="line">      &apos;url&apos;: &apos;https://24.media.tumblr.com/tumblr_m4j2atctRm1qejbiro1_1280.jpg&apos;,</span><br><span class="line">      &apos;comment&apos;: &apos;Santa cat&apos;,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Richard on Monday&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;id&apos;: 3,</span><br><span class="line">      &apos;url&apos;: &apos;https://25.media.tumblr.com/tumblr_m3rmbwhVB51qhwmnpo1_1280.jpg&apos;,</span><br><span class="line">      &apos;comment&apos;: &apos;Mexico cat&apos;,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Richard on Monday&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;id&apos;: 4,</span><br><span class="line">      &apos;url&apos;: &apos;https://24.media.tumblr.com/tumblr_mceknxs4Lo1qd477zo1_500.jpg&apos;,</span><br><span class="line">      &apos;comment&apos;: &apos;Curious cat&apos;,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Richard on Monday&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　在<code>HomeView.vue</code>的script标签中导入数据并将图片连接关联到响应的DetailView页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  import data from &apos;../data&apos;</span><br><span class="line">  export default &#123;</span><br><span class="line">    methods: &#123;</span><br><span class="line">      displayDetails (id) &#123;</span><br><span class="line">        this.$router.push(&#123;name: &apos;detail&apos;, params: &#123; id: id &#125;&#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        &apos;pictures&apos;: data.pictures</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　更新<code>HomeView.vue</code>模板和样式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-grid&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone&quot;&gt;&lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;mdl-cell mdl-cell--6-col mdl-cell--4-col-phone&quot;&gt;</span><br><span class="line">        &lt;div v-for=&quot;picture in this.pictures&quot; class=&quot;image-card&quot; @click=&quot;displayDetails(picture.id)&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;image-card__picture&quot;&gt;</span><br><span class="line">            &lt;img :src=&quot;picture.url&quot; /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;div class=&quot;image-card__comment mdl-card__actions&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; picture.comment &#125;&#125;&lt;/span&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;router-link class=&quot;add-picture-button mdl-button mdl-js-button mdl-button--fab mdl-button--colored&quot; to=&quot;/post&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;material-icons&quot;&gt;add&lt;/i&gt;</span><br><span class="line">    &lt;/router-link&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">...</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .add-picture-button &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    right: 24px;</span><br><span class="line">    bottom: 24px;</span><br><span class="line">    z-index: 998;</span><br><span class="line">  &#125;</span><br><span class="line">  .image-card &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    margin-bottom: 8px;</span><br><span class="line">  &#125;</span><br><span class="line">  .image-card__picture &gt; img &#123;</span><br><span class="line">    width:100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .image-card__comment &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    height: 52px;</span><br><span class="line">    padding: 16px;</span><br><span class="line">    text-align: right;</span><br><span class="line">    background: rgba(0, 0, 0, 0.5);</span><br><span class="line">  &#125;</span><br><span class="line">  .image-card__comment &gt; span &#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">    font-size: 14px;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　同理可得<code>DetailView.vue</code>页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;mdl-grid&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-cell mdl-cell--8-col&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;picture&quot;&gt;</span><br><span class="line">        &lt;img :src=&quot;this.pictures[$route.params.id].url&quot; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123; this.pictures[$route.params.id].info &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;comment&quot;&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123; this.pictures[$route.params.id].comment &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">        &lt;router-link class=&quot;mdl-button mdl-js-button mdl-button--raised mdl-button--colored&quot; to=&quot;/post&quot;&gt;</span><br><span class="line">          ANSWER</span><br><span class="line">        &lt;/router-link&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import data from &apos;../data&apos;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      &apos;pictures&apos;: data.pictures</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .picture &gt; img &#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">    width:100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .info &#123;</span><br><span class="line">    text-align: right;</span><br><span class="line">    padding: 5px;</span><br><span class="line">    color: #555;</span><br><span class="line">    font-size: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  .comment &#123;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    color: #555;</span><br><span class="line">  &#125;</span><br><span class="line">  .actions &#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="终于搞定了！"><a href="#终于搞定了！" class="headerlink" title="终于搞定了！"></a>终于搞定了！</h4><p>　　搞定了，看一哈是怎么个效果：</p>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*qm9uI2oBf5fX6ZwIsN2DdQ.png" style="width:49%;display:inline-block;"><br><img src="https://cdn-images-1.medium.com/max/600/1*QK95FvWBtTgW-Q_ZNjg2nw.png" style="width:49%;display:inline-block;"></p>
+<p>　　在这个仓库你可以找到源码噢：</p>
+<p><a href="https://github.com/charlesBochet/vueJSPwa" target="_blank" rel="noopener">https://github.com/charlesBochet/vueJSPwa</a></p>
+<p>　　但是Cropchat还不完全是个PWA，我们来看看PWA需要哪些特性：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*qFbrKRvbBEFazm6P4q0JEg.png"></p>
+<p>　　在之后的教程中我们会不断完善这些特性，我也会继续半吊子翻译教程。谢谢大家，祝各位和这位作者新年快乐！</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

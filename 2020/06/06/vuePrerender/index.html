@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="背景这篇文章其实早就写好发在前公司的博客上，最近空下来整理一下再发出来。之前的官网使用vue写的，单页应用嘛难免存在一些缺陷比如首屏渲染慢，比如SEO不友好；对于官网来说其实并不追求项目架构什么的，反而更看重访问速度和SEO效果。为了解决上面的问题首先想到的一般是SSR和prerender，两种方案">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Vue预渲染实战：为官网增加预渲染">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Vue预渲染实战：为官网增加预渲染 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Vue预渲染实战：为官网增加预渲染</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-06-06
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>这篇文章其实早就写好发在前公司的博客上，最近空下来整理一下再发出来。<br>之前的官网使用vue写的，单页应用嘛难免存在一些缺陷比如首屏渲染慢，比如SEO不友好；对于官网来说其实并不追求项目架构什么的，反而更看重访问速度和SEO效果。<br>为了解决上面的问题首先想到的一般是SSR和prerender，两种方案有不同的适用场景；对于官网这种固定页面的网站使用预渲染方案改造成本更小，而且不会带来额外的服务器压力。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>webpack插件<code>prerender-spa-plugin</code>在第一次打包之后通过 <a href="https://zhaoqize.github.io/puppeteer-api-zh_CN/" target="_blank" rel="noopener">puppeteer</a> 打开浏览器访问之前配置好的路由地址。通过puppeteer我们可以向页面中注入js代码执行，从而得到相应页面的前端代码写入到本地文件中生成预渲染内容。</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ul>
+<li><code>npm run build</code>进行打包生成第一次编译文件</li>
+<li>启动<code>prerender-spa-plugin</code>插件</li>
+<li>插件启动本地node服务器和puppeteer浏览器</li>
+<li>浏览器根据<code>vue.config.js</code>中创建<code>PrerenderSPAPlugin</code>对象时提供的<code>routes</code>配置访问相应的路由地址</li>
+<li>puppeteer监听创建<code>PrerenderSPAPlugin</code>对象时提供的<code>renderer</code>对象中配置的<code>renderAfterDocumentEvent</code>事件，该事件会在入口文件<code>main.js</code>(或其它类似文件)中的相应时机里触发</li>
+<li>当puppeteer监听的事件被触发时开始获取页面代码</li>
+<li>当代码爬取完毕进入到创建<code>PrerenderSPAPlugin</code>对象时提供的<code>postProcess</code>函数中，该函数是在预渲染内容输出到本地文件前最后一个钩子对输出内容进行修改。函数接受一个对象入参：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  route: String, // Where the output file will end up (relative to outputDir)</span><br><span class="line">  originalRoute: String, // The route that was passed into the renderer, before redirects.</span><br><span class="line">  html: String, // The rendered HTML for this route.</span><br><span class="line">  outputPath: String // The path the rendered HTML will be written to.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>直接修改该对象的属性值并返回该对象完成处理工作</p>
+<ul>
+<li>根据<code>PrerenderSPAPlugin</code>创建时的配置输出文件到本地完成整个预渲染流程</li>
+</ul>
+<h3 id="关键代码实现"><a href="#关键代码实现" class="headerlink" title="关键代码实现"></a>关键代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 入口文件main.js</span><br><span class="line">const app = new Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">  /**</span><br><span class="line">   * 在mounted中再加一个定时器触发puppeteer监听事件，为了确保页面的请求和内容能全部加载渲染完成</span><br><span class="line">   */</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      console.log(&quot;dispatch event&quot;);</span><br><span class="line">      window.document.dispatchEvent(new Event(&quot;render-event&quot;));</span><br><span class="line">    &#125;, 5000);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; &#123;</span><br><span class="line">  app.$mount(&quot;#app&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// vue.config.js</span><br><span class="line">configureWebpack: config =&gt; &#123;</span><br><span class="line">    let plugins = [];</span><br><span class="line">    if (process.env.NODE_ENV === &quot;production&quot;) &#123;</span><br><span class="line">      console.log(&quot;production config&quot;);</span><br><span class="line">      // 生产环境增加预渲染</span><br><span class="line">      plugins.push(</span><br><span class="line">        new PrerenderSPAPlugin(&#123;</span><br><span class="line">          // 要执行预渲染的文件路径</span><br><span class="line">          staticDir: path.join(__dirname, &quot;dist&quot;),</span><br><span class="line">          // 需要进行预渲染的页面路由</span><br><span class="line">          routes: [&quot;/&quot;, &quot;/index&quot;, &quot;/about&quot;],</span><br><span class="line">          /**</span><br><span class="line">            postProcess是预渲染内容输出之前最后一次对输出内容进行修改的机会</span><br><span class="line">            ctx: &#123;</span><br><span class="line">              route: String, // 相对于outputDir输出的路径</span><br><span class="line">              originalRoute: String, // 页面最初的路由地址，即重定向之前的路径</span><br><span class="line">              html: String, // 爬取到的页面代码</span><br><span class="line">              outputPath: String // 预渲染之后代码的输出路径</span><br><span class="line">            &#125;</span><br><span class="line">          */</span><br><span class="line">          postProcess(ctx) &#123;</span><br><span class="line">            // 当访问根目录时路由会重定向到index上，此时route:&apos;/index&apos;  originalRoute:&apos;/&apos;，</span><br><span class="line">            // 做一次赋值让根目录下的index.html中有index路径下的内容</span><br><span class="line">            ctx.route = ctx.originalRoute;</span><br><span class="line">            return ctx;</span><br><span class="line">          &#125;,</span><br><span class="line">          // 一些优化配置，参考github说明</span><br><span class="line">          minify: &#123;</span><br><span class="line">            collapseBooleanAttributes: true,</span><br><span class="line">            collapseWhitespace: true,</span><br><span class="line">            decodeEntities: true,</span><br><span class="line">            keepClosingSlash: true,</span><br><span class="line">            sortAttributes: true</span><br><span class="line">          &#125;,</span><br><span class="line">          renderer: new Renderer(&#123;</span><br><span class="line">            // 需要注入一个值，这样就可以检测页面当前是否是预渲染的</span><br><span class="line">            inject: &#123;&#125;,</span><br><span class="line">            // 是否使用无头浏览器</span><br><span class="line">            headless: false,</span><br><span class="line">            // 视图组件是在API请求获取所有必要数据后呈现的，因此监听该事件当视图渲染完毕之后创建快照</span><br><span class="line">            renderAfterDocumentEvent: &quot;render-event&quot;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line">      config.plugins = [...config.plugins, ...plugins];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可能会踩到的坑"><a href="#可能会踩到的坑" class="headerlink" title="可能会踩到的坑"></a>可能会踩到的坑</h3><ul>
+<li>一般会在router中对根地址<code>&#39;/&#39;</code>做重定向至<code>&#39;/index&#39;</code>，此时在<code>postProcess</code>传入的参数中<code>route:&#39;/index&#39;</code>，  <code>originalRoute:&#39;/&#39;</code>，需要做一次赋值让根目录下的index.html中有index路径下的内容</li>
+<li>挂在VUE实例和触发renderAfterDocumentEvent的时机：</li>
+</ul>
+<p>在<code>DOMContentLoaded</code>的回调中挂载实例确保挂载目标容器存在</p>
+<p>使用<code>$mount</code>显式调用开启编译挂载而不是提供<code>el</code>选项立即进入编译</p>
+<p>在<code>new Vue()</code>的<code>mounted</code>中添加一个定时器，在定时器中使用<code>window.document.dispatchEvent(new Event(&quot;render-event&quot;))</code>触发<code>renderAfterDocumentEvent</code>事件来确保页面数据加载渲染完成</p>
+<ul>
+<li><p>路由模式<code>history</code>模式，因为预渲染的静态文件都会同步到服务器上，hash不会带到服务器，路由信息会丢失</p>
+</li>
+<li><p>预渲染之后的页面点击事件失效/JS不运行：因为预渲染之后的文件运行在客户端(浏览器)时会再次执行Vue实例化挂载的过程，而在打包编译预渲染的过程中<code>id=&quot;app&quot;</code>的元素已经被替换了，因此在客户端执行的Vue无法正确挂载实例</p>
+</li>
+</ul>
+<p>解决办法：在路由容器外层元素中(一般是<code>App.vue</code>中<code>class=&quot;main&quot;</code>的元素)再添加<code>id=&quot;app&quot;</code>属性，提供给客户端的Vue进行实例挂载</p>
+<ul>
+<li>路由跳转的时候使用<code>$router.push(&#39;/brand&#39;)</code>而不是<code>$router.push(&#39;brand&#39;)</code>，后面的跳转匹配不到服务端的文件会发生404</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

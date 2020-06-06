@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="距离上一次更新文章又是一个月前了_(¦3」∠)_2019得立flag强制每个月更新几篇文章
+在JavaScript中，函数相关的知识点有一些容易混淆的概念，比如使用函数声明和函数表达式定义函数匿名函数与闭包执行环境与作用域活动对象与变量对象
+高程第七章对这几个概念做了解释，结合之前的学习内容对这些容">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="《JavaScript高级程序设计 第七章》函数的学习：匿名函数与闭包，执行环境与作用域，活动对象与变量对象，作用域链的构成">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>《JavaScript高级程序设计 第七章》函数的学习：匿名函数与闭包，执行环境与作用域，活动对象与变量对象，作用域链的构成 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>《JavaScript高级程序设计 第七章》函数的学习：匿名函数与闭包，执行环境与作用域，活动对象与变量对象，作用域链的构成</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-12-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/高程学习笔记/">#高程学习笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>距离上一次更新文章又是一个月前了_(¦3」∠)_2019得立flag强制每个月更新几篇文章</p>
+<p>在JavaScript中，函数相关的知识点有一些容易混淆的概念，比如<br>使用函数声明和函数表达式定义函数<br>匿名函数与闭包<br>执行环境与作用域<br>活动对象与变量对象</p>
+<p>高程第七章对这几个概念做了解释，结合之前的学习内容对这些容易混淆的概念做一下对比。</p>
+<h3 id="使用函数声明和函数表达式定义函数"><a href="#使用函数声明和函数表达式定义函数" class="headerlink" title="使用函数声明和函数表达式定义函数"></a>使用函数声明和函数表达式定义函数</h3><p>使用函数声明定义一个函数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 可以在定义之前调用函数</span><br><span class="line">sayName();</span><br><span class="line">function sayName() &#123;</span><br><span class="line">    console.log(&apos;name&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用函数表达式定义函数则是声明一个匿名函数，将匿名函数赋值给变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 不可以在定义之前调用函数</span><br><span class="line">sayName();  // Uncaught ReferenceError: sayName is not defined</span><br><span class="line">let sayName = function() &#123;</span><br><span class="line">    console.log(&apos;name&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>它们的相同点自然是都定义了一个名为 <code>sayName</code> 的函数<br>不同点则在于使用函数声明方式定义的函数存在 <code>函数声明提升</code> 的现在，即JavaScript解析器会先读取函数声明定义的函数，使之在代码执行之前可用；而使用函数表达式定义的函数如果调用在前定义在后则会报错–这点在第五章中有说明，此处略过。</p>
+<p>在ES6版本中对象的方法可以使用简写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let person = &#123;</span><br><span class="line">    sayName() &#123;</span><br><span class="line">        console.log(&apos;name&apos;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 等效于下面的定义方式</span><br><span class="line">    sayAge: function() &#123;</span><br><span class="line">        console.log(&apos;age&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h3><p>之前我一直以为<code>闭包</code>是个形容词，原来它是一个名词 -_-||</p>
+<blockquote>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
+</blockquote>
+<p>之所以把匿名函数与闭包放一起对比是因为在开发中常会使用匿名函数来实现闭包的功能。<br>而它们之间的异同从字面意思和定义也能看出来:</p>
+<ul>
+<li>它们指的都是函数</li>
+<li>从字面意思上看匿名函数指的是没有命名的函数</li>
+<li>从定义上看闭包指的是有某种特殊功能(有权访问另一个函数作用域中的变量)的函数</li>
+</ul>
+<p>要深入探究就要继续看接下来几个名词的对比：作用域、作用域链、执行环境、活动对象、变量对象</p>
+<h3 id="作用域与作用域链，执行环境与活动对象、变量对象"><a href="#作用域与作用域链，执行环境与活动对象、变量对象" class="headerlink" title="作用域与作用域链，执行环境与活动对象、变量对象"></a>作用域与作用域链，执行环境与活动对象、变量对象</h3><h4 id="各名词的定义"><a href="#各名词的定义" class="headerlink" title="各名词的定义"></a>各名词的定义</h4><p>首先看一下执行环境的定义:</p>
+<blockquote>
+<p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。</p>
+</blockquote>
+<p>简单来看执行环境是当前代码执行时所处的环境，对于浏览器来说全局执行环境是window对象。</p>
+<p>然后看看<code>作用域</code>这个概念，在书本中没有看到明确定义的地方，翻了一下 <a href="https://developer.mozilla.org/en-US/docs/Glossary/Scope" target="_blank" rel="noopener">MDN Scope</a> 也只看到草草的介绍说作用域限制了变量和其它表达式的访问范围。</p>
+<p>从定义上来看执行环境表明当前执行代码所处的环境，作用域表明当前代码能访问到变量和函数的区域，大体上看两个概念指的是差不多的东西。</p>
+<p>然后说到活动对象和变量对象，这是两个更抽象的概念。先看书本上的定义:</p>
+<blockquote>
+<p>每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
+</blockquote>
+<blockquote>
+<p>当某个函数被调用时，会创建一个执行环境（execution context）及相应的作用域链。然后，使用 arguments 和其他命名参数的值来初始化函数的活动对象（activation object）。</p>
+</blockquote>
+<p>这样看完还是非常懵逼，知乎上有个帖子讨论这个问题:</p>
+<p><a href="https://www.zhihu.com/question/36393048" target="_blank" rel="noopener">js 中的活动对象 与 变量对象 什么区别？</a></p>
+<p>我的理解是：</p>
+<p>变量对象是规范中定义的一部分，始终都存在着一个全局变量对象保存着执行环境里的一些信息，局部执行环境的信息由在执行函数过程中创建的变量对象保存。由于它定义的特性更多是提供给js引擎使用，因此我们更多地去关注活动对象。</p>
+<p>活动对象的作用和变量对象类似，只是它只有当函数被调用时才被创建。当函数被调用时。书中有说明：</p>
+<blockquote>
+<p>此后，又有一个活动对象（在此作为变量对象使用）被创建并被推入执行环境作用域链的前端。</p>
+</blockquote>
+<p>活动对象包含一个 arguments 对象以及当前执行环境里声明的变量和函数，当需要访问当前作用域中的变量和函数时便是从活动对象里获取。</p>
+<h4 id="作用域链的构建"><a href="#作用域链的构建" class="headerlink" title="作用域链的构建"></a>作用域链的构建</h4><p>虽然没有特别多的资料来学习<code>作用域</code>这个概念，但是对于<code>作用域链</code>这个概念书本可是花了大量的篇幅去讲解。<br>先看一下作用域链的描述：</p>
+<blockquote>
+<p>当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
+</blockquote>
+<p>我们都知道，当访问一个变量或函数时会沿着作用域链去寻找这个变量，直到找到它或者止于window对象。那么这条作用域链是怎么构建起来的呢？</p>
+<p>瞄一眼时间，快11点了。<br>留个坑明天继续。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

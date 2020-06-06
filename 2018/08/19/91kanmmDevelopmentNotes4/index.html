@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="目录
+网站近况
+网站挂了总结：数据、代码的备份和服务的加密
+如何制定可行的功能开发迭代计划
+
+网站近况　　经过三个星期左右的开发，91kanmm已经上线了豆瓣美女、美女写真两个模块，视频模块已经完成爬虫和数据接口的开发，正在开发前端页面。由于疏于管理，在两个星期后的某一天访问网站时发现只剩豆瓣美女首">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【91kanmm开发笔记】中期总结">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>【91kanmm开发笔记】中期总结 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>【91kanmm开发笔记】中期总结</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-08-19
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/91kanmm开发笔记/">#91kanmm开发笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>网站近况</li>
+<li>网站挂了总结：数据、代码的备份和服务的加密</li>
+<li>如何制定可行的功能开发迭代计划</li>
+</ul>
+<h3 id="网站近况"><a href="#网站近况" class="headerlink" title="网站近况"></a>网站近况</h3><p>　　经过三个星期左右的开发，91kanmm已经上线了豆瓣美女、美女写真两个模块，视频模块已经完成爬虫和数据接口的开发，正在开发前端页面。由于疏于管理，在两个星期后的某一天访问网站时发现只剩豆瓣美女首屏页面，无法滚动加载更多数据也无法刷新数据。美女写真模块倒是运行正常只是访问速度比较慢。</p>
+<p>　　于是开始查看原因，网站访问正常说明服务器(主机和NGINX)还在运行，至少大本营还没出问题，那么访问访问速度慢的问题其实是因为主机在国外的原因导致的；直接在浏览器中访问豆瓣美女的数据接口，返回的数据格式都正常，返回数据中code为10000，是定义好的标识成功的code，这说明后端服务也运行正常；查看返回数据，发现data字段无论发送什么参数查询返回的都是一个空的数组：大概率问题是出在数据库上了。登录主机和MongoDB查看一下——果不其然数据库上的表都被删除，还新建了一个表：</p>
+<p><img src="http://ww1.sinaimg.cn/large/005Kh0ZYgy1fueqx6ccw7j314m079jrs.jpg" alt></p>
+<p>？？？我这是被勒索了吗<br>简直丧心病狂连没人访问的小网站都要下手</p>
+<p>　　然而很可惜网站并不值钱，数据也并不值钱，真正有价值的代码和脚本都在云端备份了。也罢也罢部署一下项目，重新跑一边爬虫又是一条好汉。</p>
+<h3 id="网站挂了的总结"><a href="#网站挂了的总结" class="headerlink" title="网站挂了的总结"></a>网站挂了的总结</h3><p>　　上一章说了网站近况和宕机的原因，本章整理一下教训，吃一堑长一智。</p>
+<h4 id="代码和数据备份方面"><a href="#代码和数据备份方面" class="headerlink" title="代码和数据备份方面"></a>代码和数据备份方面</h4><p>　　首先是数据和代码的备份。除去网站本身不值钱的因素，本次MongoDB被删库没有造成特别大损失的一大原因就是有备份了网站前后端和爬虫的代码，在已有数据量不是特别大的情况下只要重新拉一遍代码，跑一遍爬虫就能快速恢复网站的运行。</p>
+<p>　　在代码的管理方面我使用的是git作为管理工具，最主要的原因是它是目前最为主流的工作流管理工具，也是在工作中使用的，而且得到包括 <del>世界上最大的同性交友网站</del>GitHub等一众云端代码托管网站的支持；在托管工具方面使用的是GitHub和<a href="https://coding.net/" target="_blank" rel="noopener">CODING</a>，之所以分两个托管工具是使用GitHub开源爬虫脚本，而CODING提供了免费的私有仓库可以托管前后端代码——前后端代码计划在91kanmm开发完毕之后开源，避免某天突然出现一个92kanmm？？</p>
+<p>　　<em>这让我想起来了在准备注册91kanmm时和小伙伴们讨论到底是注册个什么域名：51kanmm，52kanmm，91kanmm——先pass了51kanmm，感觉51是个比较正经的数字不太适合搞这种小网站；之后在52和91之间纠结的时候，52kanmm的域名就已经被人注册了，那么正好如我所愿注册了91kanmm，毕竟老司机都懂91。上线之后也证实了大量的关键词都是通过91***索引过来的ORZ。</em></p>
+<p>　　话说回来，对于91kanmm这种小项目，考虑到极少情况出现硬盘和代码托管服务商同时挂了的情况，我在云端和本地各放着一份代码就能满足我对代码备份的需求了；而对于商业项目可能还要多加点安全措施避免极端情况的出现导致重大损失。因为都是单人开发也就没有特别区分test和master环境，直接在本地开发调试完就推到主干上了。而在数据备份方面，目前比较可行的方案也就是定时备份数据库了。</p>
+<h4 id="服务加密方面"><a href="#服务加密方面" class="headerlink" title="服务加密方面"></a>服务加密方面</h4><p>　　MongoDB默认安装完毕之后是<strong>不需要身份验证并且运行在27017的</strong>，这应该是被删除的直接原因：黑客通过扫描IP的端口看看有没有二傻子装完MongoDB不给加密改端口直接运行的。所以在做好数据备份之前应该先给各项服务（比如主机、数据库等）增加身份验证和登录端口。</p>
+<h3 id="如何制定可行的功能开发迭代计划"><a href="#如何制定可行的功能开发迭代计划" class="headerlink" title="如何制定可行的功能开发迭代计划"></a>如何制定可行的功能开发迭代计划</h3><p>　　因为整个91kanmm项目都是独立开发的，没有设计出设计稿也没有产品制定开发迭代计划，因此就要自己学着制定可行的制定可行的功能开发迭代计划。</p>
+<h4 id="确定项目整体的开发节奏"><a href="#确定项目整体的开发节奏" class="headerlink" title="确定项目整体的开发节奏"></a>确定项目整体的开发节奏</h4><p>　　首先我要确定是把项目各功能模块全部开发完毕完成一个完整版上线还是开发一个模块上线一个模块。考虑到先满足最基本的需求，让网站能上线能用，我选择了后者，即先开发豆瓣美女模块，之后把美女写真、视频等模块开发完迭代上去。</p>
+<h4 id="具体功能模块的开发方式"><a href="#具体功能模块的开发方式" class="headerlink" title="具体功能模块的开发方式"></a>具体功能模块的开发方式</h4><p>　　其次在开发单个模块（豆瓣美女）时，如何设计开发流程才能让开发周期最短且易于之后的维护和重构。对于单个模块来说，其实可以简单地分为三块内容：前端、后台、数据爬虫。前端和爬虫是必不可少的，后台方面之前关于PWA的文章中有提到谷歌出品的Firebase，这种BAAS类型的服务其实非常适合一个小项目的快速启动：它提供了RESTful规范的接口格式，而且开发者只要将数据上传（或使用api上传）至云端就可以使用接口访问到这些数据，剩下大量在后端开发上的时间。因为众所周知的原因谷歌的服务在国内访问得不是特别顺利，因此我采用了国内厂家<code>野狗云WILDDOG</code>提供的BAAS服务。通过这种方式完成了网站首个模块第一版的开发。而在之后的开发中，我使用<code>KOA2+MongoDB</code>把数据从第三方迁移到了自己的服务器中；原因是野狗云的免费套餐限制较多，还是在自己的服务器上随意折腾来得自由一点。</p>
+<h4 id="使用约定文件和文件夹命名的方式减少后端方面的开发工作"><a href="#使用约定文件和文件夹命名的方式减少后端方面的开发工作" class="headerlink" title="使用约定文件和文件夹命名的方式减少后端方面的开发工作"></a>使用约定文件和文件夹命名的方式减少后端方面的开发工作</h4><p>　　在开发美女写真模块时，因为懒得去折腾使用mongodb保存图片的问题，我采用了一个比较讨巧的方式：直接把图片按照创建顺序排序，并给各个写真的文件夹命名为<code>0,1,2...</code>，文件中的图片也如此命名，放在约定好的路径中，之后整理一份JSON文件用于前端访问遍历输出页面。JSON数据格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;title&quot;:&quot;不容错过的极品 ********&quot;,</span><br><span class="line">        &quot;imgCount&quot;:50,</span><br><span class="line">        &quot;imgIndex&quot;:0</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;title&quot;:&quot;丰腴*******&quot;,</span><br><span class="line">        &quot;imgCount&quot;:46,</span><br><span class="line">        &quot;imgIndex&quot;:1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;title&quot;:&quot;错过悔断肠 ********&quot;,</span><br><span class="line">        &quot;imgCount&quot;:54,</span><br><span class="line">        &quot;imgIndex&quot;:2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>title</code>字段标识写真的标题，<code>imgIndex</code>字段表示该写真在所有写真集中的位置，用于定位到具体某个写真，<code>imgCount</code>字段标识该写真里有多少张图片，用于前端遍历该数字使用遍历的下标<code>traverseIndex</code>去获取写真中具体的图片。</p>
+<p>　　以当我们去访问某一个写真的某一张图片的时候，路径大概就如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://assets.91kanmm.com/albumImgs/imgIndex/traverseIndex.jpg</span><br></pre></td></tr></table></figure></p>
+<p>　　通过这种方式我就省去了美女写真模块的后端开发。</p>
+<p>　　总体来说开发91kannmm为了发财也好、寻个乐子也好，通过实现这一个个功能模块，自身的编码也思考能力也得到了一定的提升，还是挺不错的。<br><del>这篇文章在两周前就已经写了大纲，直到现在（Sun Aug 19 2018 20:59:19）才给写完。坚持写博客当真不容易啊！</del></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

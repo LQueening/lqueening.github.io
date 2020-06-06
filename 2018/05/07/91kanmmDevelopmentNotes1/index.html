@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文主要介绍了在 91kanmm 开始开发之前的一些准备工作，包括前端开发模式（传统网页开发or单页应用）、开发框架（主要在Vue和Nuxt之间）的选择，后端BaaS平台选择（Firebase or Wilddog野狗云），UI框架（elementUI or Material Design Lite">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【91kanmm开发笔记】前后端框架、开发工具、技术的选择：Vue/Nuxt?Firebase/Wilddog?ElementUI/MDL?">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>【91kanmm开发笔记】前后端框架、开发工具、技术的选择：Vue/Nuxt?Firebase/Wilddog?ElementUI/MDL? - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>【91kanmm开发笔记】前后端框架、开发工具、技术的选择：Vue/Nuxt?Firebase/Wilddog?ElementUI/MDL?</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-05-07
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/91kanmm开发笔记/">#91kanmm开发笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2>　　本文主要介绍了在 <a href="http://www.91kanmm.com/" target="_blank" rel="noopener">91kanmm</a> 开始开发之前的一些准备工作，包括前端开发模式（传统网页开发or单页应用）、开发框架（主要在Vue和Nuxt之间）的选择，后端BaaS平台选择（Firebase or Wilddog野狗云），UI框架（elementUI or Material Design Lite）的选择等等。</h2>
+
+<p>　　在上一篇文章 <a href="http://blog.liaokun.me/2018/05/05/91kanmmIntroduce/" target="_blank" rel="noopener">91kanmm：使用webpack + vue/nuxt + material design开发的一款看妹子应用</a> 中简单介绍了一下倒腾 <a href="http://www.91kanmm.com/" target="_blank" rel="noopener">91kanmm</a> 这个应用的缘起和一些想法。讲道理应该整理一下应用的整体架构和表现形式，最好是能出一版原型。考虑到自己对画原型一窍不通，应用本身也没有复杂的结构或交互，本着“先上一版能用的再说”的原则就直接进入开发阶段。这个时候需要面对的第一个问题便是技术、框架的选择。<br>　　<br>　　自己本身就是前端，Vue是工作中用到比较多的一个框架。它的社区活跃，文档详细，有着大量基于其开发的插件和框架，而且整个团队都使用该框架开发，踩到坑了也能快速询问小伙伴。因此在前端框架上就选择了比较熟悉的Vue。<br>　　<br>　　[update 2018-05-08 08:00]<br>　　<br>　　网站内容自然是靠爬虫去爬了。人生苦短快用Python，这里我果断选择了Python作为开发语言，因为有非常非常多基于Python实现的爬虫、数据分析等各种只有想不到没有搜不到的模块。简单的爬虫无非就是Requests模块发送请求获取到网页的代码，BeautifulSoup模块解析前端代码提取出需要的信息。这里遇到的问题主要是：<br>　　1、我把爬虫放在了搬瓦工的VPS上，然而这个VPS在之前的文章中有说到作死开飞机IP被ban了，这样就导致了不能成功访问到国内的一些网站（？？？这个墙难道还是双向的吗）。想到的一个的办法就是挂代理了hhhhh，Requests有提供相应的代理功能，配置一下即可，我最后选择了直接在本地电脑上跑脚本爬了点数据下来。<br>　　2、短时间内高频率地去请求某个网站可能导致网站负载太大或是直接禁了爬虫的IP。关于这个我在爬虫的时候每请求一页就让程序随机睡眠一段时间，大家都是程序员不要互相为难ORZ。当然关于这个问题比较常用的解决办法是建立一个代理IP池，在请求同一个网站的时候不断地更换代理IP来逃过网站的一些反爬虫策略比如限制IP的访问频次。<br>　　<br>　　后台方面，网站主要是输出图片和一些文字描述，图片都是以外链的形式加载，而且初期对并发量没有要求，所以我选择了使用第三方提供的BaaS服务。之前的关于介绍PWA的文章中有提到谷歌的Firebase，在91kanmm中也选择它作为数据存储、读取的工具。这里不得不说一下毕竟是谷歌出品的产品，文档、开源项目非常完善，提供了简洁的RESTFUL API，而且无论是Python还是Vue都有相应的模块封装了该API，可以说是非常完美了：直接爬虫爬下数据发送给Firebase存储，在Vue中读取Firebase的数据展示即可；模块还实现了分页的功能，已经足够满足简单应用的后台需求。<br>　　<br>　　在UI框架方面，有这么几个选择：饿了么出品的elementUI，谷歌出品的基于material design的MDL，Twitter推出的Bootstrap。他们都是非常优秀的UI框架并且封装了常用的组件，通过这些封装好的组件和布局能在没有产品、设计的情况下快速开发出一套样式美观的应用。elementUI在团队中是作为后台UI框架使用的，看各类demo或分享也更多地将其作为一款后台的UI框架来使用；Bootstrap是老牌的UI框架了，还记得在大二的时候就用它来实现过响应式页面。最后选择了基于material design实现的一款UI框架：<a href="https://www.mdui.org/" target="_blank" rel="noopener">mdui</a>， 相比于其他两个框架，mdui遵循了一套<a href="https://www.mdui.org/design/" target="_blank" rel="noopener">文档非常完善</a>的设计规范，我可以根据这套规范选择页面的配色而不至于犯一些<del>对于设计来说</del>常识性的错误；规范中对于动画、交互方式的一些说明也很有意思，比如水波特效、通过阴影来表示不同元素之间的关系；框架中的各个组件都是符合规范所声明的，因此就算我不懂设计也能开发出风格统一的页面hhhh。不过在实际开发中我请教并参考了设计师的意见，修改了<code>卡片</code>组件的样式并降低了它的阴影，毕竟参考现在几款比较流行的图片/导购类应用如小红书、花瓣，已经很少用到这么重的阴影了。<br>　　<br>　　[update 2018-05-09 21:00]<br>　　<br>　　框架和技术都选好那就可以进入开发阶段了。设想中是开设四个板块：豆瓣美女、美女写真、美女视频和暂定的一个模块，先进入开发的是豆瓣美女模块。整体的布局参照小红书，做图片展示的瀑布流布局，对于瀑布流布局的实现在之后的文章中会有说明。
+　　</p>
+<h3 id="在使用Vue开发前端页面的时候遇到几个小问题："><a href="#在使用Vue开发前端页面的时候遇到几个小问题：" class="headerlink" title="在使用Vue开发前端页面的时候遇到几个小问题："></a>在使用Vue开发前端页面的时候遇到几个小问题：</h3><p>　　1、因为mdui封装了一些对dom的获取、操作方法，因此使用这些方法的生命周期应该是在<code>mounted</code>而不是<code>created</code>中，因为在created阶段元素还没生成。</p>
+<p>　　2、因为要做滚动加载，判断页面滚动到底部的方法为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let scrollTop = window.pageYOffset;//滚动高度</span><br><span class="line">let clientHeight = document.documentElement.clientHeight;//窗口高度</span><br><span class="line">let scrollHeight = document.documentElement.scrollHeight;//整个文档高度</span><br><span class="line">if (scrollTop + clientHeight === scrollHeight) &#123;</span><br><span class="line">    console.log(&apos;滚动到底部&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　因此如果需要在页面触底之前加载数据只需要判断：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let threshold = 0;  //需要提前加载的距离</span><br><span class="line">if ((scrollTop + clientHeight + threshold) &gt; scrollHeight) &#123;</span><br><span class="line">    console.log(&apos;触发加载&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　3、event bus的使用。在Vue的文档中提到：</p>
+<blockquote>
+<p>If you’ve never built a large-scale SPA and jump right into Vuex, it may feel verbose and daunting. That’s perfectly normal - if your app is simple, you will most likely be fine without Vuex. A simple global event bus may be all you need. </p>
+</blockquote>
+<p>　　想一想确实是这么个道理，我只需要持久化存储一些非常简单的信息，比如当前页面的名字，那vueX对我来说确实是杀鸡用牛刀了。一个简单的event bus就足够满足这些需求。<br>　　在<code>main.js</code>中声明event bus并绑定到实例中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/*将Event Bus绑定到实例中*/</span><br><span class="line">const EventBus = new Vue();</span><br><span class="line">Object.defineProperties(Vue.prototype, &#123;</span><br><span class="line">  $bus: &#123;</span><br><span class="line">    get: function () &#123;</span><br><span class="line">      return EventBus;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>　　页面中触发event bus的变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//触发变化</span><br><span class="line">this.$bus.$emit(&apos;currentPage&apos;, pageName);</span><br></pre></td></tr></table></figure></p>
+<p>　　页面中监听event bus的变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//监听变化</span><br><span class="line">this.$bus.$on(&apos;currentPage&apos;, ($event) =&gt; &#123;</span><br><span class="line">    this.currentActiveName = $event;</span><br><span class="line">    console.log($event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>　　4、关于返回页面保留之前的浏览记录：<br>　　当用户切换tab去别的页面又切回来的时候，比较理想而且符合习惯的方式是保留之前的浏览数据和浏览位置。这里我采取的是使用Vue的<code>keep-alive</code>组件。实现上是在vue-router的配置文件中设置Router的<code>mode</code>属性为<code>history</code>，将<code>App.vue</code>文件中<code>router-view</code>组件包在<code>keep-alive</code>中，这样对于在keep-alive中的组件会被缓存下来。如此操作解决了页面缓存的问题，对于有些页面需要缓存，有些页面不需要缓存（这是一个非常常见的需求），那就要把keep-alive做成可配置的。在路由文件中需要缓存的页面增加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">meta: &#123;</span><br><span class="line">    keepAlive: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用以标识该页面需要缓存，在<code>App.vue</code>中增加对<code>router-view</code>的判断，只有被标识了<code>keepAlive: true</code>的页面才被放入<code>keep-alive</code>组件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;router-view v-if=&quot;$route.meta.keepAlive&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line">&lt;router-view v-if=&quot;!$route.meta.keepAlive&quot;&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如此一来就可以实现页面的缓存了。<br>　　但是问题到现在还没有解决，因为虽然页面被缓存了但是浏览位置并没有保留。当用户浏览到某个位置切换tab再切回来时虽然页面还是之前的页面但是滚动位置却是在头部。这个问题之前有碰到过类似的，直接暴力地存储下来当用户返回的时候返回到存储的位置就可以了。因为页面被缓存了所以生命周期中的钩子也不会像正常页面一样被调用，这里需要用到的是<code>activated</code>和<code>deactivated</code>两个钩子。官方文档中说明：</p>
+<blockquote>
+<p>当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code>这两个生命周期钩子函数将会被对应执行。</p>
+</blockquote>
+<p>　　5、SPA的SEO问题：<br>　　SPA的SEO不友好一直是个问题，特别是对于91kanmm这种以内容输出为主、靠流量生存的网站，SEO简直就是致命伤。在网站第一版开发上线之后两周内搜索引擎都没有收录网站的任何信息，这就坚定了我要改变这种情况的想法。SPA的浏览模式确实能带来非常好的用户体验，因此并没有打算将网页的浏览模式改为传统的页面跳转。搜一下<code>vue SEO</code>，<code>SPA SEO</code>这类的问题，发现有这么几种解决方案：<br>　　- 针对搜索引擎爬虫特别输出一套网页代码<br>　　- 使用SSR(server side rendering)服务端渲染<br>　　都看到SSR了，和Vue关联搜索自然能注意到<code>nuxt</code>这个框架。这可以说是解决SEO问题最简单粗暴的方法了，于是毫不犹豫地看文档准备用nuxt重构代码。使用nuxt的一些坑在之后也会整理一篇文章出来。</p>
+<p>　　这就是在开发前和开发中的一些想法，整理出来的同时也挖了两个坑：整理瀑布流、页面布局方面的一些想法，使用nuxt重构代码的一些坑。<br>　　<br>　　而对于标题中的疑问也有了这些结论：在Vue和Nuxt之间选择了nuxt作为前端框架，因为它基于vue实现，即使重构代码也不会有很大的工作量，最重要的是它能解决SEO问题；在Firebase和Wilddog野狗云之间选择了Wilddog野狗云，这个就没什么好讨论的了纯粹是因为谷歌在墙内水土不服只能使用替代品，不过野狗云的免费套餐有诸多限制，现在已经着手开始采用<code>KOA+Mongodb</code>写一套简单的后台了<del>这又是一个坑</del>；在各种UI框架中选择了基于Material Design设计规范实现的mdui，因为谷歌大法好！<br>　　<br>　　啊这篇写了这么多天的博客终于完结了！</p>
+<p>　　
+　　</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

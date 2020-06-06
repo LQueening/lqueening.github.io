@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="这篇文章是A Progressive Web Application with Vue JS, Webpack &amp;amp; Material Design系列的其中一篇，旨在使用VueJS，Webpack和Material Design从头搭建一个基础但功能完整的PWA。如果你还没有看过之前的文章，">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 3]">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 3] - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用Vue JS，Webpack&Material Design开发渐进式web应用(PWA)[Part 3]</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-03-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/PWA/">#PWA</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <hr>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*po-vZew9GMKJgwpcMhXsYA.png" alt="PART III"><br>这篇文章是<code>A Progressive Web Application with Vue JS, Webpack &amp; Material Design</code>系列的其中一篇，旨在使用VueJS，Webpack和Material Design从头搭建一个基础但功能完整的PWA。如果你还没有看过之前的文章，可以通过以下链接访问：</p>
+<ul>
+<li><a href="https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402" target="_blank" rel="noopener">[Part 1] Create a Single Page Application with VueJS, Webpack and Material Design Lite</a></li>
+<li><a href="https://medium.com/@kevinj_50886/a-progressive-web-application-with-vue-js-webpack-material-design-part-2-a5f19e70e08b" target="_blank" rel="noopener">[Part 2] Connect the App with a distant API with Vue-Resource and VueFire (by Kevin Jean)</a></li>
+</ul>
+<p><strong>代码在GitHub开源：</strong><br><a href="https://github.com/charlesBochet/vueJSPwa" target="_blank" rel="noopener">https://github.com/charlesBochet/vueJSPwa</a></p>
+<p><strong>如果你已经完成了第一部分的教程：</strong>我更新了Cropchat的源码，在代码中使用了全新的<code>vue init pwa</code>命令。如果你克隆并使用了该仓库的代码，我强烈建议你拉一遍仓库的代码。</p>
+<p>下面是我们的任务清单：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*9bEIbGP-oRc4gQ5LRfyeKg.png" alt="checkList"></p>
+<p>在本次教程中，我们将给Cropchat应用增加一个超棒的新功能：<strong>离线模式</strong>。</p>
+<p>简单来说，我们会学习以下内容：</p>
+<ul>
+<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank" rel="noopener">Service Worker</a> 以及它是如何提供离线体验的；</li>
+<li>如何缓存应用的<a href="https://developers.google.com/web/fundamentals/architecture/app-shell" target="_blank" rel="noopener">App shell</a>(core js and css)；</li>
+<li>如何缓存应用的HTTP请求(external assets, cat pictures, …)；</li>
+<li>如何缓存Firebase数据。</li>
+</ul>
+<h2 id="PART-3-使用Service-Workers实现离线功能"><a href="#PART-3-使用Service-Workers实现离线功能" class="headerlink" title="[PART 3]使用Service Workers实现离线功能"></a>[PART 3]使用Service Workers实现离线功能</h2><p><img src="https://cdn-images-1.medium.com/max/800/0*Grhpyed2H9Rr0w4i.jpeg" alt="offline"><br><strong>不依赖网络连接是PWA的关键特性之一。</strong>我们希望持续地为用户提供类app的体验，而不是当没有网络或网络速度很慢的时候出现连接断开或页面冻结的情况。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*V1Ge8nLYNKLsyuV0.jpg" alt="Google nonexistent connectivity"></p>
+<p style="font-size:12px;text-align:center;margin:0;">Chrome通常在弱网或无网络情况下的表现</p>
+
+<p>一款PWA基本上是运行在webview中的一个网页应用。然而，受益于浏览器和操作系统的发展，<strong>Service Workers</strong>使得网页的离线模式变得可能。</p>
+<h3 id="Service-Workers简介"><a href="#Service-Workers简介" class="headerlink" title="Service Workers简介"></a>Service Workers简介</h3><p>不同于网页代码，<a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank" rel="noopener">Service Workers</a>是运行在用户浏览器内部的JS代码。即使当你的应用关闭或处于后台时，Service Workers依然可以执行代码，并且运行一些类app的特性如缓存（使用Cache Storage API 和 Fetch API），推送通知（使用Push API）及后台同步数据等。<br>如果你想了解更多关于Service Workers的信息，请参见<a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank" rel="noopener">Google documentation</a>。<br>备注：渐进式应用不一定非要在所有手机上实现离线模式：<a href="https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">iOS暂不支持Service Workers</a>。这就是为什么叫PWA为<code>渐进式</code>的原因：PWA可以运行在任何设备上，而在支持其新特性的设备上表现出更优秀的用户体验。</p>
+<h3 id="Service-Workers是如何工作的？"><a href="#Service-Workers是如何工作的？" class="headerlink" title="Service Workers是如何工作的？"></a>Service Workers是如何工作的？</h3><p>你可以把Service Workers看做是一个代理。应用发出的每个HTTP请求都会触发<code>fetch</code>事件。<strong>该事件将会被Service Workers捕捉并选择从缓存中取回结果或请求服务器得到结果</strong>。<br>你所需要做的只是在有网络的时候将数据缓存下来。那么Service Workers是如何知道什么时候应该缓存什么时候应该从服务器请求数据呢？这完全取决于你：你可以在<strong>缓存策略(caching strategies)</strong>中精确控制它：缓存优先（cache first，用于缓存<a href="https://developers.google.com/web/fundamentals/architecture/app-shell" target="_blank" rel="noopener">App shell</a>文件），网络优先（network first，用于缓存远程的资源或数据）…</p>
+<p>下图便是叫做网络优先（network first）的缓存策略：<br><img src="https://cdn-images-1.medium.com/max/800/0*7eGVyxtqW0CLv4bl.png" alt="network first"></p>
+<p>还有很多别的缓存策略，可以参考<a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/" target="_blank" rel="noopener">Google Offline Coobook</a>。</p>
+<h3 id="Service-Workers库和VueJS"><a href="#Service-Workers库和VueJS" class="headerlink" title="Service Workers库和VueJS"></a>Service Workers库和VueJS</h3><p><img src="https://cdn-images-1.medium.com/max/800/1*-bN7mxs4DiAOTifSMa6HRg.png" alt="Service Workers Libraries and VueJS"><br>我在写这篇文章的时候尝试了几种实现缓存的方式：</p>
+<ul>
+<li>参考谷歌<a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank" rel="noopener">POC</a>手动实现Service Workers</li>
+<li>在缓存静态资源时使用<a href="https://github.com/GoogleChrome/sw-precache" target="_blank" rel="noopener">sw-precache</a>库，在应用运行时使用<a href="https://github.com/GoogleChrome/sw-toolbox" target="_blank" rel="noopener">sw-toolbox</a>和sw-precache一同实现缓存</li>
+<li>使用谷歌开发的<a href="https://github.com/GoogleChrome/workbox" target="_blank" rel="noopener">workbox</a>插件</li>
+</ul>
+<p>我的建议是使用sw-precache插件：自己写一套Server Workers方法缓慢并且重复造轮子，而<a href="https://developers.google.com/web/tools/workbox/" target="_blank" rel="noopener">Workbox plugin</a>虽然也不错但目前它还不支持应用运行时的缓存机制[现在它已经支持该功能了，可以试试]。</p>
+<h2 id="第一步：使用sw-precache缓存静态资源"><a href="#第一步：使用sw-precache缓存静态资源" class="headerlink" title="第一步：使用sw-precache缓存静态资源"></a>第一步：使用sw-precache缓存静态资源</h2><p>sw-precache可以缓存由App Shell提供的一些静态资源。根据谷歌<a href="https://developers.google.com/web/fundamentals/architecture/app-shell" target="_blank" rel="noopener">App Shell Model</a>描述，App Shell指的是“提供最基本的用户界面所需的HTML,CSS,JS文件”。<br>这样一来，无论网络状况如何，应用的核心资源总是会被加载并渲染出页面。这被称为<strong>pre-caching</strong>。<br>在这里我们将会使用<a href="https://github.com/goldhand/sw-precache-webpack-plugin" target="_blank" rel="noopener">sw-precache-webpack-plugin</a>。先安装一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install sw-precache-webpack-plugin --save</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置sw-precache"><a href="#配置sw-precache" class="headerlink" title="配置sw-precache"></a>配置sw-precache</h3><p>事实上，最新的VueJS cli已经集成了<code>sw-precache</code>。如果你用的是最新的VueJS Cli，你甚至不必再特地安装<code>sw-precache</code>。</p>
+<p>修改文件<code>dist/webpack.prod.conf.js</code>中的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var SWPrecacheWebpackPlugin = require(&apos;sw-precache-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">var webpackConfig = merge(baseWebpackConfig, &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line">    // service worker caching</span><br><span class="line">    new SWPrecacheWebpackPlugin(&#123;</span><br><span class="line">      cacheId: &apos;my-vue-app&apos;,</span><br><span class="line">      filename: &apos;service-worker.js&apos;,</span><br><span class="line">      staticFileGlobs: [&apos;dist/**/*.&#123;js,html,css&#125;&apos;],</span><br><span class="line">      minify: true,</span><br><span class="line">      stripPrefix: &apos;dist/&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在<code>index.html</code>的<code>&lt;body&gt;</code>标签中添加如下代码，这样Webpack将会加载<code>sw-precache</code>插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= htmlWebpackPlugin.options.serviceWorkerLoader %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以生产模式构建一遍应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure></p>
+<p><strong>缓存应用的App Shell就是这么简单</strong></p>
+<h3 id="sw-precache缓存机制"><a href="#sw-precache缓存机制" class="headerlink" title="sw-precache缓存机制"></a>sw-precache缓存机制</h3><p>当应用在构建的时候，<code>sw-precach-webpack-plugin</code>生成了一个<code>service-worker.js</code>文件。该文件位于<code>dist/service-worker.js</code>，将在浏览器首次运行应用的时候被加载和执行。其代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var precacheConfig = [</span><br><span class="line">  [&quot;index.html&quot;, &quot;218187414cc275eaa7bb37f098e0fc92&quot;],</span><br><span class="line">  [&quot;static/css/app.d1a62a5e00430713ca6ccd67cb5fd580.css&quot;, &quot;d1a62a5e00430713ca6ccd67cb5fd580&quot;],</span><br><span class="line">  [&quot;static/js/app.04ef0c51d385926ea560.js&quot;, &quot;13cfbbcfd7077380247bbbb6d9731463&quot;],</span><br><span class="line">  [&quot;static/js/manifest.2d92f59992387f01763b.js&quot;, &quot;00451931f39fbee842952a5d349f22a6&quot;],</span><br><span class="line">  [&quot;static/js/vendor.0140506021c3a9c89dd2.js&quot;, &quot;27f61c490b1b8af1d621b16afdd174bb&quot;]</span><br><span class="line">];</span><br><span class="line">...</span><br><span class="line">urlsToCacheKeys = new Map(precacheConfig.map(function (e) &#123;</span><br><span class="line">  var t = e[0], n = e[1], r = new URL(t, self.location), a = createCacheKey(r, hashParamName, n, !1);</span><br><span class="line">  return [r.toString(), a]</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">self.addEventListener(&quot;install&quot;, function (e) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(&quot;activate&quot;, function (e) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">self.addEventListener(&quot;fetch&quot;, function (e) &#123;</span><br><span class="line">  if (&quot;GET&quot; === e.request.method) &#123;</span><br><span class="line">    var t, n = stripIgnoredUrlParameters(e.request.url, ignoreUrlParametersMatching);</span><br><span class="line">    t = urlsToCacheKeys.has(n);</span><br><span class="line">    t || (n = addDirectoryIndex(n, &quot;index.html&quot;), t = urlsToCacheKeys.has(n));</span><br><span class="line">    t &amp;&amp; e.respondWith(caches.open(cacheName).then(function (e) &#123;</span><br><span class="line">      return e.match(urlsToCacheKeys.get(n)).then(function (e) &#123;</span><br><span class="line">        if (e)return e;</span><br><span class="line">        throw Error(&quot;The cached response that was expected is missing.&quot;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;).catch(function (t) &#123;</span><br><span class="line">      return console.warn(&apos;Couldn\&apos;t serve response for &quot;%s&quot; from cache: %O&apos;, e.request.url, t), fetch(e.request)</span><br><span class="line">    &#125;))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="测试离线模式"><a href="#测试离线模式" class="headerlink" title="测试离线模式"></a>测试离线模式</h3><p>你可能注意到了我并没有关注<code>webpack.dev.conf.js</code>这个文件，原因是Service Workers会在生产环境中生效，而在应用的开发过程中我们可能不希望<code>*.js</code>和<code>*.css</code>文件被缓存下来。<br>我们以生产模式构建应用来测试离线的效果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure></p>
+<p>为了模拟真实的HTTP请求和Cropchat的构建文件，你可以使用超赞的<a href="https://github.com/zeit/serve" target="_blank" rel="noopener">serve tool</a>：（需要node&gt;6.9.0）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g serve</span><br></pre></td></tr></table></figure></p>
+<p>之后运行起来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serve dist/</span><br></pre></td></tr></table></figure></p>
+<p>访问<a href="http://localhost:3000github.com/zeit/serve" target="_blank" rel="noopener">http://localhost:3000</a>就可以看到效果了。<br>F12打开Chrome控制台，在<code>Application</code>中可以看到Service Workers已经安装了：<br><img src="https://cdn-images-1.medium.com/max/800/1*uLdz0eLc82YFqOfE-CGocg.png" alt="Chrome Developer Tools: our Service Worker is installed"></p>
+<p>在<code>Application</code>的<code>Service Workers</code>菜单下，你可以看到应用已经安装并运行了Service Workers。<a href="https://developers.google.com/web/tools/chrome-devtools/" target="_blank" rel="noopener">Chrome Developer Tools</a>是一款非常强大的调试软件，如果你想了解更多关于Service Workers的调试技巧，快来<a href="https://developers.google.com/web/tools/chrome-devtools/progressive-web-appsE-CGocg.png" target="_blank" rel="noopener">Progressive Web App section</a>看看吧！</p>
+<p>现在让我们测试一下离线模式的效果：</p>
+<ul>
+<li>返回到<strong>Service Workers</strong>菜单，激活(勾选)Offline模式；</li>
+<li>在<strong>Network</strong>选项下可以看到Offline模式也被激活(勾选)了；</li>
+<li>在<strong>Network</strong>选项下勾选<code>Disable cache</code>选项；</li>
+<li>刷新页面。</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*WgbYYAoCeM6MuBLJTrmefQ.png" alt="有无Service Workers时的表现"></p>
+<p>由于Service Workers在后台运行并缓存了一些资源，即使在没有网络的情况下应用依旧可以运行。</p>
+<p>（关闭并重启调试工具）在<code>Cache Storage</code>中可以看到静态资源已经被缓存了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*7WepkLs03dUoAXhsbkAQHA.png" alt="Chrome Developer Tools: Cache Storage"></p>
+<p>但是还有如下的资源没有被正确地缓存下来：</p>
+<ul>
+<li>从<a href="https://code.getmdl.io/1.2.1/material.blue-red.min.css" target="_blank" rel="noopener">https://code.getmdl.io/1.2.1/material.blue-red.min.css</a>请求的Material Design Lite字体和样式文件</li>
+<li>猫咪的图片</li>
+</ul>
+<p>我们将在接下来的部分解决这些问题。</p>
+<h2 id="第二步：使用sw-toolbox缓存HTTP请求"><a href="#第二步：使用sw-toolbox缓存HTTP请求" class="headerlink" title="第二步：使用sw-toolbox缓存HTTP请求"></a>第二步：使用sw-toolbox缓存HTTP请求</h2><p>Service Workers同样可以帮助我们缓存HTTP请求，它叫做<strong>runtime caching</strong>。</p>
+<h3 id="缓存外部的Material-Design-Lite资源"><a href="#缓存外部的Material-Design-Lite资源" class="headerlink" title="缓存外部的Material Design Lite资源"></a>缓存外部的Material Design Lite资源</h3><p>同样的，我们不会自己造轮子去实现Service Workers，而是使用一个非常棒的插件叫做<code>sw-toolbox</code>，它已经集成到了<code>sw-precache-webpack-plugin</code>中。不需要安装额外的插件，这就是VueJS和webpack组合的神奇之处。</p>
+<p>更新<code>build/webpack.prod.conf.js</code>中的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var SWPrecacheWebpackPlugin = require(&apos;sw-precache-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">var webpackConfig = merge(baseWebpackConfig, &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line">    // service worker caching</span><br><span class="line">    new SWPrecacheWebpackPlugin(&#123;</span><br><span class="line">      cacheId: &apos;my-vue-app&apos;,</span><br><span class="line">      filename: &apos;service-worker.js&apos;,</span><br><span class="line">      staticFileGlobs: [&apos;dist/**/*.&#123;js,html,css&#125;&apos;],</span><br><span class="line">      minify: true,</span><br><span class="line">      stripPrefix: &apos;dist/&apos;,</span><br><span class="line">      runtimeCaching: [</span><br><span class="line">      &#123;</span><br><span class="line">        urlPattern: /^https:\/\/fonts\.googleapis\.com\//,</span><br><span class="line">        handler: &apos;cacheFirst&apos;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        urlPattern: /^https:\/\/fonts\.gstatic\.com\//,</span><br><span class="line">        handler: &apos;cacheFirst&apos;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        urlPattern: /^https:\/\/code\.getmdl\.io\//,</span><br><span class="line">        handler: &apos;cacheFirst&apos;</span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>再次构建项目并启动服务。<br>你需要注销Service Workers并关闭Chrome…（Service Workers的生命周期现在还有点问题）。<br>现在可以看到使用runtime caching缓存的效果了：<br><img src="https://cdn-images-1.medium.com/max/800/1*IHKT4yONAQE5Pmm1halDVg.png" alt="Service Worker with runtime caching"></p>
+<h3 id="缓存应用中的猫咪图片"><a href="#缓存应用中的猫咪图片" class="headerlink" title="缓存应用中的猫咪图片"></a>缓存应用中的猫咪图片</h3><p>即将大功告成了。接下来要做的便是缓存应用中的猫咪图片。在这个应用中猫咪图片的地址都从<a href="http://thecatapi.com/" target="_blank" rel="noopener">Cat API</a>中请求而来：<br><img src="https://cdn-images-1.medium.com/max/800/1*1OisSqe5MhXId3sv6rRWcg.png" alt="Chrome Developer Tools: Network tab gives us CropChat images urls list"></p>
+<p>更新<code>webpack.prod.conf.js</code>中的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">runtimeCaching: [</span><br><span class="line">   &#123;</span><br><span class="line">      urlPattern: /^https:\/\/thecatapi\.com\/api\/images\/get\.php\?id/,</span><br><span class="line">      handler: &apos;cacheFirst&apos;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">      urlPattern: /^https:\/\/(\d+)\.media\.tumblr\.com\//,</span><br><span class="line">      handler: &apos;cacheFirst&apos;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">      urlPattern: /^http:\/\/(\d+)\.media\.tumblr\.com\//,</span><br><span class="line">      handler: &apos;cacheFirst&apos;</span><br><span class="line">   &#125;,</span><br><span class="line">   ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>重新构建应用并启动服务（可能需要注销Service Workers并重启Chrome），激活offline模式：<br><img src="https://cdn-images-1.medium.com/max/1000/1*4q_R06GV210dc-y83jqlUw.png" alt="CropChat is now available offline!"></p>
+<p>在Cache Storage中可以看到猫咪的图片已经被缓存了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*KzeO12vHqfsXOp32q4DTKQ.png" alt="Chrome Developer Tools: CropChat Cat Images are now cached."></p>
+<h2 id="第三步：使用localstorage-api缓存Firebase-WebSocket"><a href="#第三步：使用localstorage-api缓存Firebase-WebSocket" class="headerlink" title="第三步：使用localstorage api缓存Firebase WebSocket"></a>第三步：使用localstorage api缓存Firebase WebSocket</h2><p>？？？我(作者)骗了你<br>应用还没有实现在线功能，即使在有正常的网络连接的情况下你也不会看到应用的内容。<br>因为<a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>流并没有被缓存。究其原因，是因为Firebase基于<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications" target="_blank" rel="noopener">WebSockets</a>实现而<strong><a href="https://stackoverflow.com/questions/37741185/is-it-possible-to-intercept-and-cache-websocket-messages-in-a-service-worker-lik" target="_blank" rel="noopener">Service Workers并不能处理WebSockets</a></strong>。<br>于是我们需要自己实现Firebase的缓存了。对于网络优先的情况下我的缓存策略是这样的：</p>
+<ul>
+<li>如果用户可以访问网络（<strong>使用navigator.onLine检测</strong>），那么将Firebase Websocket的返回值缓存到浏览器的<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank" rel="noopener">local storage</a>中，then hook on Firebase WebSocket（？？？当请求返回的数据更新的时候也将其更新到local storage中的意思？）;</li>
+<li>否则从local storage中取到缓存的数据。</li>
+</ul>
+<p>要实现这个，在<code>HomeView.vue</code>中更新如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    methods: &#123;</span><br><span class="line">      displayDetails (id) &#123;</span><br><span class="line">        this.$router.push(&#123;name: &apos;detail&apos;, params: &#123; id: id &#125;&#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      getCats () &#123;</span><br><span class="line">        if (navigator.onLine) &#123;</span><br><span class="line">          this.saveCatsToCache()</span><br><span class="line">          return this.$root.cat</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          return JSON.parse(localStorage.getItem(&apos;cats&apos;))</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      saveCatsToCache () &#123;</span><br><span class="line">        this.$root.$firebaseRefs.cat.orderByChild(&apos;created_at&apos;).once(&apos;value&apos;, (snapchot) =&gt; &#123;</span><br><span class="line">          let cachedCats = []</span><br><span class="line">          snapchot.forEach((catSnapchot) =&gt; &#123;</span><br><span class="line">            let cachedCat = catSnapchot.val()</span><br><span class="line">            cachedCat[&apos;.key&apos;] = catSnapchot.key</span><br><span class="line">            cachedCats.push(cachedCat)</span><br><span class="line">          &#125;)</span><br><span class="line">          localStorage.setItem(&apos;cats&apos;, JSON.stringify(cachedCats))</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">      this.saveCatsToCache()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>template</code>部分，<code>v-for</code>循环遍历的数据中使用<code>getCats()</code>获取到的数据。<br>再次构建应用并启动服务，现在有网络的情况下加载它然后尝试在离线（无网络）情况下访问它。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>巴拉巴拉。在本章中我们学习了：</p>
+<ul>
+<li>使用<code>sw-precache</code>缓存App Shell文件</li>
+<li>使用<code>se-toolbox</code>的<code>runtimeCaching</code>缓存外部资源</li>
+<li>使用浏览器的local storage缓存Firebase websockets</li>
+</ul>
+<p>现在我们的任务清单变成了下面这样：<br><img src="https://cdn-images-1.medium.com/max/800/1*dQGR8ochtA4OM4Vzy4co3Q.png" alt="Progressive Web App checklist"></p>
+<p>在<a href="https://medium.com/@kevinj_50886/a-progressive-web-application-with-vue-js-webpack-material-design-part-4-96c8c216810b" target="_blank" rel="noopener">Part 4</a>中我们将会解决剩余的问题。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

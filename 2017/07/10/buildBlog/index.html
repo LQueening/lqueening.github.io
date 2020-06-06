@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文记录了从零开始使用Hexo搭建博客、借助GitHub Pages进行静态页面的解析并使之可以通过http进行访问、购买域名将xxx.github.io的地址绑定到自定义域名商、借助cloudflare提供的服务为自定义域名开启https的过程。
+怎么突然想到搞这个　　经常看到一些个人博客下面写着">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="GitHub Pages+Hexo+cloudflare搭建博客并启用https整套方案">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>GitHub Pages+Hexo+cloudflare搭建博客并启用https整套方案 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>GitHub Pages+Hexo+cloudflare搭建博客并启用https整套方案</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-07-10
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>　　本文记录了从零开始使用Hexo搭建博客、借助GitHub Pages进行静态页面的解析并使之可以通过http进行访问、购买域名将xxx.github.io的地址绑定到自定义域名商、借助cloudflare提供的服务为自定义域名开启https的过程。</p>
+<h3 id="怎么突然想到搞这个"><a href="#怎么突然想到搞这个" class="headerlink" title="怎么突然想到搞这个"></a>怎么突然想到搞这个</h3><p>　　经常看到一些个人博客下面写着 <em>Powered by Hexo</em>，好奇去了解了一下发现借助它和GitHub Pages可以很方便地搭建并发布一个美观的博客。网上的相关教程很多，自己在跟着做的时候却还是一直踩坑。因此记录下这次的踩坑之路，一方面是对这次搭建博客的一个总结，另一方面也记录下过程中遇到的坑方便以后参考。</p>
+<h3 id="主要使用的工具"><a href="#主要使用的工具" class="headerlink" title="主要使用的工具"></a>主要使用的工具</h3><p>　　GitHub Pages：&gt; <a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a></p>
+<p>　　GitHub Pages是面向用户、组织和项目开放的公共静态页面搭建托管服务，借助它我们可以把静态页面托管到GitHub上并通过username.github.io这种形式进行访问。</p>
+<p>　　Hexo: &gt; <a href="https://hexo.io/zh-cn/index.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/index.html</a></p>
+<p>　　自己写一套博客当然是非常棒的，但没有设计师的帮助下总是很难搭出美观的页面，而且实现许多细节功能也比较麻烦。借助Hexo我们可以很快地搭建出一套博客，而且它有着大把可以更换的主题，同时集成了许多功能；使用GitHub Pages + Hexo我们可以短时间内完成博客的搭建和发布。</p>
+<p>　　cloudflare: &gt; <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">https://www.cloudflare.com/</a></p>
+<p>　　要给自定义域名加上漂亮的小绿锁就依靠它啦。</p>
+<h3 id="开始之前需要准备"><a href="#开始之前需要准备" class="headerlink" title="开始之前需要准备"></a>开始之前需要准备</h3><p>　　GitHub账号</p>
+<p>　　cloudflare账号</p>
+<p>　　Node.js环境</p>
+<p>　　个人网站域名(可以通过GoDaddy、阿里云万网等获取到)</p>
+<h3 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h3><p>　　1. 安装Hexo</p>
+<p>　　2. 初始化博客</p>
+<p>　　3. 本地运行并调试</p>
+<p>　　4. 建立GitHub仓库，借助GitHub Pages对静态页面进行解析并使之可以进行http访问</p>
+<p>　　5. 将xxxx.github.io地址解析到自定义域名</p>
+<p>　　6. 通过cloudflare为自定义域名启用https</p>
+<h3 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h3><p>　　本文参考如下链接：</p>
+<p>　　&gt; <a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></p>
+<p>　　&gt; <a href="https://www.thinktxt.com/jekyll/2017/02/06/jekyll-series-github-pages-custom-domain-https.html" target="_blank" rel="noopener">https://www.thinktxt.com/jekyll/2017/02/06/jekyll-series-github-pages-custom-domain-https.html</a></p>
+<p>　　tip: 对于一些较为模糊的图片可以尝试点击查看大图。</p>
+<h3 id="在本地搭建博客"><a href="#在本地搭建博客" class="headerlink" title="在本地搭建博客"></a>在本地搭建博客</h3><p>　　参见Hexo官方文档 &gt; <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
+<p>　　在已经安装了Node和Git的前提下，我们只需要如下步骤即可安装Hexo，并初始化博客，在本地开启端口进行博客的预览：<br>    <img src="https://wx3.sinaimg.cn/mw690/005Kh0ZYly1fhrxrohlnnj30jf05ajr6.jpg" style="display:block;margin:0 auto;"></p>
+<p>　　使用npm工具安装Hexo：</p>
+<pre><code>&gt; npm install hexo-cli -g
+</code></pre><p>　　使用hexo命令在指定文件夹(此处为blog)中初始化博客。为了便于之后的文件管理可以新建一个文件夹并进入该文件夹再执行以下操作：</p>
+<pre><code>&gt; hexo init blog
+</code></pre><p>　　进入博客目录，并安装依赖库：</p>
+<pre><code>&gt; cd blog
+&gt; npm install
+</code></pre><p>　　最后执行hexo的构建和启动服务器命令就可以在本地预览啦。</p>
+<p>　　这里为了监视文件变动一般会使用 hexo g -w 命令；而 hexo s 默认启动时的端口号为4000，通过 hexo s -p 则可以指定端口号，如 hexo s -p5555 指定服务启动在5555端口</p>
+<pre><code>&gt; hexo g -w
+&gt; hexo s
+</code></pre><p>　　进行完以上步骤就可以在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 访问到本地的博客啦。如果要进行新增文章等操作请参见官方文档，使用 hexo new 命令或者直接在 blog/source/_posts目录下新增.md文件使用markdown语法即可进行文章的编写。</p>
+<ul>
+<li>经过以上步骤我们已经成功在本地搭建了一个博客，文件结构如图：</li>
+</ul>
+<p>　　<img src="https://wx1.sinaimg.cn/mw690/005Kh0ZYly1fhrxrqkdz7j30cu0pldg1.jpg" style="display:block;margin:0 auto;"></p>
+<p>　　其中 source/_posts 目录下放置的是编辑的一篇篇文章，格式为.md，使用Markdown语法进行编写，CNAME文件记录自定义域名；themes 目录中是各个主题，用于为博客更换不同的主题；public目录即是 hexo g 操作生成的静态页面，之后会将该文件上传到GitHub上并由GitHub Pages解析。</p>
+<p>　　在这里需要注意两个文件，其一是根目录下的　_config.yml 文件，称为站点配置文件.该文件是网站的配置信息，您可以在此配置大部分的参数。</p>
+<p>　　另一个是在各个主题文件夹下的 _config.yml 文件；比如 themes/landscape/_config.yml ；该文件称为主题配置文件，用于配置主题中的各项参数。</p>
+<h3 id="GitHub-Pages解析静态页面并绑定自定义域名"><a href="#GitHub-Pages解析静态页面并绑定自定义域名" class="headerlink" title="GitHub Pages解析静态页面并绑定自定义域名"></a>GitHub Pages解析静态页面并绑定自定义域名</h3><p>　　在这一章中让博客可以在公网进行访问。要实现这一步有不少办法，在这里选择使用GitHub Pages提供的静态页面解析服务，一来省去了购买服务器的钱，二来省心省力还可以使用GitHub提供的代码托管服务。</p>
+<p>　　通过 <a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a> 的描述可知，只要新建仓库并将仓库命名为 username.github.io 的固定格式，就可以在外网访问该 username.github.io 地址。</p>
+<blockquote>
+<p>Head over to GitHub and create a new repository named username.github.io, where username is your username (or organization name) on GitHub.</p>
+</blockquote>
+<p>　　在上文中提到每次执行 hexo g 命令都会生成一个public文件夹，我们需要在站点配置文件(见上文说明)中配置deploy的相关属性，让 hexo g -d命令可以正确地将代码推到对应的代码仓库中。打开站点配置文件，一般是拉到最下面，有个 deploy 选项；具体配置如下图：<br>    <img src="https://wx1.sinaimg.cn/large/005Kh0ZYly1fhvdg0q4wfj30qe05faa4.jpg" style="display:block;margin:0 auto;"></p>
+<p>　　接下来需要将GitHub Pages地址和自定义域名绑定起来，即通过自定义域名访问由GitHub Pages解析的博客。这里以阿里云万网 <a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener">https://wanwang.aliyun.com/</a> 购买的域名为例。点击首页左上角 控制台 链接，选择 域名与网站(万网)-&gt;云解析DNS 进入到域名解析页面。如图所示：<br>    <img src="https://ww1.sinaimg.cn/large/005Kh0ZYly1fi4k9uqbokj31fw081wf6.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　点击解析，添加如下图所示解析记录：<br>    <img src="https://ww1.sinaimg.cn/large/005Kh0ZYly1fi4kpzqmnmj317u065jrq.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　其中 192.30.255.112 为GitHub的ip地址，在CNAME这一栏需要填写你的username.github.io地址。</p>
+<p>　　一些属性说明：</p>
+<p>　　A：指向一个确定的 IPv4 地址;</p>
+<p>　　AAAA：指向一个确定的 IPv6 地址;</p>
+<p>　　CNAME：告诉你应该到哪个地方继续寻找;</p>
+<p>　　MX：指定域名的接收邮件服务器;</p>
+<p>　　SPF：指定域名的发送邮件服务器;</p>
+<p>　　TXT：该域名的说明文字;</p>
+<p>　　完成以上步骤之后，进入该项目所在的GitHub仓库，点击Settings,在GitHub Pages选项中填入自定义域名：<br>    <img src="https://ww1.sinaimg.cn/large/005Kh0ZYly1fi4kzgfpgxj30kw02xglk.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"><br>    <img src="https://ww1.sinaimg.cn/mw690/005Kh0ZYly1fi4l17ius6j30kf0hegmk.jpg" style="width:80%;display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　至此完成了使用自定义域名访问博客的步骤。</p>
+<p style="font-size:14px;color:#666">↓↓↓ update on 2017-08-02</p>   
+
+<h3 id="为自定义域名启用https服务"><a href="#为自定义域名启用https服务" class="headerlink" title="为自定义域名启用https服务"></a>为自定义域名启用https服务</h3><p>　　经过本节的操作，我们将会为自定义域名启用https，在chrome下访问就可以看到可爱的小绿锁：<br>    <img src="https://ww1.sinaimg.cn/large/005Kh0ZYly1fi5q1adb97j30dk018dfm.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<blockquote>
+<p>HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。</p>
+</blockquote>
+<p>　　SSL服务通常都是以收费的方式提供，而对于个人博客，特别是完全静态页面的博客，对于安全的要求不是特别高，那么由 cloudflare 提供的免费SSL服务是个不错的选择。</p>
+<p>　　首先进入 <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">https://www.cloudflare.com/</a> 在Add Websites中填入自定义域名，点击 Begin Scan。<br>    <img src="https://ww1.sinaimg.cn/large/005Kh0ZYly1fi5qjddy2nj30r80dfwff.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　选择 Free Website，继续下一步。同样以阿里云万网为例，进入 控制台-&gt;云解析DNS 进入购买的域名；选择顶部导航栏中的 基本管理-&gt;DNS修改，将DNS服务器修改为cloudflare提供的DNS地址(一般为两个)。保存之后大概5-30分钟就生效啦。</p>
+<p>　　之后的步骤就看着图片就可以啦：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fi5r57mrx5j30t40ll766.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　在DNS选项中填入两条A记录和一条CNAME记录，两条A的记录Name均为自定义域名地址，Value指向 192.30.252.153 和 192.30.252.154；CNAME中Name为www，Value为自定义域名地址。</p>
+<p>　　在DNS边上Crypto选项中将SSL设置为Flexible或Full，Always use HTTPS设置为On：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fi5rljctfjj30rn0br3z4.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"><br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fi5rlpymd2j30ra06f3yn.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　在其他教程中有看到需要在Page Rules中建立重定向规则，把http地址重定向至https地址，设置如图：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fi5rpd06nzj30sj05dq38.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　在实际测试中发现要是开启重定向规则会导致页面不断被重定向直至chrome跳出重定向过多，建议清除cookie的提示。因此我关闭了该选项下的规则。</p>
+<p>　　至此就完成了给自定义域名启用https的步骤。设置完成之后半小时左右就可以看看是否有小绿锁出现啦。</p>
+<hr>
+<h2 id="踩的坑-正在填"><a href="#踩的坑-正在填" class="headerlink" title="踩的坑  正在填"></a>踩的坑  <span style="font-size:14px">正在填</span></h2><p style="font-size:14px;color:#666">↓↓↓ update on 2017-08-015</p>  
+
+<p>　　整个过程中踩的坑还是挺多的，断断续续把记到的记录下来吧。</p>
+<p>　　1. 首先就是访问速度的问题啦。这里以我使用的 clean-blog 主题的demo地址 <a href="http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/" target="_blank" rel="noopener">http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/</a> 实例，可以看到加载时间：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fikrt77hp0j31hc0qsqip.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　可以看到在chrome调试工具的network选项中，光光加载一些静态资源就花费了很长时间。这还是在访问该网站时将 <a href="https://zh.wikipedia.org/wiki/Shadowsocks" target="_blank" rel="noopener">梯子</a> 设置为全局模式才能获得这个速度。而大部分用户的pac中并不会记录个人博客的地址，可想而知访问速度有多坑爹：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fikryplh0ej30nt0ibmyy.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　因此在本次博客搭建中一个最重要的优化便是把静态资源的地址替换为国内可以正常访问得CDN地址啦。在这里我使用的是由 BootCDN:<a href="http://www.bootcdn.cn/" target="_blank" rel="noopener">http://www.bootcdn.cn/</a> 提供的CDN服务。😅 本来可以把一些BootCDN不提供的资源使用七牛云外链，但是七牛云的外链地址需要氪金才可以获得https服务，这一步的优化就放在之后再做吧。于是最后得到了如下的结果：<br>    <img src="https://ws1.sinaimg.cn/large/005Kh0ZYly1fiks5z4uwej30nl0qp0ud.jpg" style="display:block;margin:0 auto;cursor:pointer;" title="点击查看大图"></p>
+<p>　　可以看到整体的加载时间已经在1S [.]-[.] 左右，好歹是能在等得不耐烦之前把页面加载完了。接下来需要把图片进行压缩，全部使用原图时图片大小不可忽视啊，光光写到这里外链的图片大小就已经达到了1.5M。</p>
+<p>　　2. 另一个坑便是不能成功点亮小绿锁，在本该显示小绿锁的地方显示了一个叹号 ❕。造成这个的原因极有可能是引用的资源中有不是https的地址，比如图片、css、js资源为非https地址，那就无法成功召唤出小绿锁啦。这也是不适用免费的七牛云服务的一个原因，七牛云为免费用户提供的外链都是http而不是https的。当然只要氪一点金就可以得到更可靠的存储服务，不用担心图床跑路或宕机。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

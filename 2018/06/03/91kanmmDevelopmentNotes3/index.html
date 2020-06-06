@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="坚持做一件事真的是件很困难的事，就像坚持写博客：原本以为闲时写写就能让博客保持较高的更新率，谁会想到这不知不觉中距离上一篇博客的更新已经过去大半个月了。本篇文章整理了上一篇文章挖的多栏布局瀑布流的坑。
+　　国际惯例先给新网站打个广告hhhhh： [91kanmm][1] 个人开发的一款看妹子应用。　">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【91kanmm开发笔记】多栏布局瀑布流的代码实现">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>【91kanmm开发笔记】多栏布局瀑布流的代码实现 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>【91kanmm开发笔记】多栏布局瀑布流的代码实现</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-06-03
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/91kanmm开发笔记/">#91kanmm开发笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>　　坚持做一件事真的是件很困难的事，就像坚持写博客：原本以为闲时写写就能让博客保持较高的更新率，谁会想到这不知不觉中距离上一篇博客的更新已经过去大半个月了。本篇文章整理了上一篇文章挖的多栏布局瀑布流的坑。</p>
+<p>　　国际惯例先给新网站打个广告hhhhh： [91kanmm][1] 个人开发的一款看妹子应用。<br>　　<br>　　本篇文章主要整理 [91kanmm][1] 在开发首页（豆瓣美女页）时最重要的一个功能点：<code>瀑布流布局</code> 的实现。前篇文章有提到在实现的过程中考虑过两种方案：绝对定位和分栏布局。非常火的瀑布流网站 [pinterest][2] 通过审查其网站的元素样式，可以发现每个图片都有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">position: absolute;</span><br><span class="line">top: 0px;</span><br><span class="line">left: 0px;</span><br><span class="line">transform: translateX(0px) translateY(0px);</span><br><span class="line">width: 100px;</span><br><span class="line">height: 100px;</span><br></pre></td></tr></table></figure>
+<p>这类的样式，可以看出它是使用绝对定位的方案实现的。通过计算得出每个图片（或每个图片所在的item）的位置，通过样式的位移操作使其处在相应的位置。这种方法的优点…除了能够按照顺序排列数据别的也实在想不出了：依靠大量的js计算获取图片的位置，通过大量的位移操作达到期望的显示效果；而且绝对定位的元素脱离了文档流无法撑开父元素的高度，这对于之后元素的布局也不友好，于是还要给每个绝对定位的元素设定高度来撑开父元素的高度；计算元素的高度就又牵扯出了一个问题：需要等图片全部加载完了之后才能获取到准确的高度。总体来说要手动实现绝对定位的瀑布流布局还是比较麻烦的，虽然有现成的插件 [Masonry][3] 可以使用，但还是会产生大量的计算和位移，对移动端的性能是个考验。</p>
+<p>　　而对于分栏布局实现瀑布流而言，它的缺点就是绝对定位布局的优点，不过在使用js处理数据的时候多做点操作也可以达到按顺序排列数据的目的；同样的它的优点便是完全克服了绝对定位布局的不足：不脱离文档流的布局，不需要大量的位移操作，虽然会有js的计算但只是简单的遍历操作，一方面每次加载的数据也就几十条，另外一方面当前移动端性能的瓶颈主要在浏览器解析、渲染dom上，这么一点小小的js计算根本不成问题。<br>　　<br>　　基于这种想法，看看在91kanmm中是如何将数据处理为多栏布局适用的。首先看一下接口（使用koa2+MongoDB搭建的后台接口<a href="https://api.91kanmm.com/api/douban/girlsData?beginId=&amp;size=10）" target="_blank" rel="noopener">https://api.91kanmm.com/api/douban/girlsData?beginId=&amp;size=10）</a> 返回的格式，为了阅读方便删除了结构相同的数据仅展示数据结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;code&quot;:10000,</span><br><span class="line">    &quot;success&quot;:true,</span><br><span class="line">    &quot;data&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;_id&quot;:&quot;5b0930101d41c862fbfe42e3&quot;,</span><br><span class="line">            &quot;content&quot;:&quot;早上只能坐公交车去吃包子，吃不完还要装到爱马仕的包包里，再徒步走到我法拉利停车的地方，上车配着我的白兰地吃完。;&quot;,</span><br><span class="line">            &quot;authorName&quot;:&quot;盗图网骗小能手&quot;,</span><br><span class="line">            &quot;avatar&quot;:&quot;https://img3.doubanio.com/icon/up137650427-5.jpg&quot;,</span><br><span class="line">            &quot;cid&quot;:&quot;&quot;,</span><br><span class="line">            &quot;date&quot;:&quot;2018-05-25 11:44:57&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;穷的快吃不起饭了，难受&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1704983&quot;,</span><br><span class="line">            &quot;location&quot;:&quot;常居: 北京&quot;,</span><br><span class="line">            &quot;imgs&quot;:[</span><br><span class="line">                &quot;https://wx3.sinaimg.cn/large/0060lm7Tgy1frnjdkzp1lj30qo0qoju4.jpg&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　处理函数如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/*将数据处理成页面对应的栏数需求的格式</span><br><span class="line">* @param &#123;Array&#125;   data</span><br><span class="line">* */</span><br><span class="line">handleDataAdaptColumn(data) &#123;</span><br><span class="line">    /*变量说明： this.columnCount-显示的图片列数;*/</span><br><span class="line">    let len = data.length;</span><br><span class="line">    let quotient = parseInt(len / this.columnCount);  //计算每列需要的数据条数</span><br><span class="line">    let remainder = parseInt(len % this.columnCount);  //如果不够均分计算多余的条数</span><br><span class="line">    let offset = 0;  // 偏移量，用于slice()的计算</span><br><span class="line">    let returnData = [];  //返回值</span><br><span class="line">    let count = 1;  //计数器，用于将传参切成相应的多个Arrar</span><br><span class="line">    while (count &lt;= this.columnCount) &#123;</span><br><span class="line">        let itemArr = [];</span><br><span class="line">        itemArr = data.slice(offset, offset + quotient);</span><br><span class="line">        returnData.push(itemArr);</span><br><span class="line">        offset += quotient;  //设置下一次slice的起点</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    /*如果余数不为0说明不能均分，就将多出来的数据填到各列中*/</span><br><span class="line">    if (remainder !== 0) &#123;</span><br><span class="line">        /*&apos;element-for-height&apos;类的元素为各列的外层包裹元素，用于获取高度*/</span><br><span class="line">        let columnElement = document.getElementsByClassName(&apos;element-for-height&apos;);</span><br><span class="line">        let elementHeightArr = [];</span><br><span class="line">        /*遍历各列获取其高度，用于将剩余的数据推到高度最短的那一列中。这样可以避免无限加载各列高度差越来越大*/</span><br><span class="line">        for (let item of columnElement) &#123;</span><br><span class="line">            elementHeightArr.push(item.clientHeight);</span><br><span class="line">        &#125;</span><br><span class="line">        if (elementHeightArr.length &gt; 0) &#123;</span><br><span class="line">            let minNumIndex = elementHeightArr.indexOf(Math.min(...elementHeightArr));  //获取高度最小的那一列的下标</span><br><span class="line">            let restArr = data.slice(-remainder);  //取出不能均分的那部分数据</span><br><span class="line">            returnData[minNumIndex].push(...restArr);  //推入高度最小的那列数据中</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return returnData;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>　　这种方法适用于对图片顺序没有要求的情况；因为我们无法控制爬到图片的尺寸，所以这种方法还会根据当前各列的高度动态调整数据在各列中的分布避免某一列越来越长。<br>　　<br>　　如果需要按顺序排列图片，处理起来反而更简单一点：通过取余操作判断当前数据应该在哪一列将其推进那列就可以了。mock数据格式参考上文：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/*将数据按照顺序处理成页面对应的栏数需求的格式</span><br><span class="line">* @param &#123;Array&#125;   data</span><br><span class="line">* */</span><br><span class="line">handleDataAdaptColumnBySequence(data) &#123;</span><br><span class="line">    /*根据列数初始化返回值*/</span><br><span class="line">    let cycleIndex = 0;</span><br><span class="line">    while (cycleIndex &lt; this.columnCount) &#123;</span><br><span class="line">        returnData[cycleIndex] = [];</span><br><span class="line">        cycleIndex++;</span><br><span class="line">    &#125;</span><br><span class="line">    /*遍历根据余数判断当前item应该推倒哪一列中*/</span><br><span class="line">    for (let index in data) &#123;</span><br><span class="line">        let item = data[index];</span><br><span class="line">        let remainder = index % this.columnCount;</span><br><span class="line">        returnData[remainder].push(item);</span><br><span class="line">    &#125;</span><br><span class="line">    return returnData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　这样一搞最终返回的数据就如下了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;_id&quot;:&quot;5b0e00371d41c8703fff1940&quot;,</span><br><span class="line">            &quot;content&quot;:&quot;抖音流量变现;张欣尧在700万粉丝的时候报价是36万一条广告。;太厉害了吧;要不大家关注我，我拿钱了分给大家。;&quot;,</span><br><span class="line">            &quot;authorName&quot;:&quot;wifi&quot;,</span><br><span class="line">            &quot;avatar&quot;:&quot;https://img3.doubanio.com/icon/up137594156-5.jpg&quot;,</span><br><span class="line">            &quot;cid&quot;:&quot;&quot;,</span><br><span class="line">            &quot;date&quot;:&quot;2018-05-29 12:03:20&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;我有一个想法&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1708025&quot;,</span><br><span class="line">            &quot;location&quot;:&quot;常居: 北京&quot;,</span><br><span class="line">            &quot;imgs&quot;:[</span><br><span class="line">                &quot;https://wx1.sinaimg.cn/large/0060lm7Tgy1frs5xktm5cj30dw0hfgp6.jpg&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;_id&quot;:&quot;5b0e003b1d41c8703fff1941&quot;,</span><br><span class="line">            &quot;content&quot;:&quot;只是腿直而已;&quot;,</span><br><span class="line">            &quot;authorName&quot;:&quot;翘翘&quot;,</span><br><span class="line">            &quot;avatar&quot;:&quot;https://img3.doubanio.com/icon/up137835389-1.jpg&quot;,</span><br><span class="line">            &quot;cid&quot;:&quot;&quot;,</span><br><span class="line">            &quot;date&quot;:&quot;2018-05-29 11:10:12&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;不觉得&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1707990&quot;,</span><br><span class="line">            &quot;location&quot;:&quot;常居: 江苏苏州&quot;,</span><br><span class="line">            &quot;imgs&quot;:[</span><br><span class="line">                &quot;https://wx2.sinaimg.cn/large/0060lm7Tgy1frs5zbws1nj30dw0iignp.jpg&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;_id&quot;:&quot;5b0e00401d41c8703fff1942&quot;,</span><br><span class="line">            &quot;content&quot;:&quot;&quot;,</span><br><span class="line">            &quot;authorName&quot;:&quot;mmmmm喵&quot;,</span><br><span class="line">            &quot;avatar&quot;:&quot;https://img1.doubanio.com/icon/up145474362-7.jpg&quot;,</span><br><span class="line">            &quot;cid&quot;:&quot;&quot;,</span><br><span class="line">            &quot;date&quot;:&quot;2018-05-29 10:50:36&quot;,</span><br><span class="line">            &quot;title&quot;:&quot;嘴唇上面起一个包，本来就厚的嘴唇更厚了！&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1707984&quot;,</span><br><span class="line">            &quot;location&quot;:&quot;常居: 上海&quot;,</span><br><span class="line">            &quot;imgs&quot;:[</span><br><span class="line">                &quot;https://wx4.sinaimg.cn/large/0060lm7Tgy1frs62raauij30dw0aft9z.jpg&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>　　直观一点表示数据结构便是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    [&#123;&#125;,&#123;&#125;,&#123;&#125;],</span><br><span class="line">    [&#123;&#125;,&#123;&#125;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>　　如此一来再遍历数据生成页面就非常方便了，具体的样式请审核 [91kanmm][1] 页面元素。这里贴出大概的布局，为阅读方便直接将样式写在各个元素的style中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--外层的容器，设置display和flex-wrap使内部元素能够按照一列一列的方式排列--&gt;</span><br><span class="line">&lt;div style=&quot;display: flex;flex-wrap: wrap;&quot;&gt;</span><br><span class="line">    &lt;!--section元素即为生成的一列列元素，通过设置 flex:1; 使各列能均分宽度，再设置一下width是因为在实际使用中移动端会出现加载一定量数据之后有某一列的宽度炸了特别宽或特别窄的问题，桌面端暂未发现这个问题；因此根据列数设置各列的宽度（100% / columnCount），比如两列就是50%，三列是33.33333%，四列是25%...--&gt;</span><br><span class="line">    &lt;section style=&quot;flex: 1;width: 50%;&quot;&gt;</span><br><span class="line">        &lt;!--该元素完全是为了计算列高度的--&gt;</span><br><span class="line">        &lt;div class=&quot;element-for-height&quot;&gt;</span><br><span class="line">            &lt;!--这里面就是渲染出来的一个个item图片--&gt;</span><br><span class="line">            &lt;figure&gt;&lt;/figure&gt;</span><br><span class="line">            &lt;figure&gt;&lt;/figure&gt;</span><br><span class="line">            &lt;figure&gt;&lt;/figure&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section style=&quot;flex: 1;width: 50%;&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;element-for-height&quot;&gt;</span><br><span class="line">            &lt;figure&gt;&lt;/figure&gt;</span><br><span class="line">            &lt;figure&gt;&lt;/figure&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　<br>[1]: <a href="https://www.91kanmm.com/" target="_blank" rel="noopener">https://www.91kanmm.com/</a><br>[2]: <a href="https://www.pinterest.com/" target="_blank" rel="noopener">https://www.pinterest.com/</a><br>[3]: <a href="https://github.com/SnapKit/Masonry" target="_blank" rel="noopener">https://github.com/SnapKit/Masonry</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

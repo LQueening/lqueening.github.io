@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="这个双休日杭州天气超级棒！窝在家里总感觉浪费了好天气，不如整理一下最近的博客下午约小伙伴爬山去。　　　　首先就是买了搬瓦工的vps，将博客和一些脚本迁移过去啦。之前用的AWS的免费服务，就算是用的亚太地区的机器访问速度也不是很理想，切换成搬瓦工之后很明显感觉速度变快了好多。因为github上博客的仓">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="博客迁移至搬瓦工vps的一些总结&amp;在主机上搭建SS/SSR服务&amp;爽不过五天IP被墙的惨痛教训&amp;一些杂谈">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>博客迁移至搬瓦工vps的一些总结&amp;在主机上搭建SS/SSR服务&amp;爽不过五天IP被墙的惨痛教训&amp;一些杂谈 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>博客迁移至搬瓦工vps的一些总结&在主机上搭建SS/SSR服务&爽不过五天IP被墙的惨痛教训&一些杂谈</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-03-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻墙/">#翻墙</a> <a href="/tags/vps/">#vps</a> <a href="/tags/博客/">#博客</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>/ <a href="/categories/技术/杂谈/">杂谈</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>　　这个双休日杭州天气超级棒！窝在家里总感觉浪费了好天气，不如整理一下最近的博客下午约小伙伴爬山去。　　<br>　　首先就是买了搬瓦工的vps，将博客和一些脚本迁移过去啦。之前用的AWS的免费服务，就算是用的亚太地区的机器访问速度也不是很理想，切换成搬瓦工之后很明显感觉速度变快了好多。因为github上博客的仓库存储的就是hexo编译完毕的静态文件，因此只要在新的主机中克隆一遍仓库里的文件就可以，迁移的过程简单粗暴毫无难度。<br>　　然后就是很悲伤的消息：作死在搬瓦工上搭建了机场<del>每个月500G的流量不用白不用嘛</del>，结果飞了五天发现IP被墙了。很难受。鉴于这几天伟大的祖国正在进行重要的会议帮助我这种底层民工脱贫，就等这阵子风头过去了重新买个IP吧，好歹是CN2线路的主机不好就这样浪费了。博客就还是用github pages的服务啦，将<code>blog.liaokun.me</code>这个地址的dns解析里增加一条CNAME记录指向github pages提供的地址然后在仓库的<code>Settings</code>-&gt;<code>GitHub Pages</code>选项中的<code>Custom domain</code>项下填入自己的域名就可以了。将博客的外部资源使用CDN访问速度还是很快的。惨痛教训便是：不要在自己的VPS上开机场，去买别人提供的小飞机服务。一方面不会出现vps的IP被墙导致整个主机几乎作废的情况，另外一方面专做小飞机服务的服务商有更专业的服务和售后，就算是出现坠机的情况马上就能增加新的节点。<br>　　如果你还想作死试试开机场，可以参考<a href="https://teddysun.com/486.html" target="_blank" rel="noopener">Shadowsocks 一键安装脚本（四合一）</a>这篇文章，能快速搭建一个机场，脚本提供了一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端的功能。<br>　　说完了悲伤的事就开始正文吧。内容有以下几点：<br>　　- 在centos上安装nginx<br>　　- Apache和nginx的一些配置<br>　　- 在倒腾服务器的过程中记录下来的一些常用的命令&amp;踩的坑
+　　</p>
+<h3 id="在centos上安装nginx"><a href="#在centos上安装nginx" class="headerlink" title="在centos上安装nginx"></a>在centos上安装nginx</h3><p>　　之前AWS提供的主机是Ubuntu的系统，使用apt命令可以很方便地安装各应用。</p>
+<p><strong>Notice：</strong><br><strong>当我再次开始写这篇博客时已经两个星期之后了<em>(¦3」∠)</em>    date-now：2018-03-17 17:30</strong><br><strong>使用Goflyway+Cloudflare CDN强行给被墙的VPS续命。不过因为Goflyway只支持HTTP伪装，因此全站退回了HTTP。续命教程参考： <a href="https://doub.io/goflyway-jc3/" target="_blank" rel="noopener">https://doub.io/goflyway-jc3/</a></strong><br><strong>使用cerbot脚本为域名开启https： <a href="https://www.yuzhi100.com/article/centos-7-install-lets-encrypt-certbot" target="_blank" rel="noopener">https://www.yuzhi100.com/article/centos-7-install-lets-encrypt-certbot</a></strong></p>
+<p>　　话不多说，先说说在centos中安装nginx的不同点：centos下的软件包管理器yum在安装nginx时需要手动添加nginx源，尝试过一个源地址安装的并不是适用centos的nginx，之后在<a href="http://www.itmuch.com/install/nginx-yum-install-in-centos7/中得到解决：" target="_blank" rel="noopener">http://www.itmuch.com/install/nginx-yum-install-in-centos7/中得到解决：</a><br>　　首先添加nginx源：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure></p>
+<p>　　之后使用yum即可顺利安装。
+　　</p>
+<h3 id="Apache和nginx的一些配置"><a href="#Apache和nginx的一些配置" class="headerlink" title="Apache和nginx的一些配置"></a>Apache和nginx的一些配置</h3><p>　　<del>之后又换回了ubuntu，因此本节的介绍主要在ubuntu环境下</del><br>　　nginx在ubuntu中的目录结构和Apache在ubuntu中的类似，站点的配置文件目录为<code>sites-available</code>，其生效之后的目录为<code>sites-enabled</code>。因为在主机中增加了一个二级域名 <a href="http://files.liaokun.me" target="_blank" rel="noopener">http://files.liaokun.me</a> ,使用的是<a href="https://github.com/lrsjng/h5ai" target="_blank" rel="noopener">h5ai</a>作为目录列表程序，其默认访问的首页文件类型为<code>.php</code>，而nginx并不能直接处理php文件，因此当你把h5ai的文件丢到正确的目录中访问时会直接跳出下载窗口。在apache中安装php子模块实现对php的支持，而在nginx中使用<code>php-fpm</code>使其支持php。在安装php7的时候已经集成好了php-fpm，因此只需要修改nginx配置即可。具体的介绍可以参见<a href="https://wizardforcel.gitbooks.io/nginx-doc/content/Text/6.5_nginx_php_fpm.html" target="_blank" rel="noopener">这里的一份中文文档</a>。如果是直接安装的nginx，在<code>/etc/nginx/sites-available</code>目录下可以找到default文件，打开该文件会发现php相关的配置已经写好并且注释了，只需要找到该段并取消其对php-fpm的注释即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">        include snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">        # With php7.0-cgi alone:</span><br><span class="line">        #fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">        # With php7.0-fpm:</span><br><span class="line">        fastcgi_pass unix:/run/php/php7.0-fpm.sock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　既然打开了default文件，配置增加二级域名的操作也在这之中。比如我要新增一个<code>files.liaokun.me</code>的二级域名，那么只需要新增一个server并修改其<code>server_name</code>和<code>root</code>即可。这里因为访问的是h5ai里的文件因此在root下面一行增加其访问的默认文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        server_name files.liaokun.me;</span><br><span class="line">        root /var/www/files;</span><br><span class="line">        index  index.html  index.php  /_h5ai/public/index.php;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                try_files $uri $uri/ =404;</span><br><span class="line">        &#125;</span><br><span class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">        location ~ \.php$ &#123;</span><br><span class="line">                include snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">                # With php7.0-cgi alone:</span><br><span class="line">                #fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">                # With php7.0-fpm:</span><br><span class="line">                fastcgi_pass unix:/run/php/php7.0-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="在倒腾服务器的过程中记录下来的一些常用的命令-amp-踩的坑"><a href="#在倒腾服务器的过程中记录下来的一些常用的命令-amp-踩的坑" class="headerlink" title="在倒腾服务器的过程中记录下来的一些常用的命令&amp;踩的坑"></a>在倒腾服务器的过程中记录下来的一些常用的命令&amp;踩的坑</h3><p>　　刚开始倒腾服务器什么的还是比较懵逼的，记录下来一些命令和踩的坑便于之后快速上手。<br>　　在配置dns解析的时候各项记录的作用：</p>
+<ul>
+<li>A：指向一个确定的 IPv4 地址</li>
+<li>AAAA：指向一个确定的 IPv6 地址</li>
+<li>CNAME：告诉你应该到哪个地方继续寻找</li>
+<li>MX：指定域名的接收邮件服务器</li>
+<li>SPF：指定域名的发送邮件服务器</li>
+<li>TXT：该域名的说明文字</li>
+</ul>
+<p>　　linux 定时任务相关：</p>
+<ul>
+<li>crontab -l  列出crontab文件</li>
+<li>crontab -e  编辑crontab</li>
+<li>crontab -r  删除</li>
+<li>Min Hour Date Month Week command  使用方式，分  时   日期   月   星期   命令</li>
+</ul>
+<p>　　Ubuntu 16.04 安装 Apache, MySQL, PHP7<br>　　更新系统<br><figure class="highlight plain"><figcaption><span>apt update```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　安装Apache</span><br><span class="line">```sudo apt install apache2```   </span><br><span class="line">```sudo a2enmod rewrite</span><br></pre></td></tr></table></figure></p>
+<p>　　开启mod_deflate<br><figure class="highlight plain"><figcaption><span>a2enmod deflate```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　使用Apache mod_expires 与 mod_headers模块实现文件缓存</span><br><span class="line">```sudo a2enmod expires</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>a2enmod headers```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　安装php及扩展</span><br><span class="line">```sudo apt install php```      </span><br><span class="line">```sudo apt install libapache2-mod-php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>apt install php7.0-mcrypt php7.0-gd php7.0-curl```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　安装mysql</span><br><span class="line">```sudo apt install mysql-server php7.0-mysql```     </span><br><span class="line">```sudo apt install mysql-client</span><br></pre></td></tr></table></figure>
+<p>　　具体可以参见：<a href="https://my.oschina.net/laifuzi/blog/876375" target="_blank" rel="noopener">https://my.oschina.net/laifuzi/blog/876375</a><br>　　<br>　　为当前系统增加用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser user_name</span><br></pre></td></tr></table></figure></p>
+<p>　　修改该用户密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd user_name</span><br></pre></td></tr></table></figure></p>
+<p>　　将当前用户增加sudo权限：在<code>/etc/sudoers</code>文件中增加该用户，配置和root类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></p>
+<p>　　这之后就可以使用新增的用户登录主机并使用sudo命令了。</p>
+<p>　　简单整理了一下倒腾vps时的贴在笔记上的东西，当然更多的知识点是在遇到问题时边谷歌边踩坑的，所以有个稳定的小飞机是非常重要的啦！</p>
+<p>　　</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

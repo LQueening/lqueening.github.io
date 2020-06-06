@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="数据类型总览
+基本类型
+undefined 和 null 相似点
+undefined 和 null 不同点
+
+
+为什么说JavaScript中万物皆对象
+引用类型
+基本类型和基本包装类型    
+
+
+
+ES5版本中有6种数据类型，包括5种基本类型和1种复杂类型(引用类型)。本文从原型链的角度去深入学">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="《JavaScript高级程序设计 第三&amp;四&amp;五章》通过原型链探究ES中数据类型的异同">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>《JavaScript高级程序设计 第三&amp;四&amp;五章》通过原型链探究ES中数据类型的异同 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>《JavaScript高级程序设计 第三&四&五章》通过原型链探究ES中数据类型的异同</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-10-31
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/高程学习笔记/">#高程学习笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul>
+<li><a href="#chapter1">数据类型总览</a></li>
+<li><a href="#chapter2">基本类型</a><ul>
+<li><a href="#chapter2_1">undefined 和 null 相似点</a></li>
+<li><a href="#chapter2_2">undefined 和 null 不同点</a></li>
+</ul>
+</li>
+<li><a href="#chapter3">为什么说JavaScript中万物皆对象</a><ul>
+<li><a href="#chapter3_1">引用类型</a></li>
+<li><a href="#chapter3_2">基本类型和基本包装类型</a>    </li>
+</ul>
+</li>
+</ul>
+<p>ES5版本中有6种数据类型，包括5种基本类型和1种复杂类型(引用类型)。本文从原型链的角度去深入学习各项数据类型。</p>
+<p>《JavaScript高级程序设计》中包含的这些内容的章节：第三、四、五章。</p>
+<p><div id="chapter1"></div></p>
+<h3 id="数据类型总览"><a href="#数据类型总览" class="headerlink" title="数据类型总览"></a>数据类型总览</h3><p>老生常谈，JavaScript中的5种基本类型:<br>String Number Boolean undefined null<br>1种复杂类型(引用类型):<br>Object类型<br>同时ES中也提供了多种原生引用类型，它们在分类上属于引用类型，基于引用类型的原型对象实现。比如:<br>Object Array Date RegExp Function 等</p>
+<p><div id="chapter2"></div></p>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><p>String Number Boolean 的含义和使用方法都很明确。</p>
+<p>对于 undefined 和 null 它们在直观地理解上都表示空：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Boolean(undefined);  // false</span><br><span class="line">Boolean(undefined) === Boolean(null);  // true</span><br></pre></td></tr></table></figure></p>
+<p>那么它们之间在含义和使用上有什么异同呢？<br>阮一峰有一篇关于这个问题的文章： <a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="noopener">undefined与null的区别
+</a></p>
+<p>通过阅读书本和文章可以得到如下异同点：</p>
+<p><div id="chapter2_1"></div></p>
+<h4 id="undefined-和-null-相似点"><a href="#undefined-和-null-相似点" class="headerlink" title="undefined 和 null 相似点"></a>undefined 和 null 相似点</h4><p>如上面代码所以，它们在进行Boolean判断时返回都为 false ，也就是说它们在表达 Boolean 含义的层面上是一致的。</p>
+<p><div id="chapter2_2"></div></p>
+<h4 id="undefined-和-null-不同点"><a href="#undefined-和-null-不同点" class="headerlink" title="undefined 和 null 不同点"></a>undefined 和 null 不同点</h4><ul>
+<li>undefined 更多地表现为 未定义、未取到、无返回 的含义，比如:</li>
+</ul>
+<p>当初始声明一个变量时，如果没有对这个变量赋值它会被设定默认值 undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let initVariable;</span><br><span class="line">console.log(initVariable);  // undefined</span><br></pre></td></tr></table></figure></p>
+<p>当获取一个Object不存在属性或者获取一个Array越界的下标时会返回 undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let initObject = &#123;&#125;;</span><br><span class="line">console.log(initObject.undefinedProperty);  // undefined</span><br><span class="line">initObject = [];</span><br><span class="line">console.log(initObject[5]);  // undefined</span><br></pre></td></tr></table></figure></p>
+<p>当一个函数没有返回值时默认返回 undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let initFunction = function() &#123;</span><br><span class="line">    // 一个没有返回值的函数</span><br><span class="line">&#125;</span><br><span class="line">console.log(initFunction());  // undefined</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>而 null 值从逻辑角度来看，表示一个空对象指针。在后文中会提到，null还代表着最顶级的Object原型对象的原型对象的指向。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const initNull = null;</span><br><span class="line">typeof initNull;  // &quot;object&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因此建议如果定义的是一个object类型的变量的话最好将该变量初始化为 null 而不是默认的 undefined</p>
+<ul>
+<li><p>当它们在进行数字的转换时表现出来的值不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let initUndefined, initNull = null;</span><br><span class="line">console.log(Number(initUndefined));  // NaN</span><br><span class="line">console.log(Number(initNull));  // 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里其实还可以提一点，就是对于后端来说更多的是只存在 null 而没有 undefined 这种数据类型。因此在和后端对接的时候可以看到–如果没有提前约定好字段的初始类型初始值的话，接口中的该字段会直接传过来 null 。</p>
+</li>
+</ul>
+<p><div id="chapter3"></div></p>
+<h3 id="为什么说JavaScript中万物皆对象"><a href="#为什么说JavaScript中万物皆对象" class="headerlink" title="为什么说JavaScript中万物皆对象"></a>为什么说JavaScript中万物皆对象</h3><p>首先要搞清楚原型对象，构造函数，实例三者之间的关系：<br><img src="http://ww1.sinaimg.cn/large/005Kh0ZYly1fwnsie9z9ij30si0ej3zi.jpg" alt="原型对象，构造函数，实例三者之间的关系"></p>
+<p>我们常说在JavaScript中万物皆对象，为什么这么说呢？很重要的一个原因是JavaScript中大部分的数据类型都是 Object 类型的实例。</p>
+<p><div id="chapter3_1"></div></p>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>常用的几种原生引用类型自然不用多说：</p>
+<ul>
+<li>Object</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*Object 类型*/</span><br><span class="line">// Object本身就是一个构造函数</span><br><span class="line">console.log(Object);</span><br><span class="line">// 作为构造函数它本身就是Function的实例</span><br><span class="line">console.log(Object instanceof Function);  // true</span><br><span class="line">// Object 的原型对象是JavaScript封装的最顶级的对象，因此它不再是别的类型的实例</span><br><span class="line">console.log(Object.prototype.__proto__);  // null</span><br><span class="line">const initObject = &#123;&#125;;</span><br><span class="line">// 在Firefox Safari Chrome中可以通过 __proto__ 属性访问到实例的原型对象</span><br><span class="line">console.log(initObject.__proto__);</span><br><span class="line">console.log(initObject.__proto__ === Object.prototype); // true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Array</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*Array类型*/</span><br><span class="line">// Array本身就是一个构造函数</span><br><span class="line">console.log(Array);</span><br><span class="line">// 作为构造函数它本身就是Function的实例</span><br><span class="line">console.log(Array instanceof Function);  // true</span><br><span class="line">// 同时它也是Object的实例，因为Array的原型对象是Object.prototype的一个实例</span><br><span class="line">console.log(Array instanceof Object);  // true</span><br><span class="line">console.log(Array.prototype.__proto__ === Object.prototype);  //true</span><br></pre></td></tr></table></figure>
+<p>对于ES中的原生引用类型–Object Array Function Date RegExp 来说，它们都和上面写的代码类似：<br>它们本身是一个构造函数，而它们的原型对象又是Object原型对象的实例。</p>
+<p><div id="chapter3_2"></div></p>
+<h4 id="基本类型和基本包装类型"><a href="#基本类型和基本包装类型" class="headerlink" title="基本类型和基本包装类型"></a>基本类型和基本包装类型</h4><p>在设定中基本类型是没有属性和方法的，但是我们却能做一些这种操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const str = &apos;It is a string&apos;;</span><br><span class="line">console.log(str.toString());</span><br><span class="line"></span><br><span class="line">const floatNumber = 3.1415926;</span><br><span class="line">console.log(floatNumber.toFixed(2));</span><br></pre></td></tr></table></figure>
+<p>这是不是说明他们其实也是一个对象呢？<br>接着上文的引用类型，ES不仅提供了多种原生引用类型，还提供了一种特殊的引用类型–<strong>基本包装类型</strong>。<br>基本包装类型“包装了”三种基本类型：String Boolean Number，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，通过重写或添加在基本包装类型原型对象上的方法来实现对基本类型的方法调用。<br>而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁，所以我们依旧不能为基本类型添加属性和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(String);  //发现String本身和上面的原生引用类型一样是个构造函数</span><br><span class="line">console.log(String.prototype.__proto__ === Object.prototype);  // true,那么表明它就和原生引用类型的表现一致了</span><br></pre></td></tr></table></figure>
+<p>经过测试，Boolean和Number的表现也和String及其它原生引用类型一致。</p>
+<p>通过以上的学习，从原型链方面探讨了ES中各个数据类型的异同。<br>接下来将从内存空间方面探究基本类型和引用类型的异同。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

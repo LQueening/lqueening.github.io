@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="www.91kanmm.com只为爱看妹子的你准备的应用！
+
+　　先给新网站打个广告hhhhh： 91kanmm 个人开发的一款看妹子应用。
+　　写这么一个网站的想法缘起于一夜暴富不劳而获的幻想。正如段子所说赚钱的法子都在刑法中写着了，既然想暴富普通的打工搬砖肯定是行不通的了，得搞一些野路子。常见的">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="91kanmm：使用webpack + vue/nuxt + material design开发的一款看妹子应用">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>91kanmm：使用webpack + vue/nuxt + material design开发的一款看妹子应用 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>91kanmm：使用webpack + vue/nuxt + material design开发的一款看妹子应用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-05-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/91kanmm开发笔记/">#91kanmm开发笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2><a href="//www.91kanmm.com" target="blank">www.91kanmm.com</a><p>只为爱看妹子的你准备的应用！</p></h2>
+
+<p>　　先给新网站打个广告hhhhh： <a href="http://www.91kanmm.com/" target="_blank" rel="noopener">91kanmm</a> 个人开发的一款看妹子应用。</p>
+<p>　　<div style="display:none">写这么一个网站的想法缘起于一夜暴富不劳而获的幻想。正如段子所说赚钱的法子都在刑法中写着了，既然想暴富普通的打工搬砖肯定是行不通的了，得搞一些野路子。常见的野路子无非几种：黄赌毒，我自认没有这么大本事去倒腾赌和毒。当然不仅仅是自己能耐不够，就算有这个能耐也扛不住这个风险，一个不小心就把青春年华搭进去了，我倒是还想多写几年代码多为国家做贡献。除去赌和毒，就只剩下一个<strong>黄</strong>了。黄往大了说是搞线下业务，这个自然也是有金刚钻才干得动的活，像我这种又不能打又没有资源的菜鸡程序员是万万蹚不得这趟浑水了；有线下业务当然也有线上业务，像在线招<em>、是走平台路线，在线</em>聊、走服务路线，它们都有一个特点便是法律不允许，遵纪守法的好公民是绝不会去做老大哥不准我做的事的。考虑良多，最后决定帮助人们在追求美<del>女</del>的路上能看到更多风景。这个是一块非常值得钻研的区域，<del>包括我在内的</del>许多小男生们在小时候就开始了对美<del>女</del>的追求，却被条条框框限制找不到这个美，自然也没法提升自身的美感和对美的欣赏水平。当然这些困难对于程序员来说都是小事，毕竟在国外对美的限制不如国内这么严格：翻过高墙就可以得到大量的数据，gayhub也告诉大家如何去追寻心中的美。所以这个时候需要做的便是收集整理互联网中海量的数据并在自己的应用中展现出来。这样看起来程序员就像是一位位拿着工具的矿工，在浩瀚无边的数据矿藏中挖掘属于自己的宝石。</div>   </p>
+<p>　　这个又使我想起了<strong>信息差</strong>这么个概念。我常常会想怎样才能得到更多的资源，这个资源不仅仅是金钱，还可以是机会、帮助等。渐渐地就会发现，能得到越多资源、能越容易得到资源的，往往是掌握着越多信息差的人。比如商人能从交易中得到利益，而这个利益会因为有着比别人更低价格的供货渠道、有着对市场更深的了解等被放大，这里的供货渠道、市场了解便是信息差。信息差越大越容易得到利润，而信息差越小则越容易在市场竞争中打得头破血流，就像现在程序员的门槛越来越低，像我这种的菜鸡都从通信转去干了前端。但是我相比于别人没有更强的能力，没有信息差的存在，在寻找一份心仪的工作上就比较吃力了。这给我两点启发：一是培养自己的<strong>独特</strong>竞争力而不是你能加班我也能加班比比谁能加得更久的这种竞争力；另一点便是通过倒腾信息差说不定也能实现不劳而获，这一点就像是韩国向朝鲜卖有电影、新闻的U盘或是卖小飞机，当然卖小飞机是非法的，我们要坚决抵制。</p>
+<p>　　<div style="display:none">话扯回来，基于这个思路我们就可以把国外能轻易获取到的美的各种表现形式倒腾到国内，从而实现盈利。当然要是这样就能赚钱那大家可能都是傻子了吧，这么粗暴地搬运图片视频回来多半是会被拉去喝茶谈话的。我选择了更稳妥一点的办法：写爬虫爬豆瓣的美女和一些合法的写真图片，这样能满足较为底层的对美的追求，而这部分人的数量还是挺可观的。</div></p>
+<p>　　So，这就是干<code>91kanmm</code>的缘起。</p>
+<p>　　在这之后，我会记录下开发过程中踩的坑并整理成<code>91kanmm开发笔记</code>。</p>
+<p>　　最重要的，是我想通过从零开始搭建一款应用来体验项目的创建、迭代、优化过程从而提升自己的能力啦orz。</p>
+<p>  　　</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

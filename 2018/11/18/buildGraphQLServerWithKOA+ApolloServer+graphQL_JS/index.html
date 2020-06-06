@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务中间件作为前端和后端数据交互的桥梁，很好地解决了后端修改数据结构麻烦和前端对字段结构需求不断变更之间的矛盾问题。它可以有多种处理方式，本次因为是由前端开发中间件因此选择了node作为开发语言。
+gr">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-11-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/graphQL/">#graphQL</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务"><a href="#node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务" class="headerlink" title="node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务"></a>node中间件开发：使用apollo-server和graphQL在KOA项目中搭建graphQL服务</h1><p>中间件作为前端和后端数据交互的桥梁，很好地解决了后端修改数据结构麻烦和前端对字段结构需求不断变更之间的矛盾问题。它可以有多种处理方式，本次因为是由前端开发中间件因此选择了node作为开发语言。</p>
+<h2 id="graphQL介绍"><a href="#graphQL介绍" class="headerlink" title="graphQL介绍"></a>graphQL介绍</h2><blockquote>
+<p>GraphQL 是一个用于 API 的查询语言，是一个使用基于类型系统来执行查询的服务端运行时（类型系统由你的数据定义）。GraphQL 并没有和任何特定数据库或者存储引擎绑定，而是依靠你现有的代码和数据支撑。</p>
+</blockquote>
+<p><a href="http://graphql.cn/learn/" target="_blank" rel="noopener">GraphQL 入门</a></p>
+<ul>
+<li>GraphQL schema</li>
+<li>每一个 GraphQL 服务都有一个 query 类型，可能有一个 mutation 类型。</li>
+<li>标量类型（Scalar Types） 它们表示对应 GraphQL 查询的叶子节点<br>GraphQL 自带一组默认标量类型：<br>Int：有符号 32 位整数。<br>Float：有符号双精度浮点值。<br>String：UTF‐8 字符序列。<br>Boolean：true 或者 false。<br>ID：ID 标量类型表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键。ID 类型使用和 String 一样的方式序列化；然而将其定义为 ID 意味着并不需要人类可读型。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const recentQueryCarsSchema = buildSchema(`</span><br><span class="line">    type Book &#123;</span><br><span class="line">        title: String</span><br><span class="line">        author: String</span><br><span class="line">    &#125;</span><br><span class="line">    type Query &#123;</span><br><span class="line">        books: [Book],</span><br><span class="line">        hello: String,</span><br><span class="line">        myName: Int,</span><br><span class="line">    &#125;</span><br><span class="line">`);</span><br></pre></td></tr></table></figure>
+<h2 id="当用作数据交互处理时中间件处理流程"><a href="#当用作数据交互处理时中间件处理流程" class="headerlink" title="当用作数据交互处理时中间件处理流程"></a>当用作数据交互处理时中间件处理流程</h2><p><img src="http://upload-images.jianshu.io/upload_images/6553672-00a922b2fbc48a03.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>中间件承担了前后端代码中的一些脏活累活，把两边开发人员都不乐意处理的一些逻辑放在这里面处理。后端只需要输出数据，前端只要取到自己想要的数据就可以–从这一点上来看中间件就是开了一个新的项目专用于整理后端返回的数据。</p>
+<h2 id="使用js处理数据的优缺点"><a href="#使用js处理数据的优缺点" class="headerlink" title="使用js处理数据的优缺点"></a>使用js处理数据的优缺点</h2><p>如上文说的，要实现后端数据结构的重组，仅仅依靠JavaScript就可以实现了:<br>在一个新的js项目(暂时叫它 data_handler)中定义好请求的接口和数据结构，将请求后端得到的数据按照定义好的数据结构整理一遍再暴露给调用的项目</p>
+<p>在真实的业务项目中调用data_handler暴露出来的方法获取数据</p>
+<p>使用js来处理数据一大优点便是灵活、开发成本低：说白了就是做一次项目的拆分</p>
+<p>而缺点便是拆分出来的项目只适用于原项目，失去了对相同接口的复用–比如同一个获取用户列表的接口，如果另一个项目也需要获取用户列表但需要不用的数据结构，那么当前封装好的方法就不适用了</p>
+<h2 id="使用node搭建中间件处理数据的优缺点"><a href="#使用node搭建中间件处理数据的优缺点" class="headerlink" title="使用node搭建中间件处理数据的优缺点"></a>使用node搭建中间件处理数据的优缺点</h2><p>而由node来处理数据则完全是在原来的前端项目之外又假设了一层项目了；前端的请求发向node层，再由node层做相应的处理–向后端请求数据或从数据库、缓存中取数据返回</p>
+<p>使用node进行搭建中间件相比于用js单纯做数据处理优点非常明显：</p>
+<ul>
+<li>node具有访问数据库的能力，因此一些简单的业务可以迁移到中间件中进行而不用等待后端介入</li>
+<li>作为“真正的”中间件它可以整合前后端的请求，比如一个页面需要请求后端多个接口，那么可以在中间件中将这些接口数据整合到一起发送给前端，减少前端的请求次数</li>
+<li>当作为中间件时还可以实现诸如服务端渲染、页面缓存、请求缓存之类提升页面加载速度的功能</li>
+</ul>
+<p>但缺点同样存在：增加了开发成本，而且同js处理数据一般node中间件也需要对不同的项目做特别的处理</p>
+<h2 id="引入graphQL让前端做查询"><a href="#引入graphQL让前端做查询" class="headerlink" title="引入graphQL让前端做查询"></a>引入graphQL让前端做查询</h2><p>可以发现上文介绍的两种方法都不能满足一次编码前端多个项目对相同接口不同数据结构的需求，引入graphQL给予前端查询、筛选数据的能力。服务端/中间件只要输出数据，不用关心前端需要的数据结构；而前端只要按照graphQL语法从返回数据中查询出自己需要的数据和结构，无需关心后端返回的数据结构。</p>
+<h2 id="在KOA项目中使用apollo-server和graphQL在KOA项目中搭建graphQL服务"><a href="#在KOA项目中使用apollo-server和graphQL在KOA项目中搭建graphQL服务" class="headerlink" title="在KOA项目中使用apollo-server和graphQL在KOA项目中搭建graphQL服务"></a>在KOA项目中使用apollo-server和graphQL在KOA项目中搭建graphQL服务</h2><p>现有的中间件项目是基于KOA开发的，因此本次graphQL服务也是在KOA上搭建。<br>整体的技术栈是 <a href="https://github.com/koajs/koa" target="_blank" rel="noopener">KOA</a> + <a href="https://github.com/apollographql/apollo-server" target="_blank" rel="noopener">apollo-server</a> +  <a href="https://github.com/graphql/graphql-js" target="_blank" rel="noopener">graphql-js</a></p>
+<p>使用KOA就不多说了，因为项目搭建时用的就是KOA。</p>
+<p>使用 apollo-server 是因为它为常见的node框架如express、KOA等都实现了graphQL服务;而且还有相应的客户端 <a href="https://github.com/apollographql/apollo-client" target="_blank" rel="noopener">apollo-client</a>，支持非常多主流的前端框架如react、VUE等，甚至安卓和IOS客户端都有相应的代码实现，社区生态好解决方案完整。具体可以见他们的主页 <a href="https://github.com/apollographql" target="_blank" rel="noopener">Apollo GraphQL
+</a>。</p>
+<p>其实一个 apollo-server 就足够完成graphQL服务的搭建，但在项目中还额外引入了 GraphQL.js ，原因是使用它来构建可读性更高、适用性更强的GraphQL schema。</p>
+<blockquote>
+<p>While we recommend the use schema-definition language (SDL) for defining a GraphQL schema since we feel it’s more human-readable and language-agnostic, Apollo Server can be configured with a GraphQLSchema object …</p>
+</blockquote>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>项目文件结构大概是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">└─ server.ts  //入口配置文件</span><br><span class="line">└─ graphQLSchema  //用于定义graphQL的schema及操作方法</span><br><span class="line">└─ model  //实际做的操作</span><br></pre></td></tr></table></figure>
+<p>入口文件<code>server.ts</code>中引入 apollo-server-koa 并创建一个 ApolloServer 应用到KOA实例中。见官方文档：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// Construct a schema, using GraphQL schema language</span><br><span class="line">const typeDefs = gql`</span><br><span class="line">  type Query &#123;</span><br><span class="line">    hello: String</span><br><span class="line">  &#125;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">// Provide resolver functions for your schema fields</span><br><span class="line">const resolvers = &#123;</span><br><span class="line">  Query: &#123;</span><br><span class="line">    hello: () =&gt; &apos;Hello world!&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const server = new ApolloServer(&#123; typeDefs, resolvers &#125;);</span><br><span class="line"></span><br><span class="line">const app = new Koa();</span><br><span class="line">server.applyMiddleware(&#123; app &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>ApolloServer 可以支持不同的传参构建，比如上面代码传入 typeDefs, resolvers 由ApolloServer再去构建schema:</p>
+<p><a href="mailto:``_apollo-server-core@2.1.0" target="_blank" rel="noopener">``_apollo-server-core@2.1.0</a>@apollo-server-core\src\apolloserver.ts<code></code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6553672-1dc6d39eca453f36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="apolloserver.ts"></p>
+<p><code>makeExecutableSchema</code>方法最终还是调用了</p>
+<p><code>graphql\type\schema.d.ts</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6553672-5d87a24b0ce27d54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="graphql\type\schema.d.ts"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6553672-13b4c10c863b2d32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="graphql\type\schema.d.ts"></p>
+<p>因此我们也可以直接传入一个schema，文档中同样有说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const &#123; ApolloServer, gql &#125; = require(&apos;apollo-server&apos;);</span><br><span class="line">const &#123; GraphQLSchema, GraphQLObjectType, GraphQLString &#125; = require(&apos;graphql&apos;);</span><br><span class="line"></span><br><span class="line">// The GraphQL schema</span><br><span class="line">const schema = new GraphQLSchema(&#123;</span><br><span class="line">  query: new GraphQLObjectType(&#123;</span><br><span class="line">    name: &apos;Query&apos;,</span><br><span class="line">    fields: &#123;</span><br><span class="line">      hello: &#123;</span><br><span class="line">        type: GraphQLString,</span><br><span class="line">        description: &apos;A simple type for getting started!&apos;,</span><br><span class="line">        resolve: () =&gt; &apos;world&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const server = new ApolloServer(&#123; schema &#125;);</span><br></pre></td></tr></table></figure>
+<p>本次开发中采用了第二种直接传入schema的方式，做了一些模块的拆分：</p>
+<p><code>server.ts</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// graphQL server</span><br><span class="line">import &#123; ApolloServer &#125; from &apos;apollo-server-koa&apos;;</span><br><span class="line">// graphQL schema</span><br><span class="line">import schema from &apos;./graphQLSchema&apos;</span><br><span class="line"></span><br><span class="line">const app = new Koa();</span><br><span class="line">const router = new Router();</span><br><span class="line"></span><br><span class="line">// 生成一个graphQL服务并应用到KOA中</span><br><span class="line">const apolloServer = new ApolloServer(&#123;</span><br><span class="line">  schema</span><br><span class="line">&#125;);</span><br><span class="line">apolloServer.applyMiddleware(&#123; app &#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>server\graphQLSchema\index.ts  构建ApolloServer的schema</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  GraphQLObjectType,</span><br><span class="line">  GraphQLSchema,</span><br><span class="line">&#125; from &apos;graphql&apos;;</span><br><span class="line">import &#123; sth &#125; from &apos;./childModule&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// graphQL的入口文件，引入各个查询的对象</span><br><span class="line">const schema = new GraphQLSchema(&#123;</span><br><span class="line">  query: new GraphQLObjectType(&#123;</span><br><span class="line">    name: &apos;Query&apos;,</span><br><span class="line">    fields: &#123;</span><br><span class="line">      sth,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default schema;</span><br></pre></td></tr></table></figure>
+<p><code>server\graphQLSchema\childModule\index.ts  查询返回数据的类型声明及调用的方法</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line">import &#123; GraphQLList, GraphQLString &#125; from &apos;graphql&apos;;</span><br><span class="line">import &#123; childModuleSchema&#125; from &apos;./schema&apos;;</span><br><span class="line">import &#123; getChildModuleData&#125; from &apos;../../model/childModule&apos;;</span><br><span class="line"></span><br><span class="line">export const recentQueryCarsList = &#123;</span><br><span class="line">    type: new GraphQLList(childModuleSchema),</span><br><span class="line">    args: &#123;</span><br><span class="line">        token: &#123; type: GraphQLString &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    async resolve(source: any, args: any) &#123;</span><br><span class="line">        const token = args.token || &apos;&apos;;</span><br><span class="line">        if (!token) &#123;</span><br><span class="line">            return [];</span><br><span class="line">        &#125;</span><br><span class="line">        return await getChildModuleData(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>server\graphQLSchema\childModule\schema.ts  声明返回数据具体的结构</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line">import &#123; GraphQLString, GraphQLObjectType, GraphQLInt &#125; from &apos;graphql&apos;;</span><br><span class="line"></span><br><span class="line">export const childModuleSchema= new GraphQLObjectType(&#123;</span><br><span class="line">    name: &apos;childModuleSchema&apos;,</span><br><span class="line">    description: &apos;childModuleSchema detail item&apos;,</span><br><span class="line">    fields: () =&gt; (&#123;</span><br><span class="line">        name: &#123;</span><br><span class="line">            type: GraphQLString,</span><br><span class="line">        &#125;,</span><br><span class="line">        age: &#123;</span><br><span class="line">            type: GraphQLString,</span><br><span class="line">        &#125;,</span><br><span class="line">        height: &#123;</span><br><span class="line">            type: GraphQLInt,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>通过以上文件搭建一个graphQL的服务，接收客户端的请求并将其转发到服务端，将服务端返回的数据以graphQL的服务形式提供给客户端做查询。当然也可以从数据库或其它地方获取到数据，在<code>getChildModuleData</code>方法中做相应处理即可。<br>时间仓促仅能跑起一个查询的小demo，代码中有纰漏还请大家指正。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

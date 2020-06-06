@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文记录了阅读《JavaScript高级程序设计》时整理出来的一些容易忽视的知识点。
+第一章  第二章  第三章2018-08-10 更新  第四章2018-08-18 更新  第五章2018-09-01 更新  第六章2018-09-16 更新
+
+
+
+
+第一章 JavaScript简介  本章主要">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="《JavaScript高级程序设计》从学习到放弃">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>《JavaScript高级程序设计》从学习到放弃 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>《JavaScript高级程序设计》从学习到放弃</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-09-01
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/高程学习笔记/">#高程学习笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="本文记录了阅读《JavaScript高级程序设计》时整理出来的一些容易忽视的知识点。"><a href="#本文记录了阅读《JavaScript高级程序设计》时整理出来的一些容易忽视的知识点。" class="headerlink" title="本文记录了阅读《JavaScript高级程序设计》时整理出来的一些容易忽视的知识点。"></a>本文记录了阅读《JavaScript高级程序设计》时整理出来的一些容易忽视的知识点。</h3><blockquote>
+<p><a href="#chapter1">第一章</a><br>  <a href="#chapter2">第二章</a><br>  <a href="#chapter3">第三章</a><span style="font-size:14px;margin-left:5px;">2018-08-10 更新</span><br>  <a href="#chapter4">第四章</a><span style="font-size:14px;margin-left:5px;">2018-08-18 更新</span><br>  <a href="#chapter5">第五章</a><span style="font-size:14px;margin-left:5px;">2018-09-01 更新</span><br>  <a href="#chapter6">第六章</a><span style="font-size:14px;margin-left:5px;">2018-09-16 更新</span></p>
+</blockquote>
+<p><br></p>
+<div id="chapter1"></div>
+
+<h3 id="第一章-JavaScript简介"><a href="#第一章-JavaScript简介" class="headerlink" title="第一章 JavaScript简介"></a>第一章 JavaScript简介</h3><p>  本章主要介绍了JavaScript的起源和一些标准制定。</p>
+<ul>
+<li>JavaScript诞生于1995年，最初Netscape Navigator希望通过它来解决服务端校验效率低下的问题。</li>
+<li>其前身是当时就职于Netscape公司的Brendan Eich开发的LiveScript语言，为了蹭Java热点而改为JavaScript。</li>
+<li>Netscape Navigator3发布后不久，微软IE中加入了JScript(避免命名授权问题)的JavaScript实现。</li>
+<li>1997年，JavaScript被提交给ECMA，协会指定39号委员会(TC39)制定并完成ECMA-262，名为ECMAScript的脚本语言标准。</li>
+<li>完整的JavaScript包含：ECMAScript，DOM，BOM。ECMAScript可以有多重宿主环境，如浏览器、Node、Adobe Flash等。</li>
+<li>在ECMA-262的版本迭代中，第四版增加强类型变量、新语句、新数据结构、真正的类和经典继承；在第四版的同时也有一个ECMAScript3.1的建议；最终ECMAScript3.1得到更多支持，成为ECMA262第五版。</li>
+<li>IE8是最先开始实现ECMA-262第五版的浏览器，并在IE9中提供了完整的支持。</li>
+<li>为了保持Web跨平台、兼容的特性，W3C着手规划DOM。<br>DOM Level1：由DOM Core(映射基于XML的文档结构)和DOM HTML(针对HTML的对象和方法)组成；<br>DOM Level2：扩充了对鼠标、用户界面事件、范围、遍历(DOM文档)的支持。增加新模块：DOM Views，DOM Events，DOM Style。<br>DOM Level3：增加新模块：DOM Load and Save，DOM Valid。</li>
+</ul>
+<hr>
+<ul>
+<li>ECMAScript产生过程：<br>  阶段 0：Strawman 初稿<br>  阶段 1：Proposal 建议<br>  阶段 2：Draft 草案<br>  阶段 3：Candidate 候选<br>  阶段 4：Finished 完成<br>  详见<a href="http://www.css88.com/archives/7742" target="_blank" rel="noopener">ECMAScript是如何设计的?</a></li>
+<li><p>浏览器User Agent野史<br>  详见<a href="http://litten.me/2014/09/26/history-of-browser-useragent/" target="_blank" rel="noopener">浏览器野史 UserAgent列传</a></p>
+<p>  比如chrome的userAgent：</p>
+<blockquote>
+<pre><code>&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&quot;
+</code></pre><p>Chrome希望能得到为Safari编写的网页，于是决定装成Safari，Safari使用了WebKit渲染引擎，而WebKit又伪装自己是KHTML，KHTML又是伪装成Gecko的。同时所有的浏览器又都宣称自己是Mozilla。</p>
+</blockquote>
+<p>  而Microsoft Edge的userAgent，也是在伪装成各式浏览器：</p>
+<blockquote>
+<pre><code>&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; ServiceUI 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134&quot;
+</code></pre></blockquote>
+</li>
+</ul>
+<p><br></p>
+<div id="chapter2"></div>
+
+<h3 id="第二章-在HTML中使用JavaScript"><a href="#第二章-在HTML中使用JavaScript" class="headerlink" title="第二章 在HTML中使用JavaScript"></a>第二章 在HTML中使用JavaScript</h3><p>本章主要介绍了如何使用<code>&lt;script&gt;</code>元素</p>
+<ul>
+<li><code>script</code>元素的6个属性。<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script" target="_blank" rel="noopener">MDN &lt;script&gt; : The Script element</a><br>async: 可选，只对外部脚本有效；表示立即下载脚本但不妨碍页面中的其他操作，就是异步加载js资源。<br>charset: 可选；表示通过src属性指定的代码的字符集，大多数浏览器会忽略它的值，因为很少人用。<br>defer: 可选，只对外部脚本有效；表示脚本可以延迟到文档完全被解析和显示之后再执行。<br>language: 已废弃；表示编写代码使用的脚本语言，大多数浏览器会忽略该属性。<br>src: 可选；表示要执行代码的外部文件。<br>type: 可选；表示编写代码使用的脚本语言的内容类型(MIME类型)，默认值为<code>text/javascript</code>。</li>
+<li>HTML5规范要求按照出现顺序执行，但实际上含有defer属性的脚本并不一定会按顺序执行，也不一定会在<code>DOMContentLoaded</code>触发前执行。async属性也不会按顺序执行，但一定会在load事件前执行。</li>
+<li>文档模式: IE5.5中引入文档模式概念，通过文档类型doctype切换实现。<br><a href="https://www.w3schools.com/tags/tag_doctype.asp" target="_blank" rel="noopener">w3schools HTML &lt;!DOCTYPE&gt; Declaration</a>。<blockquote>
+<p>In HTML 4.01, the &lt;!DOCTYPE&gt; declaration refers to a DTD, because HTML 4.01 was based on SGML. The DTD specifies the rules for the markup language, so that the browsers render the content correctly.</p>
+</blockquote>
+<hr>
+HTML5 is not based on SGML, and therefore does not require a reference to a DTD.</li>
+</ul>
+<p>混杂模式(quirks mode)<br>标准模式(standards mode)<br>准标准模式(almost standards mode`)</p>
+<p><br></p>
+<div id="chapter3"></div>
+
+<h3 id="第三章-基本概念"><a href="#第三章-基本概念" class="headerlink" title="第三章 基本概念"></a>第三章 基本概念</h3><p>本章主要介绍了JavaScript的一些基本语法。</p>
+<ul>
+<li>标识符<br>首字符必须是字母、<em>或$，之后可以是字母、数字、</em>或$；按照惯例采用驼峰格式</li>
+<li><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br></pre></td></tr></table></figure>
+<p>作为<code>编译指示(pragma)</code>告诉JavaScript引擎切换到严格模式</p>
+</li>
+<li>未经过初始化的变量，比如<code>var message;</code>会保存为特殊的值<code>undefined</code>。</li>
+<li><p>特殊值<code>null</code>被认为是一个空的对象引用；从逻辑角度来看，null表示一个空对象指针；<code>undefined</code>值派生自<code>null</code>。<br>因此有如下结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof null -&gt; &quot;object&quot;</span><br><span class="line">null == undefined -&gt; true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>浮点数值最高精度是17位小数，但在算数计算时精确度远远不如整数，比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.1 + 0.2 -&gt; 0.30000000000000004</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当数值超出数值范围，最小数值<code>Number.MIN_VALUE</code>，最大数值<code>Number.MAX_VALUE</code>，会转换成负/正无穷(-Infinity/Infinity)，无穷值无法参与下一次的计算；通过使用<code>isFinite()</code>函数判断。</p>
+</li>
+<li>NaN的一些设定：任何涉及NaN的操作都会返回NaN，NaN与任何值都不相等包括其自身。</li>
+<li><code>Number()</code>在转换字符串时比较复杂而且不够合理，因此在处理整数时更常用的是<code>parseInt()</code>;为了避免错误解析建议在使用<code>parseInt()</code>时始终指定第二个参数基数。</li>
+<li>字符串的一些设定：字符串是不可变的，一旦创建它们的值就不能改变；要改变某个变量保存的字符串首先要销毁原来的字符串，再用另一个包含新值的字符串填充该变量。</li>
+<li>字符串转换方法<code>toString()</code>和<code>String()</code>，null和undefined没有toString()方法。</li>
+<li>前置递增/递减和后置递增/递减的区别：前置操作会先改变值再做运算，后置操作先做运算再改变值。</li>
+<li>负数的二进制码：求得正数的二进制码，求其反码，二进制反码加1。</li>
+<li>位运算。<br>· 按位非：<code>~</code>表示，返回数值的反码，即操作数的负值减一。<br>· 按位与：<code>&amp;</code>表示，将两个数值的每一位对齐，对相同位置的两个数执行AND操作。<br>· 按位或：<code>|</code>表示，将两个数值的每一位对齐，对相同位置的两个数执行OR操作。<br>· 按位异或：<code>^</code>表示，同上，XOR操作只有当相同位置的两个数只有一个为1时才返回1。<br>· 左移：<code>&lt;&lt;</code>表示，将数值所有位向左移动指定位数。<br>· 有符号的右移：<code>&gt;&gt;</code>，<br>· 无符号的右移：<code>&gt;&gt;&gt;</code>。</li>
+<li>逻辑与<br><code>&amp;&amp;</code>表示；属于短路操作，如果第一个操作能决定结果(false)则不再对第二个操作数求值；<br>第一个操作数是对象，则返回第二个操作数；<br>第二个操作数是对象，则只有当第一个操作数为true时才返回该对象；<br>有一个操作数是null，则返回null；<br>有一个操作数是NaN，则返回NaN；<br>有一个操作数是undefined，则返回undefined；</li>
+<li>逻辑或<br>同逻辑与，<code>||</code>表示；属于短路操作，如果第一个操作能决定结果(true)则不再对第二个操作数求值；</li>
+<li>相等和不相等<code>==</code>和<code>!=</code><br>如果有一个操作数是布尔值，则转换为数值比较<br>如果有一个操作数是字符串，另一个是数值，则转换为数值比较<br>如果有一个操作数是对象，另一个不是，则调用valueOf()转换后比较</li>
+<li>label语句，在多层循环中快速跳出到特定层的循环。</li>
+<li>with语句，将代码作用域设定到特定的对象中，严格模式下不允许使用。</li>
+<li>switch语句在比较值时使用的是全等判断，不会发生类型转换。</li>
+</ul>
+<p><br></p>
+<div id="chapter4"></div>
+
+<h3 id="第四章-变量、作用域和内存问题"><a href="#第四章-变量、作用域和内存问题" class="headerlink" title="第四章 变量、作用域和内存问题"></a>第四章 变量、作用域和内存问题</h3><p>本章主要介绍了JavaScript中不同类型的变量引用、执行环境和作用域、垃圾收集机制等问题。</p>
+<ul>
+<li>变量的数据类型：基本类型值和引用类型值。定义基本类型值和引用类型值的方式是类似的：创建一个变量并为该变量赋值。</li>
+<li>引用类型的值是保存在内存中的对象，JavaScript不允许直接访问内存中的位置，即不能直接操作对象的内存空间。因此实际对对象进行操作时，操作的是对象的引用而不是实际对象。因此<strong>引用类型的值是按引用访问的</strong>。<em>此处有纰漏，当操作复制自A对象的B对象时，操作的是对象的引用，而为B对象增加属性时，操作的是实际对象。</em></li>
+<li>对于引用类型的值，可以为其添加改变删除属性和方法。</li>
+<li>复制基本类型值时，会在变量对象上创建一个新值，然后把改值复制到为新变量分配的位置上。</li>
+<li>复制引用类型值时，过程同复制基本类型值，但是创建的新值实际是一个指针，该指针指向存储在堆内存中的一个对象。</li>
+<li>ECMAScript中所有函数的参数都是按值传递的。在向函数传递参数时，基本类型值的参数会被复制给一个局部变量，引用类型值会把该值在内存中的地址复制给一个局部变量。</li>
+<li>当在函数内部重写引用类型值的参数时，该参数就变为了局部对象，会在函数执行完毕后立即被销毁。</li>
+<li>有关执行环境的一些设定：在Web浏览器中，全局执行环境被认为是window对象。</li>
+<li>有关ECMAScript执行流机制的一些设定：每个函数都有其执行环境，当执行流进入一个函数时，函数的执行环境会被推入环境栈中，当函数执行完毕，栈将函数的执行环境弹出，把控制权返回给之前的执行环境。</li>
+<li>有关作用域链(scope chain)的一些设定：作用域链的前端始终是当前执行代码所在换进的变量对象，如果该环境是函数，则将其活动对象(activation object)作为变量对象。活动对象最开始只包含一个变量，即arguments对象。作用域链中的下一个变量对象来自包含（外部）环境，再下一个变量对象则来自更外层的包含环境，一直延续到全局执行环境；全局执行环境的变量对象是作用域链中的最后一个对象。</li>
+<li>内部环境可以通过作用域链访问到所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。</li>
+<li>可以通过<code>try-catch</code>语句的catch块和<code>with</code>语句延长作用域链。</li>
+<li><del>没有块作用域。</del>在ES6中已实现。</li>
+<li>垃圾收集机制<br>· JavaScript具有自动垃圾收集机制<br>· 主要有<code>标记清除</code>和<code>引用计数</code>两种方式，最常用的垃圾收集方式是标记清除<br>· 在标记清除方式中，当变量进入环境，就将该变量标记为“进入环境”，永远不能释放进入环境的变量所占用的内存；当变量离开环境，则将其标记为“离开环境”。<br>· 在(IE9之前的)IE中有一部分对象不是原生的JavaScript对象，比如BOM,DOM中的对象是使用C++以COM(Component Object Model)对象的形式实现，COM对象采用了引用计数的垃圾收集机制；因此如果出现COM形式的对象和JavaScript原生对象之间互相引用时就会出现循环引用的情况导致引用的变量不被回收，产生内存泄露的问题。</li>
+<li>性能问题：讲了IE7及IE7之前的内存分配问题，IE7之后采用了动态修正触发垃圾收集器的变量分配，从而提升页面性能。</li>
+<li>解除引用：通过将变量设置为null来释放其引用，从而减少内存占用。</li>
+</ul>
+<p><br></p>
+<div id="chapter5"></div>
+
+<h3 id="第五章-引用类型"><a href="#第五章-引用类型" class="headerlink" title="第五章 引用类型"></a>第五章 引用类型</h3><p>本章主要介绍了JavaScript中各类引用类型及其相关的方法，主要有:<code>Object</code>,<code>Array</code>,<code>Date</code>,<code>RegExp</code>,<code>Function</code>；还介绍了基于基本类型产生的<code>基本包装类型</code>和两个<code>单体内置对象</code>。</p>
+<ul>
+<li>可以使用<code>构造函数</code>和<code>对象字面量</code>两种方式创建Object实例。</li>
+<li>在对象最后一个属性后面添加逗号，会在IE7及更早版本和Opera中导致错误。在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Trailing_commas" target="_blank" rel="noopener">MDN 尾后逗号</a>中说明：<blockquote>
+<p>从 ECMAScript 5 开始，对象字面值中的尾后逗号也是合法的</p>
+</blockquote>
+</li>
+<li>对象的(数值)属性名会自动转换为字符串。</li>
+<li>可以使用<code>构造函数</code>和<code>数组字面量</code>两种方式创建数组。</li>
+<li>在IE8及之前的版本中对数组字面量实现上存在bug，会导致如下情况：</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb6zjfmj30j3049q2r.jpg" alt="IE8及以下的浏览器对数组字面量实现上的bug"></p>
+<ul>
+<li>数组的<code>length</code>属性不是只读的，因此可以通过设置该属性进行数组的相关操作：比如移除数组最后一项，清空数组，想数组中添加新项(undefined)。</li>
+<li>对于Array来说，其toLocalString()方法会调用每一项中的toLocalString()方法。</li>
+<li>数组的一些方法 <em>此处书本按照功能对方法做了分类</em> ：<br>· 栈方法: <code>push()</code>,<code>pop()</code><br>· 队列方法: <code>shift()</code>,<code>unshift()</code><br>· 重排序方法: <code>reverse()</code>,<code>sort()</code>;<code>sort()</code>方法可以接收一个比较函数，比较函数接收两个参数，如果第一个应该在第二个前面则返回负数，相等返回0，反之则返回正数。<br>· 操作方法: <code>concat()</code>,<code>slice()</code>,<code>splice()</code><br>· 位置方法: <code>indexOf()</code>,<code>laseIndexOf()</code><br>· 迭代方法: <code>every()</code>,<code>filter</code>,<code>forEach()</code>,<code>map()</code>,<code>some()</code><br>· 归并方法: <code>reduce()</code>,<code>reduceRight()</code></li>
+<li><code>Date</code>类型重写了：<br>· <code>toLocalString()</code>方法，按照与浏览器设置的地区相适应的格式返回日期和时间<br>· <code>toString()</code>方法，通常返回带有时区信息的日期与时间<br>· <code>valueOf()</code>方法，返回日期的毫秒表示</li>
+</ul>
+<p><em>日期和正则在开发中没有高频和深度的使用，因此没有摘出要点。</em></p>
+<ul>
+<li>可以使用<code>函数声明</code>和<code>函数表达式</code>两种方式定义函数。</li>
+<li>对于<code>Function</code>类型来说，函数名实际是一个指向函数对象的指针，不会与某个函数绑定。因此有：</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb6yx7ij30g907ft8l.jpg" alt="函数名是函数对象的指针"></p>
+<ul>
+<li>在JavaScript中没有函数重载概念，因此同名函数之后的会覆盖之前的。</li>
+<li><code>函数声明</code>和<code>函数表达式</code>的区别：解析器会率先读取函数声明并使其在执行任何代码之前可用，而函数表达式则必须等到解析器执行到它所在的代码行才会被解释执行。</li>
+</ul>
+<hr>
+<p>· 函数声明和函数表达式的区别<br><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb72wokj30gm05kjra.jpg" alt="函数声明和函数表达式的区别"></p>
+<p>· 因为使用<code>var</code>声明变量存在变量提升，所以可以访问到声明的func3为undefined<br><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb6yymnj30hf044jr9.jpg" alt="使用var声明变量时存在的变量提升"></p>
+<p>· 使用<code>let</code>声明变量不存在变量提升，所以在访问func4的时候直接报错<br><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb6yzvxj30ig03ra9x.jpg" alt="使用let声明变量没有变量提升"></p>
+<hr>
+<ul>
+<li>函数内部有两个特殊的对象：<code>auguments</code>和<code>this</code><br>· arguments主要用途是保存函数参数，还有一个<code>callee</code>属性，该属性指向拥有这个arguments对象的函数。可以通过该属性解除函数内部代码与函数名的耦合。<br>· this对象引用的是函数据以执行的环境对象。<em>此处详见第四章执行环境及作用域。</em><br>· 在ECMAScript5中规范了另一个函数对象的属性：<code>caller</code>，该属性保存调用当前函数的函数的引用。<br>· ECMAScript5还定义了<code>arguments.caller</code>属性。在严格模式下，<code>arguments.callee</code>和<code>arguments.caller</code><strong>(不是函数的caller属性)</strong>都会导致错误，而非严格模式下<code>arguments.caller</code>始终是undefined。</li>
+<li>每个函数都包含两个非继承而来的方法：<code>apply()</code>和<code>call()</code>。前者接收两个参数，第一个是在其中运行函数的作用域，第二个是参数数组；后者同前者类似，只是函数参数直接列举出来。它们最强大的地方是能够扩充函数赖以运行的作用域。</li>
+<li>ES5中定义了方法<code>bind()</code>，用于创建一个函数的实例并指定其内部this值为传给bind()方法的值。<br><em>无论是apply(),call()还是bind(),都是为了改变函数内部this的指向，更好地复用函数。</em></li>
+<li>基本包装类型：为了便于操作基本类型值。<em>此处详见第四章基本类型。</em> 基本类型不是对象，从逻辑上讲不应该有方法，基本包装类型是为了能更直观地实现对基本类型的操作。</li>
+<li>对于Boolean的基本包装类型，当对其进行Boolean判断时会出现如下情况：</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/005Kh0ZYgy1fuzrb6z0epj30gp05vjra.jpg" alt="布尔的基本类型值和基本包装类型值的区别"></p>
+<p>因此要区分基本类型的布尔值和Boolean对象。<strong>书中建议永远不要使用Boolean对象。</strong></p>
+<ul>
+<li>Number的基本包装类型重写了<br><code>toLocalString()</code>方法，返回字符串形式的数值<br><code>toString()</code>方法，返回字符串形式的数值<br><code>valueOf()</code>方法，返回对象表示的基本类型的数值。</li>
+<li>同样不建议实例化Number类型</li>
+<li>ECMA-262定义了两个单体内置对象：Global和Math</li>
+</ul>
+<p><em>本章非常详细地介绍了JavaScript中由Object引申出来的几种引用类型，涉及到大量的属性和方法。此处仅整理出部分要点，具体的请参阅书本或MDN。</em></p>
+<p><br></p>
+<div id="chapter6"></div>
+
+<h3 id="第六章-面向对象的程序设计"><a href="#第六章-面向对象的程序设计" class="headerlink" title="第六章 面向对象的程序设计"></a>第六章 面向对象的程序设计</h3><p>本章主要讲了JavaScript在创建对象和实现继承方面的一些方法。作为JS中特殊的一类数据类型，在Object上可以有非常多的玩法和用法。因为在(ES5之前)JavaScript中没有类的概念，因此本章花了非常大的篇幅去讲解如何实现继承，而在ES6中增加的Class语法，也是基于本章提到的一些方法实现：<a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="noopener">阮一峰-ECMAScript 6 入门-Class</a></p>
+<ul>
+<li>ES5在定义只有内部才用的特性（attribute）时，描述了属性（property）的各种特征，这些特性是为了实现JavaScript引擎用的，在JavaScript中不能直接访问。有两种属性：<br>· 数据属性，有4个特性<br>[[Configurable]]:默认为<code>true</code>，表示能否通过 delete 删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。<br>[[Enumerable]] ：默认为<code>true</code>，表示能否通过 for-in 循环返回属性。<br>[[Writable]] ：默认为<code>true</code>，表示能否修改属性的值。<br>[[Value]] ：默认为<code>undefined</code>，包含这个属性的数据值。读取属性值的时候，从这个位置读；写入属性值的时候，把新值保存在这个位置，即对对象属性值的任何修改都将反映在这个位置。<br>· 访问器属性，有4个特性<br>[[Configurable]]:同上<br>[[Enumerable]]:同上<br>[[Get]]:在读取属性时调用的函数。默认值为 undefined 。<br>[[Set]]:在写入属性时调用的函数。默认值为 undefined 。</li>
+<li>使用<code>Object.defineProperty()</code>方法修改属性默认的特性。</li>
+<li>把<code>configurable</code>特性设置为<code>false</code>是一个不可逆的操作。</li>
+<li>使用<code>Object.defineProperties()</code>方法一次定义多个属性的特性。</li>
+<li>使用<code>Object.getOwnPropertyDescriptor()</code>方法读取属性的特性。</li>
+</ul>
+<p><em>本章第二节介绍了创建对象的几种方法和设计模式</em></p>
+<ul>
+<li><strong>工厂模式</strong>：在函数内部封装 显式创建对象、为对象添加相应属性并返回该对象 的过程。</li>
+<li><strong>构造函数模式</strong>：按照惯例，构造函数以大写字母开头；在函数内部封装 将属性值赋值给<code>this</code> 的过程，外部通过<code>new</code>操作符创建新的对象。相比于工厂模式返回的只能为Object的实例，构造函数模式可以为实例指定特定的类型。</li>
+<li>当在全局作用域中直接调用而不是使用new操作符调用构造函数时，可以在Global对象下访问到添加的属性和方法，同理也可以改变构造函数的上下文使之读取特定对象的属性。</li>
+<li><strong>原型模式</strong>：通过函数的<code>prototype</code>属性访问到其原型对象，从而使对象实例能共享原型对象的属性和方法；默认情况下，函数的<code>constructor</code>是一个指向prototype属性所在属性的指针。</li>
+<li>当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性；当使用delete实例的属性，再访问该属性会去访问原型中的属性。</li>
+<li>使用<code>hasOwnProperty()</code>方法检测属性是否存在于<strong>实例</strong>中。</li>
+<li><code>in</code>操作符的两种用法:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">attr in object;  //判断属性是否在实例或原型中</span><br><span class="line">for - in;  //循环只遍历可枚举属性</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>关于<code>for - in</code>循环，书本中说到</p>
+<blockquote>
+<p>在使用 for-in 循环时，返回的是所有能够通过对象访问的、可枚举的（enumerated）属性，其中既包括存在于实例中的属性，也包括存在于原型中的属性。屏蔽了原型中不可枚举属性（即将<br>[[Enumerable]] 标记为 false 的属性）的实例属性也会在 for-in 循环中返回。</p>
+</blockquote>
+<p>而在MDN的文档中<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in" target="_blank" rel="noopener">for…in
+</a>中说明</p>
+<blockquote>
+<p>for…in 循环只遍历可枚举属性。像 Array和 Object使用内置构造函数所创建的对象都会继承自Object.prototype和String.prototype的不可枚举属性，例如 String 的 indexOf()  方法或 Object的toString()方法。循环将遍历对象本身的所有可枚举属性，以及对象从其构造函数原型中继承的属性（更接近原型链中对象的属性覆盖原型属性）。</p>
+</blockquote>
+<p>当在浏览器中做如下操作证实MDN文档中的说明更为准确：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let foo = new Object();</span><br><span class="line">// 下面代码返回true</span><br><span class="line">&apos;toString&apos; in foo;</span><br><span class="line">// 而下面的代码并不会有Found toString!输出</span><br><span class="line">for (let key in foo) &#123;</span><br><span class="line">	if (ket === &apos;toString&apos;) &#123;</span><br><span class="line">		console.log(&apos;Found toString!&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li>当使用对象字面量重写对象的prototype属性时，会使对象丢失<code>constructor</code>的指向。</li>
+<li>当重写原型对象的prototype属性时，会断开已创建的对象实例和原型对象之间的联系。</li>
+<li><strong>组合使用构造函数模式和原型模式</strong>：集 构造函数模式将属性定义在<code>this</code>上使不同的对象实例有不同的属性 和 原型模式将方法和共享属性定义在原型对象上使不同的对象实例都能访问到的优点。<blockquote>
+<p>这种构造函数与原型混成的模式，是目前在 ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。可以说，这是用来定义引用类型的一种默认模式。</p>
+</blockquote>
+</li>
+<li><strong>动态原型模式</strong>：大体和组合模式类似，在构造函数内部就判断对象的共享方法/属性是否存在，如果不存在直接在其原型对象上定义。</li>
+<li><strong>寄生构造函数模式</strong>：函数内部看起来就是工厂模式啊….外部使用new操作符创建对象，用于创建Array等对象并提供额外方法。<blockquote>
+<p>关于寄生构造函数模式，有一点需要说明：首先，返回的对象与构造函数或者与构造函数的原型属性之间没有关系；也就是说，构造函数返回的对象与在构造函数外部创建的对象没有什么不同。为此，不能依赖 instanceof 操作符来确定对象类型。由于存在上述问题，我们建议在可以使用其他模式的情况下，不要使用这种模式。</p>
+</blockquote>
+</li>
+<li><strong>稳妥构造函数模式</strong>：内部实现和工厂模式类似，不同的是将变量和方法定义为私有的而不是定义在创建的对象或this上，只通过在创建的对象中定义方法去访问这些私有的值。最后返回该创建的对象。</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="文章结构
+
+引用
+什么是职责链模式
+职责链模式的应用场景
+一个简单的例子
+在业务代码中的应用
+这…这可就尴尬了
+
+
+引用一个职责链应用的例子
+如何无痛降低 if else 面条代码复杂度
+什么是职责链模式wikipedia: 责任链模式在物件导向程式设计里是一种软件设计模式，它包含了一些命令对象和一">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="学习职责链模式(Chain of Responsibility Pattern)">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>学习职责链模式(Chain of Responsibility Pattern) - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>学习职责链模式(Chain of Responsibility Pattern)</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-10-29
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="文章结构"><a href="#文章结构" class="headerlink" title="文章结构"></a>文章结构</h2><blockquote>
+<ul>
+<li>引用</li>
+<li>什么是职责链模式</li>
+<li>职责链模式的应用场景</li>
+<li>一个简单的例子</li>
+<li>在业务代码中的应用</li>
+<li>这…这可就尴尬了</li>
+</ul>
+</blockquote>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><a href="https://div.io/topic/1800" target="_blank" rel="noopener">一个职责链应用的例子</a></p>
+<p><a href="https://juejin.im/post/59dc66256fb9a0452a3b4832" target="_blank" rel="noopener">如何无痛降低 if else 面条代码复杂度</a></p>
+<h2 id="什么是职责链模式"><a href="#什么是职责链模式" class="headerlink" title="什么是职责链模式"></a>什么是职责链模式</h2><p><a href="https://zh.wikipedia.org/zh-hans/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener"><strong>wikipedia:</strong></a> 责任链模式在物件导向程式设计里是一种软件设计模式，它包含了一些命令对象和一系列的处理对象。每一个处理对象决定它能处理哪些命令对象，它也知道如何将它不能处理的命令对象传递给该链中的下一个处理对象。该模式还描述了往该处理链的末尾添加新的处理对象的方法。</p>
+<p><strong>定义</strong>：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
+<p><strong>说人话</strong>：通过链式调用降低请求的发送者和各个接收/处理者之间的耦合关系。</p>
+<h2 id="职责链模式的应用场景"><a href="#职责链模式的应用场景" class="headerlink" title="职责链模式的应用场景"></a>职责链模式的应用场景</h2><p>由于职责链模式可以让一个请求被多个对象接收(???不就是可以让<strong>各个函数都有机会执行</strong>)，所以可以使用该模式来解决代码中大量的if/else嵌套的问题。</p>
+<h2 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h2><p>就是那个随便看哪篇职责链模式都会举到的买手机的例子。买手机的时候可以下订单付定金，之后通过存库来确定能否成功买到手机(<del>MI BOY式营销</del>)。具体字段如下：</p>
+<p>orderType:  1/2/0  //订单类型，用于区分用户的订单 1:500定金，2:200定金，0:未支付定金</p>
+<p>pay:  0/1  //支付状态，用于判断用户是否支付订单</p>
+<p>stock:  [number]  //库存</p>
+<p>当用户发生购买时伪代码就如下了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (orderType === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥500"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"It's OK!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"not OK!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderType === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥200"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"It's OK!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"not OK!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"not OK!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><del>这里就应该把普通用户的处理逻辑抽取出来当做单独的函数了吧，那样其实逻辑也不会特别复杂</del></p>
+<p>上面代码看起来就很繁琐，就像是这样</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/10/10/32cd82240f1dc4391d319bac3597bc35?imageView2/0/w/1280/h/960/ignore-error/1" alt="示例图"></p>
+<p>如果使用职责链模式改写，就是将各个<code>if</code> <code>else</code>的逻辑抽取出来当做一个个的节点，当一个节点不满足执行条件时就调用下一个节点。这里定义：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">order500 = <span class="function"><span class="keyword">function</span>(<span class="params">orderType, pay, stock</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">500</span> &amp;&amp; pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥500"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        order200(orderType, pay, stock);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">order500(<span class="number">500</span>,<span class="number">1</span>,<span class="number">0</span>);  <span class="comment">//example</span></span><br></pre></td></tr></table></figure></p>
+<p>通过函数之间的调用实现if/else判断的拆分。<br>为了便于之后代码的维护，还需要将函数和函数之间的耦合解开。因此在各个函数不满足if条件时返回固定的值，根据该值来判断是否传递请求。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> order500 = <span class="function">(<span class="params">orderType, pay, stock</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">1</span> &amp;&amp; pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥500"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>; <span class="comment">//如果失败将请求传递给下一个执行者，无需关注具体是哪一个</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> order200 = <span class="function">(<span class="params">orderType, pay, stock</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">2</span> &amp;&amp; pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥200"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> orderNormal = <span class="function">(<span class="params">orderType, pay, stock</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥0"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's not OK, no stock"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构建职责链</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chain</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">        <span class="keyword">this</span>.fn = fn;</span><br><span class="line">        <span class="keyword">this</span>.successor = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    setNextSuccessor(successor) &#123; <span class="comment">//将successor赋值为下一个节点，并返回该节点</span></span><br><span class="line">        <span class="keyword">this</span>.successor = successor;</span><br><span class="line">        <span class="keyword">return</span> successor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    passRequest() &#123;</span><br><span class="line">        <span class="comment">//进入当前节点的处理逻辑</span></span><br><span class="line">        <span class="keyword">let</span> ret = <span class="keyword">this</span>.fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        <span class="comment">//若返回值为'nextSuccessor'即不满足执行条件则进入下一个节点的处理逻辑</span></span><br><span class="line">        <span class="keyword">if</span> (ret === <span class="string">'nextSuccessor'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.successor &amp;&amp; <span class="keyword">this</span>.successor.passRequest.apply(<span class="keyword">this</span>.successor, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建各个节点</span></span><br><span class="line"><span class="keyword">let</span> chainOrder500 = <span class="keyword">new</span> Chain(order500);</span><br><span class="line"><span class="keyword">let</span> chainOrder200 = <span class="keyword">new</span> Chain(order200);</span><br><span class="line"><span class="keyword">let</span> chainOrderNormal = <span class="keyword">new</span> Chain(orderNormal);</span><br><span class="line"><span class="comment">//从第一个节点开始向当前节点添加下一个节点</span></span><br><span class="line">chainOrder500.setNextSuccessor(chainOrder200).setNextSuccessor(chainOrderNormal);</span><br><span class="line">chainOrder500.passRequest(<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>通过这种方式既实现了职责链模式，让请求能在各个接收者之间链式调用；又能将业务代码和逻辑代码拆分，每个方法只需要关注自己的执行条件和执行逻辑，不满足执行条件返回一个特定值，而不用深究请求传递的顺序问题。<br>在之后的维护中，如果需要增加判断就可以直接新增一个节点然后在<code>从第一个节点开始向当前节点添加下一个节点</code>这一步中相应位置添加即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> order300 = <span class="function">(<span class="params">orderType, pay, stock</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">3</span> &amp;&amp; pay) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"It's OK! get ￥300"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> chainOrder300 = <span class="keyword">new</span> Chain(order300);</span><br><span class="line">chainOrder500</span><br><span class="line">    .setNextSuccessor(chainOrder300)</span><br><span class="line">    .setNextSuccessor(chainOrder200)</span><br><span class="line">    .setNextSuccessor(chainOrderNormal);</span><br></pre></td></tr></table></figure></p>
+<h2 id="在业务代码中的应用"><a href="#在业务代码中的应用" class="headerlink" title="在业务代码中的应用"></a>在业务代码中的应用</h2><p>翻了好久代码才找到一个<code>if</code> <code>else</code>嵌套多一点的🙉 伪代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">_chooseBtnStyle: <span class="function"><span class="keyword">function</span>(<span class="params">dataInfo</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//特定入口进入</span></span><br><span class="line">    <span class="keyword">if</span> (store(<span class="string">'isBoughtEntrance'</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dataInfo.isEffective) &#123;</span><br><span class="line">            <span class="comment">//do something</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//do something</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//非特定入口且满足isBought和boughtNum</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!dataInfo.isEffective &amp;&amp; dataInfo.isBought &amp;&amp; dataInfo.boughtNum) &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//非特定入口且满足isOfficial</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (dataInfo.isOfficial) &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!dataInfo.isEffective) &#123;</span><br><span class="line">            <span class="comment">//do something</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将各个<code>if</code> <code>else</code>逻辑拆分，之后的使用和上面买手机的几乎一样。伪代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> handle1 = <span class="function">(<span class="params">dataInfo</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (store(<span class="string">'isBoughtEntrance'</span>)) &#123;</span><br><span class="line">        <span class="comment">//特定入口进入的逻辑</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> handle2 = <span class="function">(<span class="params">dataInfo</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!dataInfo.isEffective &amp;&amp; dataInfo.isBought &amp;&amp; dataInfo.boughtNum) &#123;</span><br><span class="line">        <span class="comment">//非特定入口且满足isBought和boughtNum的逻辑</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...类似的handleN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> chainHandle1 = <span class="keyword">new</span> Chain(handle1);</span><br><span class="line"><span class="comment">//...类似的创建节点</span></span><br><span class="line"></span><br><span class="line">chainHandle1.setNextSuccessor(chainHandle2).setNextSuccessor(chainHandleN);</span><br><span class="line"><span class="comment">//...类似的构建链式关系</span></span><br><span class="line"></span><br><span class="line">chainHandle1.passRequest(dataInfo);</span><br></pre></td></tr></table></figure></p>
+<h2 id="这…这可就尴尬了"><a href="#这…这可就尴尬了" class="headerlink" title="这…这可就尴尬了"></a>这…这可就尴尬了</h2><blockquote>
+<p>职责链模式的优缺点：</p>
+</blockquote>
+<p>优点：</p>
+<ul>
+<li><p>职责链最大的优点就是解耦了请求发送者和N个接收者之间的复杂关系。</p>
+</li>
+<li><p>职责链可以手动指定起始节点，请求并不是非得从链中的第一个节点开始传递。</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>不能保证某个请求一定会被链中的节点处理，这种情况可以在链尾增加一个保底的接受者节点来处理这种即将离开链尾的请求。</p>
+</li>
+<li><p>使程序中多了很多节点对象，可能再一次请求的过程中，大部分的节点并没有起到实质性的作用。他们的作用仅仅是让请求传递下去，从性能当面考虑，要避免过长的职责链带<del>到</del>来的性能损耗。</p>
+</li>
+</ul>
+<p>过长的职责链会带来性能损耗，简单逻辑一般又用不到这么复杂的写法 😅<br>到底什么时候使用，还得具体问题具体分析。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

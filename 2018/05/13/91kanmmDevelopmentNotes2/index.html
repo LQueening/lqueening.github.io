@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="本文主要介绍了在 91kanmm 豆瓣美女模块开发过程中遇到的一些布局方面的问题，比如移动端滚动事件穿透，瀑布流布局的实现等。
+
+
+移动端滚动事件穿透　　这个问题在开发移动端页面的时候几乎是必踩的坑了，主要有点击穿透和滚动穿透这两个坑。点击穿透在开发过程中没有遇到（也有可能是没有受到点击穿透的影响）">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【91kanmm开发笔记】移动端事件穿透问题的解决&amp;瀑布流布局的实现">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>【91kanmm开发笔记】移动端事件穿透问题的解决&amp;瀑布流布局的实现 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>【91kanmm开发笔记】移动端事件穿透问题的解决&瀑布流布局的实现</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-05-13
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/91kanmm开发笔记/">#91kanmm开发笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2>　　本文主要介绍了在 <a href="http://www.91kanmm.com/" target="_blank" rel="noopener">91kanmm</a> 豆瓣美女模块开发过程中遇到的一些布局方面的问题，比如移动端滚动事件穿透，瀑布流布局的实现等。</h2>
+
+
+<h3 id="移动端滚动事件穿透"><a href="#移动端滚动事件穿透" class="headerlink" title="移动端滚动事件穿透"></a>移动端滚动事件穿透</h3><p>　　这个问题在开发移动端页面的时候几乎是必踩的坑了，主要有点击穿透和滚动穿透这两个坑。点击穿透在开发过程中没有遇到（也有可能是没有受到点击穿透的影响），就暂时不去深究它；滚动穿透是遇到并且对用户体验造成切实影响的。因此本节主要说明在91kanmm中是如何解决滚动穿透的问题的。<br>　　<br>　　在豆瓣美女模块中对于一条条的图片Card的交互设定是点击<code>Card</code>组件中的图片跳出弹窗显示该用户的更多图片和内容描述。之所以不做页面跳转是考虑到详情中不会有大量不同类型信息或特别的交互，使用弹窗能更快速地让用户得到信息并继续之前的浏览动作。移动端的弹窗是滚动穿透的重灾区，当在弹窗上触发滚动的时候会发现下面一层的页面也跟随着滚动了。解决办法在网上也有很多讨论，在 <a href="https://github.com/pod4g/tool/wiki/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">移动端滚动穿透问题</a> 中也有比较准确的答案。在91kanmm中我使用的解决方案和实现是这样的：<br>　　- 对于高度为屏幕高度的元素，是不会出现滚动条也不会触发滚动事件的；那让一个元素无法滚动最粗暴的实现方式就是设置如下的样式了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">position: fixed;</span><br><span class="line">width: 100%;</span><br><span class="line">height: 100%;</span><br></pre></td></tr></table></figure></p>
+<p>　　－在触发弹窗之后我们就希望下层元素不触发滚动事件。基于以上的想法，只需要在触发的弹窗的时候给下层元素（body）加上相应的class（当然也可以修改样式，不过出于性能考虑修改class可以更少地触发reflow），这样即使弹窗的滚动事件穿透了也不会引起下层元素的滚动。<br>　　<br>　　- 实际操作中会发现当给元素加上<code>position: fixed;</code>的样式之后页面会滚动到顶部，即失去了之前的滚动位置。这种情况可以使用js解决，即在打开弹窗之前记录下当前滚动位置，并在弹窗打开或关闭、给body设置/去除相应的class之后再将body滚动到记录下的位置。这里获取页面滚动高度的方式使用的是<code>pageYOffset</code>，因为应用主要针对移动端开发，不用考虑兼容（低版本）IE，而在MDN中有特别提到：</p>
+<blockquote>
+<p>为了跨浏览器兼容，请使用 window.pageYOffset 代替 window.scrollY。</p>
+</blockquote>
+<h3 id="瀑布流布局的实现"><a href="#瀑布流布局的实现" class="headerlink" title="瀑布流布局的实现"></a>瀑布流布局的实现</h3><p>　　考虑过两种实现瀑布流的方式：绝对定位及多栏布局</p>
+<p>　　绝对定位的实现可以参见Pinterest，多栏布局的参见小红书。</p>
+<p>　　最开始选择的是自己实现一套绝对定位的瀑布流，通过js计算每个card所处的列数和处于同一列的上方元素的高度来计算出X和Y方向的偏移量。自己实现的坑就是往往考虑得不周全，而且当有些图片没有在计算代码触发之前加载完的话会导致计算出来的位置错误。</p>
+<p>　　之后看到有个实现绝对定位瀑布流的插件，叫<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="noopener">Masonry</a>，通过该插件可以傻瓜式地实现瀑布流，并且它定位各个元素的方式并不是用top、left等属性，而是使用transform中的translate属性进行位置的改变，这样在性能上还更好一点。*top、left的改变会触发重排(reflow)，而translate只会触发重绘(repaint)，不过我们现在使用的前提是每个改变位置的元素position属性都是absolute，所以即使是left、top也不会触发重排;然而translate3d还能触发硬件加速，所以某种意义上来说对于移动端使用translate进行位移操作是更好的选择。这个插件还使用了<a href="https://github.com/desandro/imagesloaded" target="_blank" rel="noopener">imagesloaded</a>插件，通过它可以判断容器内的图片是否加载完，而且在排列元素的时候还带了一丢丢特效，简直就是实现瀑布流利器。</p>
+<p>　　虽然说Masonry已经做得很棒了，但毕竟是大量依赖于js的计算。在PC上浏览自然是没多大问题，然而移动端的开发会特别考虑性能问题。因此决定采用多栏布局的方式实现瀑布流。相比于绝对定位的方式，多栏布局在计算量上少了很多，无非就是计算出当前页面的栏数，将请求到的数据转为相应的几组数据在页面中渲染即可。91kanmm这种图片浏览的网站对每条item的顺序没有特别的要求，因此选择这个方式是个非常棒的选择。<br>　　<br>　　<del>待填坑：多栏布局瀑布流的代码实现。</del></p>
+<p>　　</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

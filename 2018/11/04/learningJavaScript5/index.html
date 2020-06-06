@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="栈内存与堆内存
+ES中的内存空间
+从js垃圾回收机制来认识它的内存空间
+结论
+内存空间总览
+基本类型的内存空间
+引用类型的内存空间
+当操作引用类型值时内存空间发生了什么变化
+
+
+
+在开发过程中我们对基本类型和引用类型的一些特性有所了解：基本类型是按值访问的，所以我们可以尽情地赋值修改不用担心有副作用">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="《JavaScript高级程序设计 第四章》通过内存空间探究ES中基本类型和引用类型的异同">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>《JavaScript高级程序设计 第四章》通过内存空间探究ES中基本类型和引用类型的异同 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>《JavaScript高级程序设计 第四章》通过内存空间探究ES中基本类型和引用类型的异同</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-11-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/高程学习笔记/">#高程学习笔记</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul>
+<li><a href="#chapter1">栈内存与堆内存</a></li>
+<li><a href="#chapter2">ES中的内存空间</a></li>
+<li><a href="#chapter3">从js垃圾回收机制来认识它的内存空间</a></li>
+<li><a href="#chapter4">结论</a></li>
+<li><a href="#chapter5">内存空间总览</a></li>
+<li><a href="#chapter6">基本类型的内存空间</a></li>
+<li><a href="#chapter7">引用类型的内存空间</a><ul>
+<li><a href="#chapter7_1">当操作引用类型值时内存空间发生了什么变化</a></li>
+</ul>
+</li>
+</ul>
+<p>在开发过程中我们对基本类型和引用类型的一些特性有所了解：<br>基本类型是按值访问的，所以我们可以尽情地赋值修改不用担心有副作用；<br>而引用类型是按引用访问的，所以这会导致当我们操作一个复制自另一个引用类型的值时，使得另一个值也发生变化。</p>
+<p>说起来可能有点拗口，又是复制又是赋值的，还有什么按值访问按引用访问，看一下demo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 声明两个基本类型的变量，simpleVariable2复制自simpleVariable1</span><br><span class="line">let simpleVariable1 = &apos;simpleVariable1&apos;;</span><br><span class="line">let simpleVariable2 = simpleVariable1;</span><br><span class="line">// 打印出两个变量的值，没有什么问题</span><br><span class="line">console.log(simpleVariable1);  // simpleVariable1</span><br><span class="line">console.log(simpleVariable2);  // simpleVariable1</span><br><span class="line">// 修改 simpleVariable2 的值，一切如预期</span><br><span class="line">simpleVariable2 = &apos;simpleVariable2&apos;;</span><br><span class="line">console.log(simpleVariable1);  // simpleVariable1</span><br><span class="line">console.log(simpleVariable2);  // simpleVariable2</span><br><span class="line"></span><br><span class="line">// 声明两个复杂类型的变量，complexVariable2复制自complexVariable1</span><br><span class="line">let complexVariable1 = &#123;</span><br><span class="line">    name: &apos;complexVariable1&apos;,</span><br><span class="line">&#125;;</span><br><span class="line">let complexVariable2 = complexVariable1;</span><br><span class="line">// 打印出两个变量的值，没有什么问题</span><br><span class="line">console.log(complexVariable1);  // name:complexVariable1</span><br><span class="line">console.log(complexVariable2);  // name:complexVariable1</span><br><span class="line">// 修改complexVariable2中的值，一切就不如预期了：complexVariable1中的值也发生了变化</span><br><span class="line">complexVariable2.name = &apos;complexVariable2&apos;;</span><br><span class="line">console.log(complexVariable1);  // name:complexVariable2</span><br><span class="line">console.log(complexVariable2);  // name:complexVariable2</span><br></pre></td></tr></table></figure></p>
+<p>本文基于以上代码反映的问题对基本类型和引用类型从内存空间的角度做深入学习，从而对变量的声明、引用过程有更深的理解，间接达到提升代码质量的作用。</p>
+<p>《JavaScript高级程序设计》中包含的这些内容的章节：4.1 基本类型和引用类型的值</p>
+<p>参考文章:</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management" target="_blank" rel="noopener">MDN-内存管理</a></p>
+<p><a href="https://hashnode.com/post/does-javascript-use-stack-or-heap-for-memory-allocation-or-both-cj5jl90xl01nh1twuv8ug0bjk" target="_blank" rel="noopener">Does JavaScript use stack or heap for memory allocation or both?</a></p>
+<p><a href="https://stackoverflow.com/questions/6602864/stack-and-heap-in-v8-javascript" target="_blank" rel="noopener">stack and heap in V8</a></p>
+<p><a href="https://www.jianshu.com/p/996671d4dcc4" target="_blank" rel="noopener">前端基础进阶（一）：内存空间详细图解</a></p>
+<p>国内外已经有很多大神写了相关的文章或回答，本文基于这些文章学习理解而得。简书上关于 内存空间详细图解 的这篇文章已经写得非常详尽，因此本文仅对那篇文章中没有提及或不够完善的部分做补充。</p>
+<p><div id="chapter1"></div></p>
+<h3 id="栈内存与堆内存"><a href="#栈内存与堆内存" class="headerlink" title="栈内存与堆内存"></a>栈内存与堆内存</h3><p>栈内存作为内存中的一块区域，遵循<code>先进后出 First-In-Last-Out</code>的存储模式。一般栈内存比较小，但是存取数据的效率远高于堆内存，因此多用来存储一些简单的数据。<br>堆内存和栈内存正好相反，内存大但是存取数据的效率低，数据存储方式无序且随意，因此适合存放一些复杂的数据结构。</p>
+<p>通过这一小段简单的说明，其实对ES中的数据类型可以有一些合理的猜想：<br>因为栈内存空间小存取速度快，多用来存储一些简单的数据，那么ES中基本类型值很可能就存储栈内存中；<br>而因为堆内存的一些特性，使得它非常适合拿来存储引用类型值。</p>
+<p>在接下来章节中我们会去探究到底是不是这种分配方式。</p>
+<p><div id="chapter2"></div></p>
+<h3 id="ES中的内存空间"><a href="#ES中的内存空间" class="headerlink" title="ES中的内存空间"></a>ES中的内存空间</h3><p>在<a href="https://www.ecma-international.org/ecma-262/8.0/index.html" target="_blank" rel="noopener">ECMA-262 标准</a>中没有定义内存布局，因此本文讨论的内存空间是由JavaScript引擎实现的。<br>这里以<a href="https://chromium.googlesource.com/v8/v8.git" target="_blank" rel="noopener">V8引擎</a>的内存布局实现举例。</p>
+<p><div id="chapter3"></div></p>
+<h3 id="从js垃圾回收机制来认识它的内存空间"><a href="#从js垃圾回收机制来认识它的内存空间" class="headerlink" title="从js垃圾回收机制来认识它的内存空间"></a>从js垃圾回收机制来认识它的内存空间</h3><p>参考文章<a href="https://hashnode.com/post/does-javascript-use-stack-or-heap-for-memory-allocation-or-both-cj5jl90xl01nh1twuv8ug0bjk" target="_blank" rel="noopener">Does JavaScript use stack or heap for memory allocation or both?</a>中提到：</p>
+<blockquote>
+<p>The easiest way is to think for a second. Javascript is a garbage-collected language. GC means that there is data scattered around which has to be cleaned up. Does that sound like the data is stored on the stack? Rather… no, because the stack has strictly ordered data. So, variables are allocated on the heap.</p>
+</blockquote>
+<p>在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management" target="_blank" rel="noopener">MDN 内存管理</a>中也有提到：</p>
+<blockquote>
+<p>像C语言这样的高级语言一般都有底层的内存管理接口，比如 malloc()和free()。另一方面，JavaScript创建变量（对象，字符串等）时分配内存，并且在不再使用它们时“自动”释放。 后一个过程称为垃圾回收。这个“自动”是混乱的根源，并让JavaScript（和其他高级语言）开发者感觉他们可以不关心内存管理。 这是错误的。</p>
+</blockquote>
+<p>JavaScript的垃圾回收机制意味着它会去不断回收杂乱无序的不再使用的变量，而堆内存严格的<code>先进后出</code>的存储模式无法满足垃圾回收机制的运行要求–通过这点可以看出JavaScript中的变量都是存储在堆内存中的。</p>
+<p><div id="chapter4"></div></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>既然已经得出了结论那么为什么还有之后那么多章节，而且之后的章节中还提到了栈内存，这和得出的结论是否矛盾呢？在翻了一些文章结合理解之后得出了如下较为系统的结论：</p>
+<ul>
+<li>ES的标准中没有明确定义内存布局，内存布局由具体的JavaScript引擎实现。</li>
+<li>通过内存回收机制可以看出<strong>JavaScript中的变量都是存储在堆内存中的</strong>。</li>
+<li>在之后章节中提到的<code>栈内存</code>，是由js引擎在堆内存中模拟的一个类似于栈内存的对象。</li>
+</ul>
+<p><div id="chapter5"></div></p>
+<h3 id="内存空间总览"><a href="#内存空间总览" class="headerlink" title="内存空间总览"></a>内存空间总览</h3><p><img src="https://upload-images.jianshu.io/upload_images/599584-8e93616d7afcf811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp" alt="image"><br><span style="font-size:12px;display:inline-block;width:100%;text-align:center;"><strong>↑↑↑图片来自<a href="https://www.jianshu.com/p/996671d4dcc4" target="_blank" rel="noopener">内存空间详细图解</a></strong></span></p>
+<p><div id="chapter6"></div></p>
+<h3 id="基本类型的内存空间"><a href="#基本类型的内存空间" class="headerlink" title="基本类型的内存空间"></a>基本类型的内存空间</h3><p>如上一节中猜测的一般：对于基本类型，其值直接存放在栈内存中，我们可以直接通过变量名访问到它们的值。因此书本中说</p>
+<blockquote>
+<p>基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 声明一个基本类型的变量</span><br><span class="line">const simpleVariable = &apos;simpleVariable&apos;;</span><br><span class="line">// 由simpleVariable复制一个copySimpleVariable变量</span><br><span class="line">let copySimpleVariable = simpleVariable;</span><br><span class="line">// 因为基本类型的变量是按值访问的，所以修改copySimpleVariable的值会改了copySimpleVariable的值不会对simpleVariable产生影响</span><br><span class="line">copySimpleVariable = 123;</span><br></pre></td></tr></table></figure>
+<p><div id="chapter7"></div></p>
+<h3 id="引用类型的内存空间"><a href="#引用类型的内存空间" class="headerlink" title="引用类型的内存空间"></a>引用类型的内存空间</h3><p>而对于引用类型来说，它们的值存放在堆内存中，变量名保存的是一个内存地址，当我们访问这个变量的时候实际访问的是一个引用地址，通过这个引用地址访问到存在在堆内存中的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 声明一个引用类型</span><br><span class="line">const m = &#123;</span><br><span class="line">    name: &apos;complexVariable&apos;,</span><br><span class="line">&#125;;</span><br><span class="line">// 声明一个新的引用类型，复制自complexVariable</span><br><span class="line">const n = complexVariable;</span><br></pre></td></tr></table></figure></p>
+<p>如这段代码所示，当我们声明一个复制自 m 的引用类型 n 时，并不是像基本类型一般会直接修改这个变量的值，而是给这个变量一个指向堆内存的引用地址的值，如图所示：<br><img src="https://upload-images.jianshu.io/upload_images/599584-c269c4c5cae7d537.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700/format/webp" alt="image"><br><span style="font-size:12px;display:inline-block;width:100%;text-align:center;"><strong>↑↑↑图片来自<a href="https://www.jianshu.com/p/996671d4dcc4" target="_blank" rel="noopener">内存空间详细图解</a></strong></span></p>
+<p><div id="chapter7_1"></div></p>
+<h4 id="当操作引用类型值时内存空间发生了什么变化"><a href="#当操作引用类型值时内存空间发生了什么变化" class="headerlink" title="当操作引用类型值时内存空间发生了什么变化"></a>当操作引用类型值时内存空间发生了什么变化</h4><p>对引用类型的操作大体有如下几种：</p>
+<ul>
+<li>复制</li>
+<li>增加、删除、修改属性</li>
+<li>赋值</li>
+</ul>
+<hr>
+<p>当发生复制操作时，内存空间如上节中提到的所示，当我们声明一个复制自 m 的引用类型 n 时，并不是像基本类型一般会直接修改这个变量的值，而是给这个变量一个指向堆内存的引用地址的值。此时发生的情况是书本中说的</p>
+<blockquote>
+<p>引用类型的值是按引用访问的。</p>
+</blockquote>
+<hr>
+<p>当发生增加、删除、修改属性时，会通过变量的内存地址的值访问到在堆内存中实际的对象，并对这个实际的对象进行相应的增加、删除、修改属性操作。此时的情况便是在书本下方加的注解</p>
+<blockquote>
+<p>但在为对象添加属性时，操作的是实际的对象。</p>
+</blockquote>
+<p>正因为是操作了实际的对象，所以会导致所有指向这个堆内存中对象的变量都发生变化，这就是文章开头demo中说到的情况：</p>
+<blockquote>
+<p>声明两个复杂类型的变量，complexVariable2复制自complexVariable1。</p>
+</blockquote>
+<blockquote>
+<p>修改complexVariable2中的值，一切就不如预期了：complexVariable1中的值也发生了变化</p>
+</blockquote>
+<hr>
+<p>当发生赋值操作时，操作对象的值会赋值为堆内存中将要赋值的对象的内存地址。而此时就算操作的变量是复制自别的引用类型变量，也会接触两个变量之间的关系，无论操作哪个对象都不会对另一个产生影响:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 声明一个引用类型变量</span><br><span class="line">let complexVariable1 = &#123;</span><br><span class="line">    name: &apos;complexVariable1&apos;,</span><br><span class="line">    code: &apos;01&apos;,</span><br><span class="line">&#125;;</span><br><span class="line">// 声明一个复制自complexVariable1的变量</span><br><span class="line">let complexVariable2 = complexVariable1;</span><br><span class="line">// 修改complexVariable2的name属性，会操作在堆内存中的实际对象导致complexVariable1也发生变化</span><br><span class="line">complexVariable2.name = &apos;complexVariable2&apos;;</span><br><span class="line">console.log(complexVariable1.name);  // complexVariable2</span><br><span class="line">// 而当我们做赋值操作的时候，会将一个新的内存地址赋值给complexVariable2</span><br><span class="line">complexVariable2 = &#123;</span><br><span class="line">    name: &apos;new complexVariable2&apos;,</span><br><span class="line">    code: &apos;007&apos;,</span><br><span class="line">&#125;</span><br><span class="line">// 现在complexVariable2和complexVariable1已经没有半毛钱关系了</span><br><span class="line">complexVariable2.name = &apos;change back to complexVariable1&apos;;</span><br><span class="line">console.log(complexVariable1.name);  // complexVariable2</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>通过对内存空间的学习，可以清楚地知道变量发生创建赋值修改操作时js引擎做了哪些动作，从而更好地把握并使用各个变量。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

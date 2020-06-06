@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="这篇文章是A Progressive Web Application with Vue JS, Webpack &amp;amp; Material Design系列的其中一篇，旨在使用VueJS，Webpack和Material Design从头搭建一个基础但功能完整的PWA。如果你还没有看过之前的文章，">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 2]">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>使用Vue JS，Webpack&amp;Material Design开发渐进式web应用(PWA)[Part 2] - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用Vue JS，Webpack&Material Design开发渐进式web应用(PWA)[Part 2]</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-02-10
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a> <a href="/tags/PWA/">#PWA</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><img src="https://cdn-images-1.medium.com/max/1600/1*_tXoFIZ-JZoSF5LsQrl0ew.png" alt="pic1"><br>这篇文章是<code>A Progressive Web Application with Vue JS, Webpack &amp; Material Design</code>系列的其中一篇，旨在使用VueJS，Webpack和Material Design从头搭建一个基础但功能完整的PWA。如果你还没有看过之前的文章，可以点击<a href="https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402" target="_blank" rel="noopener">这里</a>阅读第一部分。</p>
+<p><strong>代码在GitHub开源：</strong><br><a href="https://github.com/charlesBochet/vueJSPwa" target="_blank" rel="noopener">https://github.com/charlesBochet/vueJSPwa</a></p>
+<p>在<a href="https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-1-c243e2e6e402" target="_blank" rel="noopener">第一部分</a>中，我们已经实现了使用VueJS，Webpack，MDL创建一个单页应用，并且实现了如下功能：<br><img src="https://cdn-images-1.medium.com/max/2000/1*brpU1d6y4SULHUw-IoGg7w.png" alt="part 1 requirements"></p>
+<p>本系列教程的第二部分将会着眼于为Cropchat应用提供快速且实时更新的数据流。我们将做如下操作：</p>
+<ul>
+<li>配置一套新的<a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>数据库；</li>
+<li>使用<a href="https://github.com/vuejs/vuefire" target="_blank" rel="noopener">Vuefire</a>将Vue App连接至Firebase；</li>
+<li>向Firebase发送数据并取回。</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*e-ZUy5bTsUVyQlzPsul7_Q.gif" alt="firebase demo"></p>
+<h2 id="PART-2-使用Firebase实现一款数据实时更新的PWA"><a href="#PART-2-使用Firebase实现一款数据实时更新的PWA" class="headerlink" title="[PART 2]使用Firebase实现一款数据实时更新的PWA"></a>[PART 2]使用Firebase实现一款数据实时更新的PWA</h2><p><img src="https://cdn-images-1.medium.com/max/1600/1*irCRrC2F46ljJp6B06FhiA.png" alt><br>Firebase是谷歌出品的一款NoSQL实时数据库，它部署在云主机上所以你不需要安装任何东西。<br>数据在所有的客户端上都是实时同步的，这使得Firebase成为了创建聊天应用的理想工具：它提供了一个简单的方式去推送最新的消息，而且它是免费的。<br>若要了解更多信息，请参见<a href="https://firebase.google.com/" target="_blank" rel="noopener">官方页面</a>。</p>
+<p>Let’s start.</p>
+<h3 id="配置firebase"><a href="#配置firebase" class="headerlink" title="配置firebase"></a>配置firebase</h3><p>首先，前往<a href="https://console.firebase.google.com/u/0/" target="_blank" rel="noopener">Firebase Console</a>，登录并创建一个新的项目：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*zqCV64N_Sq3opOQmQkt0Ow.png" alt="firebase console"></p>
+<p>然后修改数据库规则：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*BcOi87dLkydn0qhJxvEqxg.png" alt="database rules"></p>
+<p>注意：这个操作会允许任何人读取并操作你的数据库，它只适合使用在原型设计阶段。<br>将Firebase package添加至Cropchat：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase --save</span><br></pre></td></tr></table></figure></p>
+<p>接下来我们需要建立和Firebase的连接。创建文件<code>src/service/firebase.js</code>，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import firebase from &apos;firebase&apos;</span><br><span class="line"></span><br><span class="line">var config = &#123;</span><br><span class="line"> apiKey: &lt;Your api key here&gt;,</span><br><span class="line"> authDomain: &lt;Your auth Domain here&gt;,</span><br><span class="line"> databaseURL: &lt;Your databaseUrl here&gt;,</span><br><span class="line"> storageBucket: &lt;Your storageBucket here&gt;,</span><br><span class="line"> messagingSenderId: &lt;Your messagingSenderId here&gt;</span><br><span class="line">&#125;</span><br><span class="line">firebase.initializeApp(config)</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> database: firebase.database()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>回到Firebase Console页面，选择<code>Authentification</code>标签。点击’WEB SETUP’按钮获取数据库的信息：<br><img src="https://cdn-images-1.medium.com/max/1000/1*mnnpHAAeb6wyef_rMtbUTQ.png" alt="database info"></p>
+<p>至此我们已经成功连接到了数据库上。</p>
+<h3 id="Vuefire：释放Firebase-VueJS的能力"><a href="#Vuefire：释放Firebase-VueJS的能力" class="headerlink" title="Vuefire：释放Firebase+VueJS的能力"></a>Vuefire：释放Firebase+VueJS的能力</h3><h4 id="配置VueFire"><a href="#配置VueFire" class="headerlink" title="配置VueFire"></a>配置VueFire</h4><p>我们将在项目中使用VueFire巴拉巴拉。<br>添加VueFire到项目中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuefire --save</span><br></pre></td></tr></table></figure></p>
+<p>在<code>src/main.js</code>中引入VueFire：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Vuefire from &apos;vuefire&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuefire)</span><br></pre></td></tr></table></figure></p>
+<p>在<code>src/main.js</code>中引入firebase服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import firebase from &apos;./services/firebase&apos;</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line"> el: &apos;#app&apos;,</span><br><span class="line"> firebase: &#123;</span><br><span class="line">   cat: firebase.database.ref(&apos;cat&apos;).orderByChild(&apos;created_at&apos;)</span><br><span class="line"> &#125;,</span><br><span class="line"> router,</span><br><span class="line"> template: &apos;&lt;App/&gt;&apos;,</span><br><span class="line"> components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>以上操作将app的属性<code>cats</code>和firebase中的节点<code>cats</code>关联起来，VueFire会帮助我们实时同步数据。添加语句<code>.orderByChild(&#39;created_at&#39;)</code>使得返回的数据按照发布猫咪图片的时间倒序排列。</p>
+<h4 id="发布一条猫咪图片信息"><a href="#发布一条猫咪图片信息" class="headerlink" title="发布一条猫咪图片信息"></a>发布一条猫咪图片信息</h4><p>我们可以开始尝试着向firebase数据库发送数据了。在<code>src/components/PostView.vue</code>中添加表格：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;form&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-grid&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;mdl-cell mdl-cell--8-col&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;card-image__picture&quot;&gt;</span><br><span class="line">          &lt;img :src=&quot;this.catUrl&quot;/&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty&quot;&gt;</span><br><span class="line">          &lt;input id=&quot;username&quot; v-model=&quot;title&quot; type=&quot;text&quot; class=&quot;mdl-textfield__input&quot;/&gt;</span><br><span class="line">          &lt;label for=&quot;username&quot; class=&quot;mdl-textfield__label&quot;&gt;Describe me&lt;/label&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">          &lt;a @click.prevent=&quot;postCat&quot; class=&quot;mdl-button mdl-js-button mdl-button--raised mdl-button--colored&quot;&gt;</span><br><span class="line">            POST A CAT</span><br><span class="line">          &lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/form&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>添加Vue-resource和xml parser：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-resource --save</span><br><span class="line">npm install xml-parser --save</span><br></pre></td></tr></table></figure></p>
+<p>并在<code>src/main.js</code>中引入使用。</p>
+<p>在<code>PostView.vue</code>的<code>mounted()</code>钩子中随机加载一张来自<a href="http://thecatapi.com/" target="_blank" rel="noopener">CatApi</a>的猫咪图片：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  import parse from &apos;xml-parser&apos;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        &apos;catUrl&apos;: null</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">      this.$http.get(&apos;https://thecatapi.com/api/images/get?format=xml&amp;results_per_page=1&apos;).then(response =&gt; &#123;</span><br><span class="line">        this.catUrl = parse(response.body).root.children[&apos;0&apos;].children[&apos;0&apos;].children[&apos;0&apos;].children[&apos;0&apos;].content</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最后在<code>PostView.vue</code>的<code>methods</code>中添加<code>PostCat()</code>方法，该方法会发送猫咪图片到Firebase数据库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">postCat () &#123;</span><br><span class="line">  this.$root.$firebaseRefs.cat.push(</span><br><span class="line">    &#123;</span><br><span class="line">      &apos;url&apos;: this.catUrl,</span><br><span class="line">      &apos;comment&apos;: this.title,</span><br><span class="line">      &apos;info&apos;: &apos;Posted by Charles on Tuesday&apos;,</span><br><span class="line">      &apos;created_at&apos;: -1 * new Date().getTime()</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(this.$router.push(&apos;/&apos;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>来吧，看一下现在的应用，点击’Plus’按钮前往发布猫咪图片页面：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*LJJfRp8n5PSQ2h6VESJtLg.png" alt="PostView page"></p>
+<p>点击’Post A Cat’按钮，你应该可以看到在Firebase的概览中看到一条新条目：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*6QvHGDC-n1zMKlAgoFK-ww.png" alt="new entry"></p>
+<h4 id="渲染猫咪列表"><a href="#渲染猫咪列表" class="headerlink" title="渲染猫咪列表"></a>渲染猫咪列表</h4><p>胜利近在眼前！现在我们需要在HomeView中渲染从Firebase里取到的数据。在<code>HomeView.vue</code>的<code>&lt;template&gt;</code>标签中插入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;picture in this.$root.cat&quot; class=&quot;image-card&quot; @click=&quot;displayDetails(picture[&apos;.key&apos;])&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;image-card__picture&quot;&gt;</span><br><span class="line">    &lt;img :src=&quot;picture.url&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;image-card__comment mdl-card__actions&quot;&gt;</span><br><span class="line">    &lt;span&gt;&#123;&#123; picture.comment &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>别忘了删了已经不用了的模拟数据文件<code>data.js</code>和在<code>HomeView.vue</code>中对它的引用。<br>完成了之后就可以看一哈它长啥样了：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*3gdR-xMUJrPTBOFAZkHtDA.png" alt="HomeView"></p>
+<p>更厉害的是，它的数据是实时同步的：</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*u_JGem_0gzN5HE6vj_gUGg.gif" alt="hot-synced"></p>
+<h3 id="完善DetailView页面"><a href="#完善DetailView页面" class="headerlink" title="完善DetailView页面"></a>完善DetailView页面</h3><p>老套路，添加一个loadash到项目里：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lodash --save</span><br></pre></td></tr></table></figure></p>
+<p>然后把下面的代码写到<code>DetailView.vue</code>中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;mdl-grid&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-cell mdl-cell--8-col&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;picture&quot;&gt;</span><br><span class="line">        &lt;img :src=&quot;cat.url&quot; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123; cat.info &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;comment&quot;&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123; cat.comment &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">        &lt;router-link class=&quot;mdl-button mdl-js-button mdl-button--raised mdl-button--colored&quot; to=&quot;/post&quot;&gt;</span><br><span class="line">          ANSWER</span><br><span class="line">        &lt;/router-link&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import &#123; find &#125; from &apos;lodash&apos;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        cat: null</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">      this.cat = find(this.$root.cat, (cat) =&gt; cat[&apos;.key&apos;] === this.$route.params.id)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>长话短说，有这么几点微小的结论：</p>
+<ul>
+<li>Vuefire提供快速而简单的方法将Firebase数据库集成到VueJS项目中；</li>
+<li>Firebase是一款在应用中创建实时数据的强大的工具，可以让用户始终获取到最新的数据。</li>
+</ul>
+<p>于是现在我们的未完成清单变成下面这样啦：<br><img src="https://cdn-images-1.medium.com/max/800/1*9bEIbGP-oRc4gQ5LRfyeKg.png" alt="checklist"></p>
+<p>少侠别走！还有<a href="https://blog.sicara.com/a-progressive-web-application-with-vue-js-webpack-material-design-part-3-service-workers-offline-ed3184264fd1" target="_blank" rel="noopener">Part III</a>等着你！</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
