@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="liaokun,baba,blog,廖锟,巴巴,博客,fe,frontend,前端,技术">
+    <meta name="description" content="廖锟的博客">
+    <meta name="author" content="廖锟">
+    <meta name="robots" content="index,follow">
+    <meta name="google" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="verify" content="index,follow">
+    <meta name="baidu-site-verification" content="Y0SDoDGObn">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="这篇文章老早就写好发在公司的博客上了，现在整理博客给搬运过来
+
+开发背景需求在微信端提供一个小程序完成相关业务功能选择了 Taro 作为本次开发的前端框架
+
+Taro 遵循 React 语法规范，它采用与 React 一致的组件化思想，组件生命周期与 React 保持一致，同时支持使用 JSX 语法">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liao Kun/廖锟">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Taro快速上手">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="巴巴的博客">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Taro快速上手 - 巴巴的博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109257278-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109257278-1');
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c5bbdc67b659208066b3bc734cced61c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <a class="navbar-brand" href="/">home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/">-->
+                            <!---->
+                                <!--Home-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/archives">-->
+                            <!---->
+                                <!--Archives-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/tags">-->
+                            <!---->
+                                <!--Tags-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="/categories">-->
+                            <!---->
+                                <!--Categories-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+                    <!--<li>-->
+                        <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog">-->
+                            <!---->
+                                <!--<i class="fa fa-github fa-stack-2x"></i>-->
+                            <!---->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!---->
+            <!--</ul>-->
+        <!--</div>-->
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('https://wx4.sinaimg.cn/large/005Kh0ZYly1fhtsaauieoj30ru0bhdhb.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Taro快速上手</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-12-25
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/前端/">#前端</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/技术/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <blockquote>
+<p>这篇文章老早就写好发在<a href="http://blog.ideacome.com/2019/09/27/tarokuai-su/" target="_blank" rel="noopener">公司的博客</a>上了，现在整理博客给搬运过来</p>
+</blockquote>
+<h3 id="开发背景"><a href="#开发背景" class="headerlink" title="开发背景"></a>开发背景</h3><p>需求在微信端提供一个小程序完成相关业务功能<br>选择了 <a href="https://taro-docs.jd.com/taro/docs/README.html" target="_blank" rel="noopener">Taro</a> 作为本次开发的前端框架</p>
+<blockquote>
+<p>Taro 遵循 React 语法规范，它采用与 React 一致的组件化思想，组件生命周期与 React 保持一致，同时支持使用 JSX 语法，让代码具有更丰富的表现力，使用 Taro 进行开发可以获得和 React 一致的开发体验。</p>
+</blockquote>
+<p>借由Taro还可以直接把项目打包成微信/百度/支付宝/字节跳动/QQ小程序 、快应用、 H5 端 以及 移动端（React Native），为之后各平台的业务需求提前做好准备。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>项目基于 <a href="https://github.com/qit-team/taro-yanxuan" target="_blank" rel="noopener">https://github.com/qit-team/taro-yanxuan</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── config</span><br><span class="line">│   ├── dev.js  // 开发环境的host配置</span><br><span class="line">│   ├── index.js  // 项目配置</span><br><span class="line">│   └── prod.js  // 生产环境的host配置</span><br><span class="line">├── dist  // 编译生成的文件目录</span><br><span class="line">├── jsconfig.json</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── project.config.json</span><br><span class="line">├── src</span><br><span class="line">│   ├── actions  // action目录</span><br><span class="line">│   ├── app.js  // 入口文件</span><br><span class="line">│   ├── app.scss</span><br><span class="line">│   ├── assets  // 静态文件目录</span><br><span class="line">│   ├── components  // 封装的组件</span><br><span class="line">│   ├── constants  // 一些常量如后端接口路径</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   ├── pages  // 页面目录</span><br><span class="line">│   ├── reducers  // reducer目录</span><br><span class="line">│   ├── store  // redux配置</span><br><span class="line">│   ├── styles</span><br><span class="line">│   └── utils  // 一些工具方法</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></table></figure></p>
+<h4 id="页面数据到视图的流向"><a href="#页面数据到视图的流向" class="headerlink" title="页面数据到视图的流向"></a>页面数据到视图的流向</h4><p>静态页面  render()中渲染页面，使用constructor中state的初始值/store中state的各个对象初始值渲染视图</p>
+<p>非静态页面  走一遍静态页面渲染流程，在生命周期中触发对state或props的操作，由state和props的变化触发视图的更新</p>
+<h4 id="更新页面state值"><a href="#更新页面state值" class="headerlink" title="更新页面state值"></a>更新页面state值</h4><ul>
+<li>通过 <a href="https://nervjs.github.io/taro/docs/apis/about/tarocomponent.html#setstate" target="_blank" rel="noopener">setState</a> <strong>异步</strong>更新页面中state的值</li>
+<li>使用<code>@utils/requests</code>中封装的<code>fetch</code>发起请求，请求返回后更新页面中state值</li>
+</ul>
+<h4 id="更新redux中store的值"><a href="#更新redux中store的值" class="headerlink" title="更新redux中store的值"></a>更新redux中store的值</h4><ul>
+<li><p>页面中使用 dispatch(<code>const { dispatch } = this.props</code>) 发起 <code>action</code>；在 <code>@reducers</code>相应的文件中更新state或经由 <code>@actions</code>中的代码处理完交给<code>@reducers</code>更新state；通过<code>connect()</code>连接 React 组件与 Redux store，触发视图的更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>action</code>中使用<code>@utils/redux</code>中封装的<code>createAction</code>发起异步请求，在<code>@reducers</code>中更新state</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import fetch from &apos;./request&apos;</span><br><span class="line"></span><br><span class="line">export function createAction(options) &#123;</span><br><span class="line">  const &#123; url, payload, method, fetchOptions, cb, type &#125; = options</span><br><span class="line">  return (dispatch) =&gt; &#123;</span><br><span class="line">    return fetch(&#123; url, payload, method, ...fetchOptions &#125;).then((res) =&gt; &#123;</span><br><span class="line">      dispatch(&#123; type, payload: cb ? cb(res) : res &#125;)</span><br><span class="line">      return res</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><ul>
+<li>如果是开发微信小程序在微信开发者工具中预览项目，而不是直接在网页预览。一方面因为网页上有很多微信的api不支持，另一方面在H5上根据<code>designWidth</code>和<code>deviceRatio</code>写好的页面到了小程序上样式可能会不一样。</li>
+<li>config/index.js中有如下配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">designWidth: 750,</span><br><span class="line">deviceRatio: &#123;</span><br><span class="line">  &apos;640&apos;: 2.34 / 2,</span><br><span class="line">  &apos;750&apos;: 1,</span><br><span class="line">  &apos;828&apos;: 1.81 / 2</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果设计稿宽度不是按750给的话需要修改相应的值或者把读出来的尺寸转化为750下的。</p>
+<ul>
+<li>项目在小程序下编译正常，h5报错<blockquote>
+<p>Cannot read property ‘dispatch’ of undefined</p>
+</blockquote>
+</li>
+</ul>
+<p>见 <a href="https://github.com/NervJS/taro/issues/2142" target="_blank" rel="noopener">https://github.com/NervJS/taro/issues/2142</a></p>
+<ul>
+<li>Image组件</li>
+</ul>
+<p><a href="https://nervjs.github.io/taro/docs/components/media/image.html" target="_blank" rel="noopener">https://nervjs.github.io/taro/docs/components/media/image.html</a></p>
+<p>使用本地图片需要先把图片import进来  然后赋值给Image组件的src属性</p>
+<ul>
+<li>子组件调用父组件方法传递参数 如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const &#123; onHandleClickNav &#125; = this.props</span><br><span class="line">return (</span><br><span class="line">    &lt;View onClick=&#123;e =&gt; onHandleClickNav(index, e)&#125;&gt;&lt;/View&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!--<ul class="list-inline text-center">-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                        <!--<li>-->
+                            <!--<a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">-->
+                                <!--<span class="fa-stack fa-lg">-->
+                                    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+                                    <!--<i class="fa fa-github fa-stack-1x fa-inverse"></i>-->
+                                <!--</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+
+                    <!---->
+                <!--</ul>-->
+                <p class="copyright text-muted">&copy; 2020 <a href="https://www.liaokun.me" title="you can also contact me with email : liaokun.baba@qq.com">Liao Kun/廖锟</a><br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="https://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="https://cdn.bootcss.com/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
